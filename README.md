@@ -38,4 +38,4 @@ SSPanel UIM Wiki is open sourced under [MIT](./LICENSE) license.
 ## Maintainer
 
 **SSPanel UIM Wiki** © [SSPanel Dev Team](https://github.com/SSPanel-UIM), Released under the [MIT](./LICENSE) License.<br>
-Authored and maintained by `SSPanel Dev Team` with help from contributors ([list](https://github.com/SSPanel/Wiki/contributors)).
+Authored and maintained by `SSPanel Dev Team` with help from contributors ([list](https://github.com/SSPanel/Wiki/graphs/contributors)).
