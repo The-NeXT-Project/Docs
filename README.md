@@ -1,38 +1,41 @@
-# Wiki
+# SSPanel UIM Wiki
 
-> 我们安装，我们更新，我们开发
+> We install, we update, we develop.
 
-## 安装
+## Intro
 
-- 前端安装
-- 基于Plesk的前端安装说明
-- [使用 LNMP 部署网站](https://blog.anank.ke/w/SSPanel_with_LNMP)
-- [自豪地采用 oneinstack 部署网站](./install-using-ois.md)
-- 后端一键安装脚本
-- SSPanel v3 mod 后端（Docker）对接
-- 单端口多用户教程 （91vps版）
-- 单端口多用户教程（魔改原版）
-- 支付系统对接教程
-- 魔改常用审计规则
+**SSPanel UIM Wiki** are proudly using Markdown and [Docsify](https://docsify.js.org), hosted on GitHub Pages.
 
-## 更新
+## Requirement
 
-- 升级版本
+- [Git](https://git-scm.com/)
+- [Node.js](https://github.com/nodejs/node)
+- [docsify-cli](https://github.com/QingWei-Li/docsify-cli)
 
-## 进阶
+```bash
+# Install docsify-cli globally
+$ npm i docsify-cli -g
+```
 
-- 各示例图片路径
-- 手动搭建 Python 后端
-- Telegram OAuth 配置
-- v2ray indexyz 版使用教程
-- v2ray Rico 版使用教程
-- 使用 CloudHammer Seeds 优化 webapi 后端的 CPU 占用
+## Usage
 
-## 开发
+```bash
+$ git clone https://github.com/SSPanel-UIM/Wiki SSPanelUIM-Wiki
+$ cd SSPanelUIM-Wiki
+# docsify serve <path> [--open false] [--port 3000]
+$ docisfy serve .
+# Docsify CLI will listen at http://localhost:3000
+```
 
-- SSPanel V3 Mod UIM Git Workflow
-- 开发规范
+## Contributions
 
-## Q & A
+See contribution guides (WIP).
 
-- 魔改常见问题解答
+## License
+
+SSPanel UIM Wiki is open sourced under [MIT](./LICENSE) license.
+
+## Maintainer
+
+**SSPanel UIM Wiki** © [SSPanel Dev Team](https://github.com/SSPanel-UIM), Released under the [MIT](./LICENSE) License.<br>
+Authored and maintained by `SSPanel Dev Team` with help from contributors ([list](https://github.com/SSPanel/Wiki/contributors)).
