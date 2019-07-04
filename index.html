@@ -86,7 +86,7 @@
                                 .replace('raw.githubusercontent.com', 'github.com')
                                 .replace(/\/master/, '/blob/master')
                         } else {
-                            url = 'https://github.com/SSPanel-UIM/Wiki/blob/master/docs/' + vm.route.file
+                            url = 'https://github.com/SSPanel-UIM/Wiki/blob/master/' + vm.route.file
                         }
                         var editHtml = '[:memo: 在 GitHub 上编辑](' + url + ')\n'
                         return `${html} \n----\n ${editHtml}`;
