@@ -17,7 +17,7 @@
 - Telegram OAuth 配置
 - v2ray indexyz 版使用教程
 - v2ray Rico 版使用教程
-- 使用 CloudHammer Seeds 优化 webapi 后端的 CPU 占用
+- [使用 CloudHammer Seeds 优化 webapi 的 CPU 占用](use-cloudhammer-seeds-as-webapi)
 - **开发**
 - SSPanel V3 Mod UIM Git Workflow
 - 开发规范
