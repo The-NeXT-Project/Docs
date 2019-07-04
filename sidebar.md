@@ -2,7 +2,7 @@
 - 前端安装
 - 基于Plesk的前端安装说明
 - [使用 LNMP 部署网站](https://blog.anank.ke/w/SSPanel_with_LNMP)
-- [自豪地采用 oneinstack 部署网站](install-using-ois)
+- [使用 oneinstack 部署 SSPanel UIM](install-using-ois)
 - 后端一键安装脚本
 - SSPanel v3 mod 后端（Docker）对接
 - 单端口多用户教程 （91vps版）
