@@ -1,4 +1,4 @@
-# V2Ray 后端（Rico 版）
+# v2ray Rico 版使用教程
 
 https://github.com/rico93/pay-v2ray-sspanel-v3-mod_Uim-plugin
 

@@ -14,7 +14,7 @@
 - 各示例图片路径
 - 手动搭建 Python 后端
 - [Telegram OAuth 配置](setup-telegram-oauth)
-- v2ray indexyz 版使用教程
+- [v2ray indexyz 版使用教程](v2ray-inedxyz)
 - [v2ray Rico 版使用教程](v2ray-rico)
 - [使用 CloudHammer Seeds 优化 webapi 的 CPU 占用](use-cloudhammer-seeds-as-webapi)
 - **开发**
