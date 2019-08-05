@@ -43,7 +43,7 @@ ssl_protocols TLSv1.1 TLSv1.2;
 ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
 ```
 
-### 配置节点国旗
+## 配置节点国旗
 
 默认节点命名规则：
 
@@ -77,3 +77,36 @@ $System_Config['enable_flag']='true';
 
 如果有其他需求（比如喜欢把国家/地区名放到中间或后面、不想用空格），可以自行修改下方 `$System_Config['flag_regex']` 中的正则表达式
 
+## 错误 `Undefined offset :0 in`
+
+常见于使用宝塔、对接节点数量较多的情况。
+
+在宝塔面板中找到 PHP，点击设置：
+
+- 在 **禁用函数** 一栏找到 `system` `putenv` `proc_open` `proc_get_status` 全部取出
+- 在 **性能调整** 中，把 PHP 运行模式设置为 **静态**
+- 在 **配置文件** 中 按 <kbd>Ctrl</kbd> + <kbd>F</kbd> 搜索 `display_errors` 将 `=` 后的值改为 `Off` 后保存
+
+![](https://i.loli.net/2018/04/06/5ac64a16dbeaf.png)
+
+## IIS 伪静态配置写法
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <system.webServer>
+        <rewrite>
+            <rules>
+                <rule name="slim" patternSyntax="Wildcard">
+                    <match url="*" />
+                    <conditions>
+                        <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+                        <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
+                    </conditions>
+                    <action type="Rewrite" url="index.php" />
+                </rule>
+            </rules>
+        </rewrite>
+    </system.webServer>
+</configuration>
+```
