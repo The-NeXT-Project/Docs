@@ -8,7 +8,7 @@
 - 单端口多用户教程（魔改原版）
 - [支付系统对接教程](setup-payment-gateway)
 - **更新**
-- 升级版本
+- [升级 SSPanel UIM](update)
 - **进阶**
 - [常用审计规则](useful-detect-rules)
 - 各示例图片路径
