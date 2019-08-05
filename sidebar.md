@@ -11,7 +11,7 @@
 - [升级 SSPanel UIM](update)
 - **进阶**
 - [常用审计规则](useful-detect-rules)
-- 各示例图片路径
+- [各示例图片路径](imgs-dir)
 - 手动搭建 Python 后端
 - [Telegram OAuth 配置](setup-telegram-oauth)
 - [v2ray indexyz 版使用教程](v2ray-inedxyz)
