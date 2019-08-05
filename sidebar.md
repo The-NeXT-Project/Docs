@@ -3,7 +3,7 @@
 - [使用 LNMP 部署网站](https://blog.anank.ke/w/SSPanel_with_LNMP)
 - [使用 oneinstack 部署 SSPanel UIM](install-using-ois)
 - [后端一键安装脚本](onekey-install-for-node)
-- SSPanel v3 mod 后端（Docker）对接
+- [SSPanel v3 mod 后端（Docker）对接](https://vinga.tech/ssrmu/)
 - 单端口多用户教程 （91vps版）
 - 单端口多用户教程（魔改原版）
 - [支付系统对接教程](setup-payment-gateway)
