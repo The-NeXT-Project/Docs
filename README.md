@@ -23,7 +23,7 @@ $ npm i docsify-cli -g
 $ git clone https://github.com/SSPanel-UIM/Wiki SSPanelUIM-Wiki
 $ cd SSPanelUIM-Wiki
 # docsify serve <path> [--open false] [--port 3000]
-$ docisfy serve .
+$ docsify serve .
 # Docsify CLI will listen at http://localhost:3000
 ```
 
