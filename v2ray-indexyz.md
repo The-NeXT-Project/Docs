@@ -85,11 +85,11 @@ v2ray:
 您可以使用以下 Dockerfile 来构建您的 Docker Image
 
 ```dockerfile
-FROM bitnami/minideb
+FROM golang:alpine
 LABEL maintainer="Indexyz <docker@indexyz.me>"
 
-COPY agent /
-RUN chmod +x /agent
+COPY agent /v2ray/
+RUN chmod +x /v2ray/agent && apk --no-cache add curl
 
 ENTRYPOINT ["/agent"]
 ```
