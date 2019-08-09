@@ -23,3 +23,4 @@
 - SSPanel UIM Wiki 贡献教程
 - **Q & A**
 - [魔改常见问题解答](q-and-a)
+- [Privacy Policy](privacy-policy)
