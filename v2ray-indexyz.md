@@ -91,7 +91,7 @@ LABEL maintainer="Indexyz <docker@indexyz.me>"
 COPY agent /v2ray/
 RUN chmod +x /v2ray/agent && apk --no-cache add curl
 
-ENTRYPOINT ["/agent"]
+ENTRYPOINT ["/v2ray/agent"]
 ```
 
 将获取到的后端命名为 `agent` 放在这个文件夹, 使用 `docker build -t v2ray-agent .` 来构建您的 Image。构建完成后，使用 `docker run -p 443:443 -d --name v2ray v2ray-agent` 来运行
