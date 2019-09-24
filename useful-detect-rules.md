@@ -9,6 +9,9 @@
 |屏蔽Spam邮箱|`(^.*\@)(guerrillamail\|guerrillamailblock\|sharklasers\|grr\|pokemail\|spam4\|bccto\|chacuo\|027168)\.(info\|biz\|com\|de\|net\|org\|me\|la)`|数据包明文匹配|
 |屏蔽迅雷 基本屏蔽掉迅雷的网站，并且在全局模式下会影响迅雷的下载能力|`(.?)(xunlei\|sandai\|Thunder\|XLLiveUD)(.)`|数据包明文匹配|
 |屏蔽去仑力网站|`(.*\.\|\|)(dafahao\|minghui\|dongtaiwang\|epochtimes\|ntdtv\|falundafa\|wujieliulan\|zhengjian)\.(org\|com\|net)`|数据包明文匹配|
+|屏蔽金融诈骗|`.*bank.*`|数据包明文匹配|
+|屏蔽金融诈骗|`(.*\.\|\|)(gash)\.(com\|tw)`|数据包明文匹配|
+|屏蔽金融诈骗|`(.*\.\|\|)(mycard)\.(com\|tw)`|数据包明文匹配|
 
 ----
 
