@@ -4,39 +4,34 @@
 
 ## 后端一键安装脚本（大猫猫版）
 
-?> 本文以 CentOS 7 和 Ubuntu 18.04 为例。
+?> 本文以 CentOS 7 和 CentOS 8 为例。
 
 ### 脚本功能
 
 * 可选配置节点为WebAPI模式或MySQL模式
 * 可选配置单端口多用户
-* 可选启用BBR（using mainline kernel）
+* 可选启用BBR（CentOS 7 使用Mainline版本kernel，CentOS 8使用系统自带kernel）
 * 可选注册为系统服务
+* 可选安装saltstack客户端
 
 ### 安装
 
-**CentOS 7 x64**
+**CentOS 7**
 
 ```bash
 yum install wget -y && wget https://raw.githubusercontent.com/SuicidalCat/Airport-toolkit/master/ssr_node_c7.sh && chmod +x ssr_node_c7.sh && ./ssr_node_c7.sh
 ```
 
-**Ubuntu 18.04 x64**
+**CentOS 8**
 
 ```bash
-apt-get install wget -y && wget https://raw.githubusercontent.com/SuicidalCat/Airport-toolkit/master/ssr_node_u18.sh && chmod +x ssr_node_u18.sh && ./ssr_node_u18.sh
+dnf install wget -y && wget https://raw.githubusercontent.com/SuicidalCat/Airport-toolkit/master/ssr_node_c8.sh && chmod +x ssr_node_c8.sh && ./ssr_node_c8.sh
 ```
 
 ### 卸载
 
 ```bash
 systemctl disable ssr_node && \rm /usr/lib/systemd/system/ssr_node.service && \rm -rf /soft/shadowsocks
-```
-
-### 设置开机启动
-
-```bash
-systemctl enable ssr_node
 ```
 
 ### 服务启动
