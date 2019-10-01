@@ -51,6 +51,21 @@ $ php composer.phar install
 
 oneinstack 默认的 Nginx 安装目录可能会随版本更新而发生变化，因此建议通过  `whereis` 命令自行查找，找到安装目录下的 `vhost/www.你的域名.com.conf` 文件，将 `root /data/wwwroot/你的域名;` 修改为 `root/data/wwwroot/你的域名/public;`
 
+找到安装目录下的 `vhost/www.你的域名.com.conf` 文件 在 
+```
+server{
+
+location xxx # 示例
+
+# 加入接下来的配置  php配置需要这个 将/auth 等目录的访问 redirect到index.php 文件上
+location / {
+  try_files $uri /index.php$is_args$args;
+}
+
+}
+```
+添加上述配置
+
 之后，修改网站目录下 config 文件夹里面的内容来对接数据库。
 
 !> 采用本教程部署的数据库用户名密码默认都为 `root`！！！！强烈建议在网站正常运行后进行更改！！！！！
