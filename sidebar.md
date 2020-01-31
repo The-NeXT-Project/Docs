@@ -16,7 +16,7 @@
 - [Telegram OAuth 配置](setup-telegram-oauth)
 - [v2ray indexyz 版使用教程](v2ray-indexyz)
 - [v2ray Rico 版使用教程](v2ray-rico)
-- [v2ray Poseidon 使用教程](v2ray-v2ray-poseidon)
+- [v2ray Poseidon 使用教程](v2ray-poseidon)
 - [使用 CloudHammer Seeds 优化 webapi 的 CPU 占用](use-cloudhammer-seeds-as-webapi)
 - **开发**
 - SSPanel V3 Mod UIM Git Workflow
