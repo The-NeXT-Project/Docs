@@ -8,7 +8,7 @@ Telegram 官方推出了 OAuth 接口以后可以代替扫码和输入数字。
 
 ![](https://img.vim-cn.com/af/a42796a5912b9c6dc4e8b9ebcf079a6179c846.png)
 
-- 给 [@BotFather](https://t.me/botfather) 发送命令 `/setdoimain`
+- 给 [@BotFather](https://t.me/botfather) 发送命令 `/setdomain`
 - 选择你要设置的机器人
 - 回复你的 **网站域名**，如 `example.com` 或者 `dashboard.example.com`
 
