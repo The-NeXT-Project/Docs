@@ -45,11 +45,3 @@ systemctl start ssr_node
 ```bash
 systemctl stop ssr_node
 ```
-
-## 后端一键脚本（NiTian1207 版）
-
-```bash
-yum -y install wget &&
-wget -N --no-check-certificate https://raw.githubusercontent.com/lizhongnian/ss-panel-v3-mod-node-connect/master/ss-panel-v3-mod-node-connect.sh && 
-chmod +x ss-panel-v3-mod-node-connect.sh && bash ss-panel-v3-mod-node-connect.sh
-```
