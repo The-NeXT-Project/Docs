@@ -1,6 +1,7 @@
 # SSPanel v3 mod 后端（Docker）对接
 
 !> 本文转载自 https://vinga.tech/ssrmu/ ，已获得原作者授权。最新版文档请查看原文。Wiki 仅收录归档版本。
+Docker 后端不属于官方支持，也无法获得上游更新，请自行处理相关问题。
 
 ### 更新记录
 
