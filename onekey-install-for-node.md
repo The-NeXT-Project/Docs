@@ -16,16 +16,16 @@
 
 ### 安装
 
-**CentOS 7**
+**CentOS 7（非主要支持版本，请有条件的优先使用CentOS 8）**
 
 ```bash
-yum install wget -y && wget https://raw.githubusercontent.com/SuicidalCat/Airport-toolkit/master/ssr_node_c7.sh && chmod +x ssr_node_c7.sh && ./ssr_node_c7.sh
+yum install wget -y && wget https://raw.githubusercontent.com/Toxic-Cat/Airport-toolkit/master/ssr_node_c7.sh && chmod +x ssr_node_c7.sh && ./ssr_node_c7.sh
 ```
 
 **CentOS 8**
 
 ```bash
-dnf install wget -y && wget https://raw.githubusercontent.com/SuicidalCat/Airport-toolkit/master/ssr_node_c8.sh && chmod +x ssr_node_c8.sh && ./ssr_node_c8.sh
+dnf install wget -y && wget https://raw.githubusercontent.com/Toxic-Cat/Airport-toolkit/master/ssr_node_c8.sh && chmod +x ssr_node_c8.sh && ./ssr_node_c8.sh
 ```
 
 ### 卸载
