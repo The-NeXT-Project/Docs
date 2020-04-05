@@ -7,11 +7,12 @@
 
 Server 格式: 
 ```
-google.com;port=1443\|host=baidu.com
+google.com;port=1443|host=baidu.com
 ```
 
 ### 配置文件
 
+> webapi.enabled mysql.enabled 同时开启时 优先使用 WEBAPI
 | 配置名称 | 简介 |
 | :--- | :--- |
 | node\_id | 必填，节点 ID，错误的 ID 可能导致节点流量无法结算 |
