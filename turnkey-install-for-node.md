@@ -12,7 +12,7 @@
 * 可选配置单端口多用户
 * 可选启用BBR（CentOS 7 使用Mainline版本kernel，CentOS 8使用系统自带kernel）
 * 可选注册为系统服务
-* 可选安装saltstack客户端
+* ~~可选安装saltstack客户端~~（由于Salt官方安装脚本在CentOS 8环境下有猫饼，所以暂时移除这个功能，待有空的时候再重新添加）
 
 ### 安装
 
