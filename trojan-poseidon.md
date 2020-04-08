@@ -11,6 +11,8 @@
 | 节点也可以变成一个网站的镜像 | 用户在线 IP 统计 |  |
 |  | 用户触发规则 (10分钟同一个规则仅上报一次) |  |
 
+加入 [Trojan Poseidon TG](https://t.me/trojan_poseidon) 给我们反馈～
+
 ## [面板] 添加节点
 
 #### 节点地址
@@ -103,3 +105,10 @@ Configs and logs **are preserved**
 ```shell
 curl -L -s https://bit.ly/2Jl9bs7 | bash
 ```
+
+
+## 感谢
+
+- SSPanel-Uim-V3
+- Trojan
+- Trojan-Go
