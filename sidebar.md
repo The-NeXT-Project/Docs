@@ -1,8 +1,10 @@
 - **安装**
 - [使用宝塔面板部署网站](https://blog.anank.ke/w/SSPanel_with_DROP_DATABASE_BT)
+- [使用宝塔面板部署网站(备用链接)](http://archive.vn/https://blog.anank.ke/w/SSPanel_with_DROP_DATABASE_BT)
 - [使用 LNMP 部署网站](https://blog.anank.ke/w/SSPanel_with_LNMP)
+- [使用 LNMP 部署网站(备用链接)](http://archive.vn/https://blog.anank.ke/w/SSPanel_with_LNMP)
 - [使用 oneinstack 部署 SSPanel UIM](install-using-ois)
-- [后端一键安装脚本](onekey-install-for-node)
+- [后端一键安装脚本](turnkey-install-for-node)
 - [SSPanel v3 mod 后端（Docker）对接](ssrmu-docker)
 - [单端口多用户教程（91vps版）](ssrmu-setup-91vps)
 - [单端口多用户教程（魔改原版）](ssrmu-setup-zj)
@@ -16,6 +18,10 @@
 - [Telegram OAuth 配置](setup-telegram-oauth)
 - [v2ray indexyz 版使用教程](v2ray-indexyz)
 - [v2ray Rico 版使用教程](v2ray-rico)
+- [v2ray Poseidon 使用教程](v2ray-poseidon)
+- [Trojan Poseidon 使用教程](trojan-poseidon)
+- [Trojan 使用教程](trojan-du5)
+- [Trojan Yahagi.js 使用教程](trojan-cluster)
 - [使用 CloudHammer Seeds 优化 webapi 的 CPU 占用](use-cloudhammer-seeds-as-webapi)
 - **开发**
 - SSPanel V3 Mod UIM Git Workflow
