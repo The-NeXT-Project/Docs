@@ -45,7 +45,7 @@ Trojan
 > 在安装之前，您需要准备 `Nodejs` 和 `npm` ，安装方式参见您发行版的文档。
 
 1. 获取 Yahagi.js 。
-    `git pull https://github.com/trojan-cluster/yahagi.js`
+    `git clone https://github.com/trojan-cluster/yahagi.js`
 2. 安装依赖。
     执行 `npm install yahagi.js`
 3. 配置 Yahagi.js
