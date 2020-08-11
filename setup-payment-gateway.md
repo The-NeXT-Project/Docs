@@ -180,10 +180,6 @@ $ crontab -e
 $ tail /你的目录/storage/logs/chenpay.log
 ```
 
-# 番茄云支付
-
-对接教程请前往 https://swapidc.fanqieui.com/?t/329.html
-
 ## 特别说明
 
 - 服务器时间必须要正确的中国时间，需要匹配支付宝微信时间
