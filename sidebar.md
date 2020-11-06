@@ -4,7 +4,7 @@
 - [使用 LNMP 部署网站](https://blog.anank.ke/w/SSPanel_with_LNMP)
 - [使用 LNMP 部署网站(备用链接)](http://archive.vn/https://blog.anank.ke/w/SSPanel_with_LNMP)
 - [使用 oneinstack 部署 SSPanel UIM](install-using-ois)
-- [后端一键安装脚本](turnkey-install-for-node)
+- [SSR后端一键安装脚本](turnkey-install-for-ssr-node)
 - [SSPanel v3 mod 后端（Docker）对接](ssrmu-docker)
 - [单端口多用户教程（91vps版）](ssrmu-setup-91vps)
 - [单端口多用户教程（魔改原版）](ssrmu-setup-zj)
