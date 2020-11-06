@@ -47,5 +47,5 @@ systemctl stop ssr_node
 
 ### 注意事项
 
-* 由于后端不再支持Python3，在CentOS 7环境中安装时会额外安装Python3.6
-* 所有跟节点安装本身无关的功能会通过单独的脚本提供
+* 由于后端不再支持Python2，在CentOS 7环境中安装时会额外安装Python3.6
+* 所有跟节点安装本身无关的功能会通过单独的脚本提供（例如BBRv1 via Mainline Kernel）
