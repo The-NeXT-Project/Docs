@@ -34,28 +34,6 @@ $System_Config['merchant_private_key']='MIIExxxxxxxxxxxxxxxxxxx';
 
 这个是你 **自己的私钥**。
 
-## Trime pay
-
-[注册地址](https://portal.trimepay.com/#/auth/register)
-
-1. 注册完成后进入我的应用，点+号
-
-![](https://i.loli.net/2019/01/05/5c307e23ad49b.png)
-
-2.点击签约信息 ，在右边点击签约对应功能
-
-![](https://i.loli.net/2019/01/05/5c307e6524413.png)
-
-3.签约后复制 AppID 和 AppSecret
-
-4.填写 config.php 后即可使用
-
-```php
-$System_Config['payment_system']='trimepay';
-$System_Config['trimepay_appid']='';				//AppID
-$System_Config['trimepay_secret']='';				//AppSecret
-```
-
 ## 码支付
 
 ?> 优点是 QQ 和 支付宝 免手续费直接到账，缺点是微信需要 58 的授权费（终身授权），而且网络情况不佳时掉单会很频繁。
