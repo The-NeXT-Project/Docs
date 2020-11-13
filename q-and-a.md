@@ -114,3 +114,7 @@ $System_Config['enable_flag']='true';
 ## Git 报错 `Peer reports incompatible or unsupported protocol version`
 
 Git 版本过低，请前往 [Git 官网下载页](https://git-scm.com/downloads) 查看升级指导。
+
+## 邮件队列问题
+
+邮件队列定时任务执行过程中在意外或手动停止后，若此时执行提示 **程序正在运行中** 请前往 `/storage` 删除 email_queue.
