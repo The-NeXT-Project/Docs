@@ -3,7 +3,7 @@
 - [使用 LNMP 部署网站(备用链接)](https://web.archive.org/web/20201128181013/https://blog.anank.ke/w/SSPanel_with_LNMP)
 - [使用宝塔面板部署网站](https://blog.anank.ke/w/SSPanel_with_DROP_DATABASE_BT)
 - [使用宝塔面板部署网站(备用链接)](https://web.archive.org/web/20201128180515/https://blog.anank.ke/w/SSPanel_with_DROP_DATABASE_BT)
-- [使用 oneinstack 部署 SSPanel UIM](install-using-oneinstack)
+- [使用 OneinStack 部署 SSPanel UIM](install-using-oneinstack)
 - [SSR后端一键安装脚本](turnkey-install-for-ssr-node)
 - [SSPanel v3 mod 后端（Docker）对接](ssrmu-docker)
 - [单端口多用户教程（91vps版）](ssrmu-setup-91vps)
