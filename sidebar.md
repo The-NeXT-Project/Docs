@@ -23,7 +23,7 @@
 - [Trojan Yahagi.js 使用教程](trojan-cluster)
 - [使用 CloudHammer Seeds 优化 webapi 的 CPU 占用](use-cloudhammer-seeds-as-webapi)
 - **开发**
-- SSPanel V3 Mod UIM Git Workflow
+- SSPanel UIM Git Workflow
 - 开发规范
 - SSPanel UIM Wiki 贡献教程
 - **Q & A**
