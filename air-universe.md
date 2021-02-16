@@ -29,5 +29,6 @@ Air-Universe 是一个基于Xray的大一统后端, 其包含Shadowsocks单端�
 在V2ray或Trojan的节点地址后加上"|relay=true"(不含引号)， 亦或者在节点类型中选择Shadowsocks中转或v2ray中转。
 
 ## 配置后端
-请到此页面查看最新一键脚本命令<br>
+请到此页面查看最新一键脚本命令
+
 https://github.com/crossfw/Air-Universe
