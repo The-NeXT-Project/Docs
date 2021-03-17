@@ -4,11 +4,11 @@
 
 首先 `cd` 到你网站的存放目录，使用 `ls` 确认当前目录下存在 `.git` 文件夹。如果不存在，需要重新执行一次安装。
 
-使用下述指令升级 SSPanel UIM 到最新版本（稳定通道）：
+使用下述指令升级 SSPanel UIM 到最新版本（Dev版）：
 
 ```bash
 $ git fetch --all
-$ git reset --hard origin/master
+$ git reset --hard origin/dev
 $ git pull
 ```
 
