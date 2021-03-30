@@ -9,7 +9,7 @@
 
 ## 从其他版本(91vps,魔改原版）等更新来的，节点列表报错500
 
-- 请手动对照 .config.php.example 更新 .config.php，或者使用 `php xcat update` 自动更新 .config.php
+- 请手动对照 .config.php.example 更新 .config.php，或者使用 `php xcat Update` 自动更新 .config.php
 
 ## 更新订阅链接失效解決方法：
 
