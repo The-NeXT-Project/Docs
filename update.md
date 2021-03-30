@@ -20,7 +20,7 @@ $ git pull
 在当前目录下，执行下述命令升级 config
 
 ```bash
-php xcat update
+php xcat Update
 ```
 
 上述命令会在 迁移/更新 操作之前自动备份原 config 文件到 `.config.php.bak`，迁移/更新操作完成之后会为你输出新旧配置之间的差异
