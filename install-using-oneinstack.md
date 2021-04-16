@@ -100,11 +100,3 @@ php xcat ClientDownload
 ```
 0 1 * * * /usr/local/php/bin/php -n /path/to/your/site/xcat Backup simple
 ```
-
-搭配使用 radius
-
-```
-*/1 * * * * /usr/local/php/bin/php /path/to/your/site/xcat SyncRadius synclogin
-*/1 * * * * /usr/local/php/bin/php /path/to/your/site/xcat SyncRadius syncvpn
-*/1 * * * * /usr/local/php/bin/php -n /path/to/your/site/xcat SyncRadius syncnas
-```
