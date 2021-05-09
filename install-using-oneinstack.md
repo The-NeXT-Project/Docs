@@ -8,7 +8,7 @@ OneinStack 官方网站：https://oneinstack.com/ 。使用 https://oneinstack.c
 
 - Nginx
 - PHP 7.4 with OPcache
-- MySQL 8.0
+- MariaDB 10.5
 - phpMyAdmin
 
 ## 部署 SSPanel UIM
