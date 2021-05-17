@@ -75,10 +75,11 @@ php xcat ClientDownload
 使用 `crontab -e` 指令设置SSPanel的基本cron任务：
 
 ```
-30 23 * * * /usr/local/php/bin/php /path/to/your/site/xcat sendDiaryMail
-0 0 * * * /usr/local/php/bin/php -n /path/to/your/site/xcat Job DailyJob
+*/1 * * * * /usr/local/php/bin/php /path/to/your/site/xcat  Job SendMail
 */1 * * * * /usr/local/php/bin/php /path/to/your/site/xcat  Job CheckJob
 0 */1 * * * /usr/local/php/bin/php /path/to/your/site/xcat  Job UserJob
+0 0 * * * /usr/local/php/bin/php -n /path/to/your/site/xcat Job DailyJob
+30 23 * * * /usr/local/php/bin/php /path/to/your/site/xcat sendDiaryMail
 ```
 
 设置财务报表
