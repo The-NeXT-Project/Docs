@@ -22,7 +22,6 @@
 - [常用审计规则](useful-detect-rules)
 - [各示例图片路径](imgs-dir)
 - [Telegram OAuth 配置](setup-telegram-oauth)
-- [使用 CloudHammer Seeds 优化 webapi 的 CPU 占用](use-cloudhammer-seeds-as-webapi)
 - **Q & A**
 - [魔改常见问题解答](q-and-a)
 - [Privacy Policy](privacy-policy)
