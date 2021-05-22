@@ -22,9 +22,9 @@ cd oneinstack
 
 在加密选择的部分，如果是裸站使用 `Let's Encrypt` 证书，如网站需要加设 CDN 例如 Cloudfalre 则使用自签证书即可。
 
-编辑：php.ini，删除大约在313行disable_functions中的 proc_open,proc_get_status
+编辑 php.ini，删除 disable_functions 中的 proc_open, proc_get_status
 ```bash
-vim /usr/local/php/etc/php.ini
+vi /usr/local/php/etc/php.ini
 ```
 
 重启php服务：
@@ -43,11 +43,14 @@ php composer.phar
 php composer.phar install
 ```
 
-在Nginx对应vhost的配置文件中添加如下伪静态规则，并将网站目录（即 `root` 配置项）后添加 `/public`
+修改 Nginx vhost 配置文件
+
 ```bash
-vim /usr/local/nginx/conf/vhost/你设置的网站域名.conf
+vi /usr/local/nginx/conf/vhost/你设置的网站域名.conf
 service nginx restart
 ```
+
+在对应的 vhost 的配置文件中添加如下伪静态规则，并将网站目录（即 `root` 配置项）后添加 `/public`
 
 ```
 location / {
