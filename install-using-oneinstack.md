@@ -22,6 +22,16 @@ cd oneinstack
 
 在加密选择的部分，如果是裸站使用 `Let's Encrypt` 证书，如网站需要加设 CDN 例如 Cloudfalre 则使用自签证书即可。
 
+编辑：php.ini，删除大约在313行disable_functions中的 proc_open,proc_get_status
+```bash
+vim /usr/local/php/etc/php.ini
+```
+
+重启php服务：
+```bash
+service php-fpm restart
+```
+
 虚拟主机设置完成后，前往你所设置的网站根目录文件夹，执行以下命令：
 
 ```bash
@@ -34,6 +44,10 @@ php composer.phar install
 ```
 
 在Nginx对应vhost的配置文件中添加如下伪静态规则，并将网站目录（即 `root` 配置项）后添加 `/public`
+```bash
+vim /usr/local/nginx/conf/vhost/你设置的网站域名.conf
+service nginx restart
+```
 
 ```
 location / {
@@ -50,7 +64,7 @@ chown -R www:www /path/to/your/site
 
 完成后我们就可以创建数据库了，这步强烈建议使用非root用户并且限制该用户仅可访问网站数据库。
 
-创建一个编码为 `utf8mb4_unicode_ci` 的数据库，然后将 `sql` 目录下的 `sspanel-all.sql` 导入至该数据库。
+创建一个编码为 `utf8mb4_unicode_ci` 的数据库，然后将 `sql` 目录下的 `glzjin_all.sql` 导入至该数据库。
 
 ?> 通过 http://IP/phpMyAdmin 可以登录数据库，进行可视化的数据库操作。请务必在完成所有必要的数据库操作后删除或者改名位于 `/data/wwwroot/dafault` 下的 `phpMyAdmin` 目录以避免潜在的安全威胁。
 
