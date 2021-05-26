@@ -196,7 +196,7 @@ MariaDB [(none)]> FLUSH PRIVILEGES;
 导入面板的 sql 文件
 ```MariaDB
 MariaDB [(none)]> USE sspanel;
-MariaDB [(sspanel)]> source /path/to/your/site/sql/glzjin_all.sql;
+MariaDB [(sspanel)]> SOURCE /path/to/your/site/sql/glzjin_all.sql;
 ```
 
 接下来编辑网站配置文件，将刚才设置的数据库连接信息填入其中，然后阅读其他配置的说明进行站点客制化。
