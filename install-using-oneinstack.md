@@ -89,7 +89,7 @@ php xcat Tool initQQWry
 php xcat ClientDownload
 ```
 
-使用 `crontab -e` 指令设置SSPanel的基本cron任务：
+使用 `crontab -e` 指令设置 SSPanel 的基本 cron 任务：
 
 ```
 */1 * * * * /usr/local/php/bin/php /path/to/your/site/xcat  Job SendMail
@@ -107,7 +107,7 @@ php xcat ClientDownload
 7 0 1 * * /usr/local/php/bin/php /path/to/your/site/xcat FinanceMail month
 ```
 
-设置节点GFW检测
+设置节点 GFW 检测
 
 ```
 */1 * * * * /usr/local/php/bin/php /path/to/your/site/xcat DetectGFW
