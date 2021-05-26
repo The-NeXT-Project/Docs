@@ -1,6 +1,6 @@
 # 使用 OneinStack 部署 SSPanel UIM
 
-?> 教程使用的环境：CentOS 8
+?> 教程使用的环境：CentOS 8/x86_64 架构
 
 ## 安装 OneinStack
 
@@ -36,7 +36,7 @@ service php-fpm restart
 
 ```bash
 yum install git -y
-git clone -b dev https://github.com/Anankke/SSPanel-Uim.git
+git clone -b dev https://github.com/Anankke/SSPanel-Uim.git .
 git config core.filemode false
 wget https://getcomposer.org/installer -O composer.phar
 php composer.phar
@@ -113,7 +113,7 @@ php xcat ClientDownload
 */1 * * * * /usr/local/php/bin/php /path/to/your/site/xcat DetectGFW
 ```
 
-每天1点备份一次数据库和站点配置文件
+每天1点以简单模式备份一次数据库和站点配置文件
 
 ```
 0 1 * * * /usr/local/php/bin/php -n /path/to/your/site/xcat Backup simple

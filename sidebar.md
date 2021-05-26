@@ -4,6 +4,7 @@
 - [使用宝塔面板部署网站](https://blog.anank.ke/w/SSPanel_with_DROP_DATABASE_BT)
 - [使用宝塔面板部署网站(备用链接)](https://web.archive.org/web/20201128180515/https://blog.anank.ke/w/SSPanel_with_DROP_DATABASE_BT)
 - [使用 OneinStack 部署 SSPanel UIM](install-using-oneinstack)
+- [使用 RPM 包部署 SSPanel UIM](install-using-rpm)
 - **使用**
 - [单端口多用户教程（91vps版）](ssrmu-setup-91vps)
 - [单端口多用户教程（魔改原版）](ssrmu-setup-zj)
