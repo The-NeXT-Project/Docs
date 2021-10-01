@@ -6,4 +6,3 @@
 
 - [Project GitHub](https://github.com/Anankke/SSPanel-UIM)
 - [Wiki GitHub](https://github.com/sspanel-uim/Wiki)
-- [Demo](https://sspanel.host)
