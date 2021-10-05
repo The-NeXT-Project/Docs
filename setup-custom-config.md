@@ -25,7 +25,7 @@
         "response": {}
     },
     //Trojan
-    "allow_insecure": "",
+    "allow_insecure": 0,
     "grpc": 0,
     "servicename": "",
     "enable_xtls": 0,
