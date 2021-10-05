@@ -6,8 +6,7 @@
 - [使用 OneinStack 部署 SSPanel UIM](install-using-oneinstack)
 - [使用 RPM 包部署 SSPanel UIM](install-using-rpm)
 - **使用**
-- [单端口多用户教程（91vps版）](ssrmu-setup-91vps)
-- [单端口多用户教程（魔改原版）](ssrmu-setup-zj)
+- [自定义配置使用教程](setup-custom-config)
 - [支付系统对接教程](setup-payment-gateway)
 - **更新**
 - [升级 SSPanel UIM](update)
