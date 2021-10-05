@@ -16,6 +16,7 @@
     "mu_obfs": "plain",
     "mu_suffix": "cloudfront.net",
     //V2Ray
+    "enable_vless": 0,
     "alter_id": "",
     "network": "",
     "security": "",
