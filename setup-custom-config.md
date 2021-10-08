@@ -24,6 +24,7 @@
     "security": "",
     "path": "",
     "verify_cert": true,
+    "obfs":"",
     "header": {
         "type": "http",
         "request": {},
