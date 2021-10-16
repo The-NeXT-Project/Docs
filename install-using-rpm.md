@@ -94,8 +94,8 @@ MariaDB 官方提供了一个完善的 RPM 源，我们使用它
 编辑 `/etc/yum.repos.d/mariadb.repo` 文件，将以下配置写入其中
 ```
 [mariadb]
-name=MariaDB
-baseurl=http://yum.mariadb.org/10.5/rhel8-aarch64/
+name=mariadb
+baseurl=http://yum.mariadb.org/10.6/rhel8-aarch64/
 gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
 gpgcheck=1
 ```
@@ -110,7 +110,7 @@ dnf update
 dnf module disable mysql mariadb
 ```
 
-安装 MariaDB 10.5
+安装 MariaDB 10.6
 ```bash
 dnf install mariadb-server
 ```
@@ -123,7 +123,7 @@ systemctl enable mariadb
 
 运行一下 MariaDB 的初始设置
 ```bash
-mysql_secure_installation
+mariadb-secure-installation
 ```
 
 ## 部署 SSPanel UIM
