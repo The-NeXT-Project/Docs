@@ -17,13 +17,13 @@
     "mu_suffix": "cloudfront.net",
     //V2Ray
     "v2_port": "",
-    "tls": 0,
-    "enable_vless": 0,
+    "tls": "0",
+    "enable_vless": "0",
     "alter_id": "",
     "network": "",
     "security": "",
     "path": "",
-    "verify_cert": true,
+    "verify_cert": "true",
     "obfs":"",
     "header": {
         "type": "http",
@@ -32,8 +32,8 @@
     },
     //Trojan
     "trojan_port": "",
-    "allow_insecure": 0,
-    "grpc": 0,
+    "allow_insecure": "0",
+    "grpc": "0",
     "servicename": "",
     "enable_xtls": "",
     "flow": ""
@@ -46,9 +46,9 @@
 
 ``` json
 {
-	"offset_port_node": 12345,
+	"offset_port_node": "12345",
 	"server_sub": "hk.domain.com",
-	"alter_id": 2,
+	"alter_id": "2",
 	"network": "tcp",
 	"security": "none",
 }
@@ -58,9 +58,9 @@
 
 ```json
 {
-	"offset_port_node": 12345,
+	"offset_port_node": "12345",
 	"server_sub": "hk.domain.com",
-	"alter_id": 2,
+	"alter_id": "2",
 	"network": "tcp",
 	"security": "none",
 	"header": {
@@ -80,10 +80,10 @@
 
 ```json
 {
-	"offset_port_node": 443,
+	"offset_port_node": "443",
 	"server_sub": "hk.domain.com",
 	"host": "hk.domain.com",
-	"alter_id": 2,
+	"alter_id": "2",
 	"network": "tcp",
 	"security": "tls",
 }
@@ -93,10 +93,10 @@
 
 ```json
 {
-	"offset_port_node": 80,
+	"offset_port_node": "80",
 	"server_sub": "hk.domain.com",
 	"host": "hk.domain.com",
-	"alter_id": 2,
+	"alter_id": "2",
 	"network": "ws",
 	"security": "none",
 	"path": "/v2ray"
@@ -107,10 +107,10 @@
 
 ```json
 {
-	"offset_port_node": 443,
+	"offset_port_node": "443",
 	"server_sub": "hk.domain.com",
 	"host": "hk.domain.com",
-	"alter_id": 2,
+	"alter_id": "2",
 	"network": "ws",
 	"security": "tls",
 	"path": "/v2ray"
@@ -121,10 +121,10 @@
 
 ```json
 {
-	"offset_port_node": 443,
+	"offset_port_node": "443",
 	"server_sub": "hk.domain.com",
 	"host": "hk.domain.com",
-	"alter_id": 2,
+	"alter_id": "2",
 	"network": "grpc",
 	"security": "tls",
 	"servicename": "some_name"
@@ -132,14 +132,14 @@
 ```
 
 ## 中转端口示例
-在任一配置中设置`offset_port_user`为用户连接端口
+在任一配置中设置 `offset_port_user` 为用户连接端口
 
 ``` json
 {
-	"offset_port_user": 8888,
-	"offset_port_node": 12345,
+	"offset_port_user": "8888",
+	"offset_port_node": "12345",
 	"server_sub": "hk.domain.com",
-	"alter_id": 2,
+	"alter_id": "2",
 	"network": "tcp",
 	"security": "none",
 }
@@ -148,33 +148,33 @@
 此时用户连接端口为8888，节点监听端口为12345
 
 ## 启用vless
-在任一配置中设置`enable_vless: 1`为用户连接端口
+在任一配置中设置 `enable_vless: 1` 为用户连接端口
 
 ``` json
 {
-	"offset_port_node": 443,
+	"offset_port_node": "443",
 	"server_sub": "hk.domain.com",
 	"host": "hk.domain.com",
-	"alter_id": 2,
+	"alter_id": "2",
 	"network": "tcp",
 	"security": "tls",
-	"enable_vless": 1
+	"enable_vless": "1"
 }
 ```
 请开启vless同时务必使用tls或者xtls。
 
 ## 启用xtls
-在任一配置中设置`security: xtls`。
+在任一配置中设置 `security: xtls`。
 
 ``` json
 {
-	"offset_port_node": 443,
+	"offset_port_node": "443",
 	"server_sub": "hk.domain.com",
 	"host": "hk.domain.com",
-	"alter_id": 2,
+	"alter_id": "2",
 	"network": "tcp",
 	"security": "xtls",
-	"enable_vless": 1
+	"enable_vless": "1"
 }
 ```
 
@@ -184,7 +184,7 @@
 
 ``` json
 {
-	"offset_port_node": 443,
+	"offset_port_node": "443",
 	"server_sub": "hk.domain.com",
 	"host": "hk.domain.com"
 }
@@ -194,20 +194,20 @@
 
 ``` json
 {
-	"offset_port_node": 443,
+	"offset_port_node": "443",
 	"server_sub": "hk.domain.com",
 	"host": "hk.domain.com",
-	"grpc": 1,
+	"grpc": "1",
 	"servicename": "some_name"
 }
 ```
 
 ## 中转示例
-在任一配置中设置`offset_port_user`为用户连接端口
+在任一配置中设置 `offset_port_user` 为用户连接端口
 ``` json
 {
-	"offset_port_user": 443,
-	"offset_port_node": 12345,
+	"offset_port_user": "443",
+	"offset_port_node": "12345",
 	"server_sub": "hk.domain.com",
 	"host": "hk.domain.com"
 }
@@ -216,13 +216,13 @@
 
 ## 启用xtls
 
-在任一配置中设置`enable_xtls: 1`。
+在任一配置中设置 `enable_xtls: 1`。
 
 ``` json
 {
-	"offset_port_node": 443,
+	"offset_port_node": "443",
 	"server_sub": "hk.domain.com",
 	"host": "hk.domain.com",
-	"enable_xtls": 1
+	"enable_xtls": "1"
 }
 ```
