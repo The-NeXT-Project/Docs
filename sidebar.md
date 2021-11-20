@@ -7,7 +7,7 @@
 - [使用 RPM 包部署 SSPanel UIM](install-using-rpm)
 - **使用**
 - [自定义配置使用教程](setup-custom-config)
-- [通用订阅](setup-custom-config)
+- [通用订阅](universal-subscription)
 - [支付系统对接教程](setup-payment-gateway)
 - **更新**
 - [升级 SSPanel UIM](update)
