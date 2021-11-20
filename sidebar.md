@@ -7,15 +7,14 @@
 - [使用 RPM 包部署 SSPanel UIM](install-using-rpm)
 - **使用**
 - [自定义配置使用教程](setup-custom-config)
+- [通用订阅](setup-custom-config)
 - [支付系统对接教程](setup-payment-gateway)
 - **更新**
 - [升级 SSPanel UIM](update)
-- **后端相关**
-- [SSR后端一键安装脚本 by M1Screw](turnkey-install-for-ssr-node)
+- **节点后端相关**
+- [SSR后端一键安装脚本](turnkey-install-for-ssr-node)
 - [soga](https://github.com/sprov065/soga)
 - [v2ray by indexyz](v2ray-indexyz)
-- [v2ray by Poseidon](https://poseidon-gfw.cc/shi-yong-v2ray-poseidon/v2ray-poseidon-with-sspanel)
-- [Trojan by Poseidon](https://poseidon-gfw.cc/shi-yong-trojan-poseidon/with-sspanel)
 - [Trojan by du5](https://docs.trojan.today)
 - [Trojan Yahagi.js](trojan-cluster)
 - **进阶**
