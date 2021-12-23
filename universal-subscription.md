@@ -6,15 +6,18 @@
 
 ```json
 {
+    "version": "1",
     "sub_name":"SSPanel",
     "user_email":"user@sspanel.org",
     "user_name":"ssp_user",
     "user_expiry_date":"1989-06-04 04:00:00",
     "user_used_traffic":"9785653487206",
     "user_available_traffic":"7036874417766",
-    "clash_config": {},
-    "surge_config": {},
-    "surfboard_config": {},
+    "client_config": {
+        "clash":"",
+        "surge":"",
+        "surfboard":""
+    },
     "nodes":[
         {
             "name":"SS_Node_1",
