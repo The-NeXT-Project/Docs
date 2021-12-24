@@ -10,9 +10,10 @@
     "sub_name":"SSPanel",
     "user_email":"user@sspanel.org",
     "user_name":"ssp_user",
-    "user_expiry_date":"1989-06-04 04:00:00",
-    "user_used_traffic":"9785653487206",
-    "user_available_traffic":"7036874417766",
+    "user_class":"999",
+    "user_class_expiry_date":"1989-06-04 04:00:00",
+    "user_total_traffic":"9785653487206",
+    "user_used_traffic":"7036874417766",
     "client_config": {
         "clash":"",
         "surge":"",
