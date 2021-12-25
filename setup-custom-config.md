@@ -39,7 +39,12 @@
     "grpc": "0",
     "servicename": "",
     "enable_xtls": "",
-    "flow": ""
+    "flow": "",
+	//Trojan-Go
+	"mux": "0",
+	"transport": "none",
+	"transport_plugin": "",
+	"transport_method": ""
 }
 ```
 
