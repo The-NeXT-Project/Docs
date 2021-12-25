@@ -9,6 +9,9 @@
     "offset_port_node": "", //节点服务器下发的端口
     "server_user": "", //前端/订阅中下发的服务器地址
     "host": "", //SNI
+	//SS
+	"plugin": "", //SS插件
+	"plugin_option": "", //SS插件参数
     //SSR单端口多用户
     "mu_port": "443", //只可填写一个。如果不填则会按照 节点服务器下发的端口 -> 前端/订阅中下发的端口 的顺序取值
     "mu_encryption": "none",
