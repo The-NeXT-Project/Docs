@@ -58,10 +58,11 @@
             "flow":"",
             "encryption":"none",
             "network":"",
-            "type":"",
+            "header_type":"",
             "host":"",
             "path":"",
             "tls":"",
+            "enable_vless":"",
             "remark":"This is a vmess/vless node."
         },
         {

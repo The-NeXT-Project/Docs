@@ -25,6 +25,7 @@
     "alter_id": "",
     "network": "",
     "security": "",
+	"encryption":"",
     "path": "",
     "verify_cert": "true",
     "obfs":"",
