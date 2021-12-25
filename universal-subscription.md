@@ -77,7 +77,7 @@
             "transport":"none",
             "transport_plugin":"",
             "transport_method":"",
-            "allowinsecure":"0",
+            "allow_insecure":"0",
             "servicename":"",
             "path":"",
             "remark":"This is a trojan node."
