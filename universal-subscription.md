@@ -14,11 +14,6 @@
     "user_class_expire_date":"1989-06-04 04:00:00",
     "user_total_traffic":"9785653487206",
     "user_used_traffic":"7036874417766",
-    "client_config": {
-        "clash":"",
-        "surge":"",
-        "surfboard":""
-    },
     "nodes":[
         {
             "name":"SS_Node_1",
