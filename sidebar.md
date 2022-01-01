@@ -10,10 +10,9 @@
 - [升级 SSPanel UIM](update)
 - **节点后端相关**
 - [SSR后端一键安装脚本](turnkey-install-for-ssr-node)
-- [soga](https://github.com/sprov065/soga)
 - [v2ray by indexyz](v2ray-indexyz)
-- [Trojan by du5](https://docs.trojan.today)
 - [Trojan Yahagi.js](trojan-cluster)
+- [soga](https://github.com/sprov065/soga)
 - **进阶**
 - [常用审计规则](useful-detect-rules)
 - [各示例图片路径](imgs-dir)
