@@ -189,13 +189,17 @@ source /home/wwwroot/sspanel/sql/glzjin_all.sql;
 登出。按下 `Ctrl` + `D`
 
 # 配置面板
+
 编辑
+
 ```
 config/.config.php
 ```
+
 配置数据库参数
 - `db_host` 填 `localhost`
 - `db_password` 改成你设置的数据库密码
+
 ```
 //数据库设置--------------------------------------------------------------------------------------------
 // db_host|db_socket 二选一，若设置 db_socket 则 db_host 会被忽略，不用请留空。若数据库在本机上推荐用 db_socket。
@@ -212,7 +216,9 @@ $_ENV['db_charset']   = 'utf8mb4';
 $_ENV['db_collation'] = 'utf8mb4_unicode_ci';
 $_ENV['db_prefix']    = '';
 ```
+
 还有这些重要参数，依照注释要求填写
+
 ```
 $_ENV['key']        = '1145141919810';                //!!! 瞎 jb 修改此key为随机字符串确保网站安全 !!!
 $_ENV['debug']      = false;                          //正式环境请确保为 false
@@ -220,16 +226,23 @@ $_ENV['appName']    = 'SSPanel-UIM';                  //站点名称
 $_ENV['baseUrl']    = 'https://sspanel.host';         //站点地址
 $_ENV['muKey']      = 'NimaQu';                       //用于校验魔改后端请求，可以随意修改，但请保持前后端一致，否则节点不能工作！
 ```
+
 创建管理员账户
+
 ```
 php xcat User createAdmin
 ```
+
 下载 ip 数据库
+
 ```
 php xcat Tool initQQwry
 ```
+
 # 配置必要定时任务
+
 注意按需修改网站目录
+
 ```
 crontab -l > crontab.list
 
@@ -241,17 +254,21 @@ echo "*/1 * * * * /usr/bin/php /home/wwwroot/sspanel/xcat Job SendMail
 
 crontab crontab.list
 ```
+
 # 可选定时任务
+
 财务报表
 ```
 5 0 * * * /usr/bin/php /home/wwwroot/sspanel/xcat FinanceMail day 
 6 0 * * 0 /usr/bin/php /home/wwwroot/sspanel/xcat FinanceMail week
 7 0 1 * * /usr/bin/php /home/wwwroot/sspanel/xcat FinanceMail month
 ```
+
 节点检测
 ```
 */1 * * * * /usr/bin/php /home/wwwroot/sspanel/xcat DetectGFW
 ```
+
 数据备份
 ```
 0 1 * * * /usr/bin/php -n /home/wwwroot/sspanel/xcat Backup simple
