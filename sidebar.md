@@ -1,4 +1,5 @@
 - **安装**
+- [使用 lnmp.org 部署 SSPanel UIM](install-using-lnmp)
 - [使用 OneinStack 部署 SSPanel UIM](install-using-oneinstack)
 - [使用 RPM 包部署 SSPanel UIM](install-using-rpm)
 - **使用**
