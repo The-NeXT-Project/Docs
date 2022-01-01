@@ -1,7 +1,7 @@
 此教程适用于 `debian` / `ubuntu` 系统
 # 环境准备
 ```
-apt -y install jq git vim wget ca-certificates
+apt -y install jq git tar vim wget ca-certificates
 ```
 # 安装 lnmp 环境
 ```
@@ -63,6 +63,8 @@ It will be processed automatically.
 Press any key to start create virtul host...
 ```
 # 编辑 nginx 配置
+进入目录 `/usr/local/nginx/conf/vhost` ，编辑配置文件
+
 强制 `https` 。将第一段 `server` 替换为
 ```
 server
@@ -80,7 +82,11 @@ root  /home/wwwroot/sspanel;
 ```
 root  /home/wwwroot/sspanel/public;
 ```
-添加伪静态
+在
+```
+        access_log off;
+```
+前添加伪静态规则
 ```
         location /
         {
@@ -161,7 +167,7 @@ cd /home/wwwroot/sspanel
 chattr -i .user.ini
 rm .user.ini
 ```
-clone 到本地
+拉取到本地
 ```
 git clone https://github.com/Anankke/SSPanel-Uim.git .
 cp config/.config.example.php config/.config.php
@@ -253,6 +259,7 @@ echo "*/1 * * * * /usr/bin/php /home/wwwroot/sspanel/xcat Job SendMail
 0 0 * * *   /usr/bin/php -n /home/wwwroot/sspanel/xcat Job DailyJob" >> crontab.list
 
 crontab crontab.list
+rm crontab.list
 ```
 
 # 可选定时任务
