@@ -233,6 +233,11 @@ $_ENV['baseUrl']    = 'https://sspanel.host';         //站点地址
 $_ENV['muKey']      = 'NimaQu';                       //用于校验魔改后端请求，可以随意修改，但请保持前后端一致，否则节点不能工作！
 ```
 
+执行数据库迁移
+```
+vendor/bin/phinx migrate
+```
+
 创建管理员账户
 
 ```
