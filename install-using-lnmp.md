@@ -260,7 +260,7 @@ crontab -l > crontab.list
 echo "*/1 * * * * /usr/bin/php /home/wwwroot/sspanel/xcat Job SendMail
 */1 * * * * /usr/bin/php /home/wwwroot/sspanel/xcat Job CheckJob
 0 */1 * * * /usr/bin/php /home/wwwroot/sspanel/xcat Job UserJob
-30 23 * * * /usr/bin/php /home/wwwroot/sspanel/xcat sendDiaryMail
+30 23 * * * /usr/bin/php /home/wwwroot/sspanel/xcat SendDiaryMail
 0 0 * * *   /usr/bin/php -n /home/wwwroot/sspanel/xcat Job DailyJob" >> crontab.list
 
 crontab crontab.list
