@@ -248,6 +248,12 @@ php xcat User createAdmin
 php xcat Tool initQQwry
 ```
 
+导入设置项目
+
+```
+php xcat Tool importAllSettings
+```
+
 # 配置必要定时任务
 
 注意按需修改网站目录
