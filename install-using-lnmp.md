@@ -171,7 +171,6 @@ rm .user.ini
 ```
 git clone https://github.com/Anankke/SSPanel-Uim.git .
 cp config/.config.example.php config/.config.php
-cp config/appprofile.example.php config/appprofile.php
 wget https://getcomposer.org/installer -O composer.phar
 php composer.phar
 php composer.phar install
@@ -190,7 +189,7 @@ create database sspanel;
 导入
 ```
 use sspanel;
-source /home/wwwroot/sspanel/sql/glzjin_all.sql;
+source /home/wwwroot/sspanel/glzjin_all.sql;
 ```
 登出。按下 `Ctrl` + `D`
 
@@ -207,30 +206,29 @@ config/.config.php
 - `db_password` 改成你设置的数据库密码
 
 ```
-//数据库设置--------------------------------------------------------------------------------------------
-// db_host|db_socket 二选一，若设置 db_socket 则 db_host 会被忽略，不用请留空。若数据库在本机上推荐用 db_socket。
-// db_host 例: localhost（可解析的主机名）, 127.0.0.1（IP 地址）, 10.0.0.2:4406（含端口)
-// db_socket 例：/var/run/mysqld/mysqld.sock（需使用绝对地址）
-$_ENV['db_driver']    = 'mysql';
-$_ENV['db_host']      = '';
-$_ENV['db_socket']    = '';
-$_ENV['db_database']  = 'sspanel';           //数据库名
-$_ENV['db_username']  = 'root';              //数据库用户名
-$_ENV['db_password']  = 'sspanel';           //用户名对应的密码
-#高级
-$_ENV['db_charset']   = 'utf8mb4';
+// db_host|db_socket 二选一，若设置 db_socket 则 db_host 会被忽略，不用请留空。若数据库在本机上推荐用 db_socket
+// db_host 例: localhost(可解析的主机名), 127.0.0.1(IP 地址), 10.0.0.2:4406(含端口)
+// db_socket 例：/var/run/mysqld/mysqld.sock(需使用绝对地址)
+
+$_ENV['db_host'] = 'localhost';
+$_ENV['db_database'] = '';
+$_ENV['db_username'] = '';
+$_ENV['db_password'] = '';
+
+$_ENV['db_socket'] = '';
+$_ENV['db_prefix'] = '';
+$_ENV['db_driver'] = 'mysql';
+$_ENV['db_charset'] = 'utf8mb4';
 $_ENV['db_collation'] = 'utf8mb4_unicode_ci';
-$_ENV['db_prefix']    = '';
 ```
 
 还有这些重要参数，依照注释要求填写
 
 ```
-$_ENV['key']        = '1145141919810';                //!!! 瞎 jb 修改此key为随机字符串确保网站安全 !!!
-$_ENV['debug']      = false;                          //正式环境请确保为 false
-$_ENV['appName']    = 'SSPanel-UIM';                  //站点名称
-$_ENV['baseUrl']    = 'https://sspanel.host';         //站点地址
-$_ENV['muKey']      = 'NimaQu';                       //用于校验魔改后端请求，可以随意修改，但请保持前后端一致，否则节点不能工作！
+$_ENV['debug'] = false; // 生产环境需设为false
+$_ENV['appName'] = 'sspanel-uim'; // 站点名称
+$_ENV['key'] = '32150285b345c48aa3492f9212f61ca2'; // 修改为随机字符串
+$_ENV['baseUrl'] = 'https://domain.com'; // 站点地址
 ```
 
 执行数据库迁移
@@ -276,12 +274,6 @@ rm crontab.list
 7 0 1 * * /usr/bin/php /home/wwwroot/sspanel/xcat FinanceMail month
 ```
 
-节点检测
-```
-*/1 * * * * /usr/bin/php /home/wwwroot/sspanel/xcat DetectGFW
-```
+# 安全建议
 
-数据备份
-```
-0 1 * * * /usr/bin/php -n /home/wwwroot/sspanel/xcat Backup simple
-```
+如需在生产模式开启 `debug` 模式，可以执行 `bash block-whoops-env.sh` ，便能将敏感的环境参数隐藏。执行 `bash block-whoops-env.sh recover` 可以使用备份恢复修改的文件
