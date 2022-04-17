@@ -171,6 +171,7 @@ rm .user.ini
 ```
 git clone https://github.com/Anankke/SSPanel-Uim.git .
 cp config/.config.example.php config/.config.php
+cp config/appprofile.example.php config/appprofile.php
 wget https://getcomposer.org/installer -O composer.phar
 php composer.phar
 php composer.phar install
