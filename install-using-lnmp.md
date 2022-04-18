@@ -190,7 +190,7 @@ create database sspanel;
 导入
 ```
 use sspanel;
-source /home/wwwroot/sspanel/glzjin_all.sql;
+source /home/wwwroot/sspanel/databases/glzjin_all.sql;
 ```
 登出。按下 `Ctrl` + `D`
 
@@ -265,6 +265,7 @@ crontab -l > crontab.list
 echo "*/1 * * * * /usr/bin/php /home/wwwroot/sspanel/xcat Job SendMail
 */1 * * * * /usr/bin/php /home/wwwroot/sspanel/xcat Job CheckJob
 0 */1 * * * /usr/bin/php /home/wwwroot/sspanel/xcat Job UserJob
+45 23 * * * /usr/bin/php /home/wwwroot/sspanel/xcat Job Statistics
 30 23 * * * /usr/bin/php /home/wwwroot/sspanel/xcat SendDiaryMail
 0 0 * * *   /usr/bin/php -n /home/wwwroot/sspanel/xcat Job DailyJob" >> crontab.list
 
