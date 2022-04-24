@@ -167,9 +167,19 @@ cd /home/wwwroot/sspanel
 chattr -i .user.ini
 rm .user.ini
 ```
-拉取到本地
+拉取到本地（二选一）
+- 使用旧版本主题
 ```
-git clone https://github.com/Anankke/SSPanel-Uim.git .
+git clone -b dev https://github.com/Anankke/SSPanel-Uim.git .
+```
+- 使用新版本 `tabler` 主题，演示：[https://demo.sspanel.org](https://demo.sspanel.org)
+- 演示账户：`admin@sspanel.org`
+- 账户密码：`password`
+```
+git clone -b new-feat https://github.com/Anankke/SSPanel-Uim.git .
+```
+然后继续
+```
 cp config/.config.example.php config/.config.php
 cp config/appprofile.example.php config/appprofile.php
 wget https://getcomposer.org/installer -O composer.phar
@@ -187,9 +197,17 @@ mysql -uroot -p
 ```
 create database sspanel;
 ```
-导入
+选择数据库
 ```
 use sspanel;
+```
+以下命令根据情况二选一
+- 旧版本主题
+```
+source /home/wwwroot/sspanel/sql/glzjin_all.sql;
+```
+- 新版本tabler主题
+```
 source /home/wwwroot/sspanel/databases/glzjin_all.sql;
 ```
 登出。按下 `Ctrl` + `D`
@@ -232,7 +250,7 @@ $_ENV['key'] = '32150285b345c48aa3492f9212f61ca2'; // 修改为随机字符串
 $_ENV['baseUrl'] = 'https://domain.com'; // 站点地址
 ```
 
-执行数据库迁移
+执行数据库迁移（若失败请检查在 `.config.php` 文件中配置的数据库用户是否有效且有调整表结构的权限）
 ```
 vendor/bin/phinx migrate
 ```
@@ -265,7 +283,7 @@ crontab -l > crontab.list
 echo "*/1 * * * * /usr/bin/php /home/wwwroot/sspanel/xcat Job SendMail
 */1 * * * * /usr/bin/php /home/wwwroot/sspanel/xcat Job CheckJob
 0 */1 * * * /usr/bin/php /home/wwwroot/sspanel/xcat Job UserJob
-45 23 * * * /usr/bin/php /home/wwwroot/sspanel/xcat Job Statistics
+55 23 * * * /usr/bin/php /home/wwwroot/sspanel/xcat Job Statistics
 30 23 * * * /usr/bin/php /home/wwwroot/sspanel/xcat SendDiaryMail
 0 0 * * *   /usr/bin/php -n /home/wwwroot/sspanel/xcat Job DailyJob" >> crontab.list
 
@@ -284,4 +302,6 @@ rm crontab.list
 
 # 安全建议
 
-如需在生产模式开启 `debug` 模式，可以执行 `bash block-whoops-env.sh` ，便能将敏感的环境参数隐藏。执行 `bash block-whoops-env.sh recover` 可以使用备份恢复修改的文件
+如需在生产模式开启 `debug` 模式，可以执行 `bash block-whoops-env.sh` ，便能将敏感的环境参数隐藏
+
+执行 `bash block-whoops-env.sh recover` 可以使用备份恢复修改的文件
