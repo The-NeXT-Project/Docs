@@ -305,3 +305,28 @@ rm crontab.list
 如需在生产模式开启 `debug` 模式，可以执行 `bash block-whoops-env.sh` ，便能将敏感的环境参数隐藏
 
 执行 `bash block-whoops-env.sh recover` 可以使用备份恢复修改的文件
+
+# 如何同步更新
+
+如果你使用原版主题（dev）分支，可以在网站根目录下执行以下命令
+```
+git pull
+```
+这会与 github 上的 dev 分支同步文件变动。有时候，光这么做可能不够，你可能还需要
+```
+composer update
+vendor/bin/phinx migrate
+php xcat Tool importAllSettings
+```
+
+如果你使用新版本主题（new-feat）分支，，可以在网站根目录下执行以下命令
+```
+git pull origin new-feat:new-feat
+```
+这会与 github 上的 dev 分支同步文件变动。有时候，光这么做可能不够，你可能还需要
+```
+composer update
+vendor/bin/phinx migrate
+php xcat Tool importAllSettings
+```
+同时需要注意有没有什么参数在 `.config.example.php` 文件中有，而在你的 `.config.php` 文件中没有的（你可以谷歌一些在线文本比对工具来方便排查）
