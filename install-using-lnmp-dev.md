@@ -280,6 +280,12 @@ vendor/bin/phinx migrate
 php xcat Tool importAllSettings
 ```
 
+导入 Telegram 配置项目
+
+```
+php xcat Tool detectConfigs
+```
+
 创建管理员账户
 
 ```
