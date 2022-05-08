@@ -182,6 +182,7 @@ php composer.phar
 php composer.phar install
 chmod 755 -R *
 chown www -R *
+git checkout .
 ```
 # 配置数据库
 登录到数据库
