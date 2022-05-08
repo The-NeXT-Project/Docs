@@ -217,6 +217,7 @@ php composer.phar
 php composer.phar install
 chmod 755 -R *
 chown www -R *
+git checkout .
 ```
 
 # 修改配置文件
