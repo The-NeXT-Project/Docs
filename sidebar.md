@@ -1,6 +1,6 @@
 - **安装**
-- [使用 lnmp.org 部署 new-feat 分支](install-using-lnmp-new-feat)
-- [使用 lnmp.org 部署 dev 分支](install-using-lnmp-dev)
+- [部署 new-feat 分支](install-using-lnmp-new-feat)
+- [部署 dev 分支](install-using-lnmp-dev)
 - [使用 OneinStack 部署 SSPanel UIM](install-using-oneinstack)
 - [使用 RPM 包部署 SSPanel UIM](install-using-rpm)
 - **使用**
