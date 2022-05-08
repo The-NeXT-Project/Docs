@@ -1,4 +1,6 @@
-此教程适用于 `debian` / `ubuntu` 系统
+- 此教程适用于 `debian` / `ubuntu` 系统
+- 此教程仅适用于 `new-feat` 分支
+
 # 环境准备
 ```
 apt -y install jq git tar vim wget ca-certificates
@@ -6,15 +8,15 @@ apt -y install jq git tar vim wget ca-certificates
 # 安装 lnmp 环境
 ```
 cd /root
-wget http://soft.vpser.net/lnmp/lnmp1.8.tar.gz -cO lnmp1.8.tar.gz
-tar zxf lnmp1.8.tar.gz
-cd lnmp1.8
+wget http://soft.vpser.net/lnmp/lnmp1.9beta.tar.gz
+tar -zxvf lnmp1.9beta.tar.gz
+cd lnmp1.9
 ./install.sh lnmp
 ```
 建议选项
-- MariaDB 10.1.48 +
+- MariaDB 10.3.32 +
 - Do you want to enable or disable the InnoDB Storage Engine > Y
-- php 7.4.21
+- php 7.4.29
 - You have 3 options for your Memory Allocator install, Enter your choice (1, 2 or 3) > 1
 
 等待安装完成
@@ -167,14 +169,7 @@ cd /home/wwwroot/sspanel
 chattr -i .user.ini
 rm .user.ini
 ```
-拉取到本地（二选一）
-- 使用旧版本主题
-```
-git clone -b dev https://github.com/Anankke/SSPanel-Uim.git .
-```
-- 使用新版本 `tabler` 主题，演示：[https://demo.sspanel.org](https://demo.sspanel.org)
-- 演示账户：`admin@sspanel.org`
-- 账户密码：`password`
+拉取到本地
 ```
 git clone -b new-feat https://github.com/Anankke/SSPanel-Uim.git .
 ```
@@ -201,12 +196,7 @@ create database sspanel;
 ```
 use sspanel;
 ```
-以下命令根据情况二选一
-- 旧版本主题
-```
-source /home/wwwroot/sspanel/sql/glzjin_all.sql;
-```
-- 新版本tabler主题
+导入数据库
 ```
 source /home/wwwroot/sspanel/databases/glzjin_all.sql;
 ```
@@ -280,12 +270,13 @@ php xcat Tool importAllSettings
 ```
 crontab -l > crontab.list
 
-echo "*/1 * * * * /usr/bin/php /home/wwwroot/sspanel/xcat Job SendMail
-*/1 * * * * /usr/bin/php /home/wwwroot/sspanel/xcat Job CheckJob
-0 */1 * * * /usr/bin/php /home/wwwroot/sspanel/xcat Job UserJob
-55 23 * * * /usr/bin/php /home/wwwroot/sspanel/xcat Job Statistics
-30 23 * * * /usr/bin/php /home/wwwroot/sspanel/xcat SendDiaryMail
-0 0 * * *   /usr/bin/php -n /home/wwwroot/sspanel/xcat Job DailyJob" >> crontab.list
+echo "*/1 * * * * /usr/bin/php /home/wwwroot/tabler/xcat Job SendMail
+*/1 * * * * /usr/bin/php /home/wwwroot/tabler/xcat Job CheckJob
+0 */1 * * * /usr/bin/php /home/wwwroot/tabler/xcat Job UserJob
+59 23 * * * /usr/bin/php /home/wwwroot/tabler/xcat Statistics CheckIn
+30 23 * * * /usr/bin/php /home/wwwroot/tabler/xcat SendDiaryMail
+0 0 * * * /usr/bin/php /home/wwwroot/tabler/xcat Statistics Another
+0 0 * * * /usr/bin/php -n /home/wwwroot/tabler/xcat Job DailyJob" >> crontab.list
 
 crontab crontab.list
 rm crontab.list
@@ -308,22 +299,11 @@ rm crontab.list
 
 # 如何同步更新
 
-如果你使用原版主题（dev）分支，可以在网站根目录下执行以下命令
-```
-git pull
-```
-这会与 github 上的 dev 分支同步文件变动。有时候，光这么做可能不够，你可能还需要
-```
-composer update
-vendor/bin/phinx migrate
-php xcat Tool importAllSettings
-```
-
 如果你使用新版本主题（new-feat）分支，，可以在网站根目录下执行以下命令
 ```
 git pull origin new-feat:new-feat
 ```
-这会与 github 上的 dev 分支同步文件变动。有时候，光这么做可能不够，你可能还需要
+这会与 github 上的 `new-feat` 分支同步文件变动。有时候，光这么做可能不够，你可能还需要
 ```
 composer update
 vendor/bin/phinx migrate
