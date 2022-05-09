@@ -285,11 +285,12 @@ rm crontab.list
 
 # 可选定时任务
 
-财务报表
+财务报表，注意按需修改网站目录
+
 ```
-5 0 * * * /usr/bin/php /home/wwwroot/sspanel/xcat FinanceMail day 
-6 0 * * 0 /usr/bin/php /home/wwwroot/sspanel/xcat FinanceMail week
-7 0 1 * * /usr/bin/php /home/wwwroot/sspanel/xcat FinanceMail month
+5 0 * * * /usr/bin/php /home/wwwroot/tabler/xcat FinanceMail day 
+6 0 * * 0 /usr/bin/php /home/wwwroot/tabler/xcat FinanceMail week
+7 0 1 * * /usr/bin/php /home/wwwroot/tabler/xcat FinanceMail month
 ```
 
 # 安全建议
