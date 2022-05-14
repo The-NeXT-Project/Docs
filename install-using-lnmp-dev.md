@@ -212,11 +212,13 @@ git clone https://github.com/Anankke/SSPanel-Uim.git .
 ```
 cp config/.config.example.php config/.config.php
 cp config/appprofile.example.php config/appprofile.php
+mv db/migrations/20000101000000_init_database.php.new db/migrations/20000101000000_init_database.php
 wget https://getcomposer.org/installer -O composer.phar
 php composer.phar
 php composer.phar install
 chmod 755 -R *
 chown www -R *
+git config --global --add safe.directory $(pwd)
 git checkout .
 ```
 
