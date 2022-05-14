@@ -166,8 +166,8 @@ echo "
 */1 * * * * /usr/bin/php /home/上一步自动生成的网站用户/htdocs/你的域名/xcat Job CheckJob
 0 0 * * * /usr/bin/php -n /home/上一步自动生成的网站用户/htdocs/你的域名/xcat Job DailyJob
 30 23 * * * /usr/bin/php /home/上一步自动生成的网站用户/htdocs/你的域名/xcat SendDiaryMail
-59 23 * * * /usr/bin/php /home/上一步自动生成的网站用户/htdocs/你的域名/xcat Statistics CheckIn
 0 0 * * * /usr/bin/php /home/上一步自动生成的网站用户/htdocs/你的域名/xcat Statistics Another
+59 23 * * * /usr/bin/php /home/上一步自动生成的网站用户/htdocs/你的域名/xcat Statistics CheckIn
 " >> crontab.list
 
 crontab crontab.list
@@ -184,11 +184,26 @@ rm crontab.list
 7 0 1 * * /usr/bin/php /home/上一步自动生成的网站用户/htdocs/你的域名/xcat FinanceMail month
 ```
 
-# 安全建议
+# 建议
+
+### 安全
 
 如需在生产模式开启 `debug` 模式，可以执行 `bash block-whoops-env.sh` ，便能将敏感的环境参数隐藏
 
 执行 `bash block-whoops-env.sh recover` 可以使用备份恢复修改的文件
+
+### 备份
+
+执行以下命令导出数据库文件，建议配合其他脚本或工具备份到云端
+```
+mysqldump -h127.0.0.1 -uroot -p刚才获取的数据库密码 --databases sspanel > sspanel.sql
+```
+
+### ssl 证书
+
+可以一键申请免费的 90 天 ssl 证书，应该会自动续期（吧）
+
+![](https://raw.github.com/sspanel-uim/Wiki/master/img/cloudpanel_8.png)
 
 # 同步更新
 
