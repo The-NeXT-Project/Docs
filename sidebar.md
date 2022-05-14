@@ -1,12 +1,14 @@
 - **安装**
 - [部署 new-feat 分支](install-using-lnmp-new-feat)
 - [部署 dev 分支](install-using-lnmp-dev)
-- [使用 OneinStack 部署 SSPanel UIM](install-using-oneinstack)
-- [使用 RPM 包部署 SSPanel UIM](install-using-rpm)
+- [使用 CloudPanel v2](install-using-cloudpanel-v2)
 - **使用**
-- [自定义配置使用教程](setup-custom-config)
 - [通用订阅](universal-subscription)
-- [支付系统对接教程](setup-payment-gateway)
+- [支付网关](setup-payment-gateway)
+- [自定义配置使用教程](setup-custom-config)
+- **开发者文档**
+- [数据库化设置](database-setting)
+- [phinx文档](phinx-doc)
 - **更新**
 - [升级 SSPanel UIM](update)
 - **节点后端相关**
@@ -18,9 +20,6 @@
 - [常用审计规则](useful-detect-rules)
 - [各示例图片路径](imgs-dir)
 - [Telegram OAuth 配置](setup-telegram-oauth)
-- **开发者文档**
-- [数据库化设置](database-setting)
-- [phinx文档](phinx-doc)
 - **Q & A**
 - [魔改常见问题解答](q-and-a)
 - [Privacy Policy](privacy-policy)
