@@ -110,6 +110,13 @@ source /home/上一步自动生成的网站用户/htdocs/你的域名/databases/
 
 依照图示编辑，完成后左上角保存
 ![](https://raw.github.com/sspanel-uim/Wiki/master/img/cloudpanel_7.png)
+
+# 设置 sql mode
+```
+sed -i '7i sql_mode=""' /etc/mysql/mysql.conf.d/mysqld.cnf
+systemctl restart mysql
+```
+
 # 导入设置
 ```
 vendor/bin/phinx migrate
@@ -124,12 +131,6 @@ php xcat Tool detectConfigs
 # 创建管理员账户
 ```
 php xcat User createAdmin
-```
-
-# 设置 sql mode
-```
-sed -i '7i sql_mode=""' /etc/mysql/mysql.conf.d/mysqld.cnf
-systemctl restart mysql
 ```
 
 此时应该可以打开网站并使用刚才创建的账户登录了
