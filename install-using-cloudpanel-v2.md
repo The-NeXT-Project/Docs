@@ -15,8 +15,6 @@ apt -y install curl wget sudo
 curl -sSL https://installer.cloudpanel.io/ce/v2/install.sh | sudo bash
 ```
 
-![](https://raw.github.com/sspanel-uim/Wiki/master/img/cloudpanel_1.png)
-
 # 访问控制面板
 
 访问 `https://服务器ip:8443` ，点击高级选项，点击继续前往
@@ -32,6 +30,8 @@ iptables -P FORWARD ACCEPT
 iptables -F
 ```
 
+![](https://raw.github.com/sspanel-uim/Wiki/master/img/cloudpanel_1.png)
+
 # 添加域名解析
 
 在你的域名注册商添加一个a解析，指向服务器ip地址
@@ -45,7 +45,7 @@ iptables -F
 
 - `Application` 选 `Slim 4`
 - `PHP Version` 这个 `dev` 分支选 `8.1` ，`net-feat` 分支选 `7.4`
-- 用户和密码会自动生成，无需在意
+- 用户和密码会自动生成，记住生成的用户就行
 ![](https://raw.github.com/sspanel-uim/Wiki/master/img/cloudpanel_4.png)
 
 # 拉取项目
@@ -123,7 +123,7 @@ vendor/bin/phinx migrate
 php xcat Tool importAllSettings
 php xcat Tool initQQwry
 ```
-仅 dev 分支需要执行
+仅 `dev` 分支需要执行
 ```
 php xcat Tool detectConfigs
 ```
