@@ -60,6 +60,7 @@ mv db/migrations/20000101000000_init_database.php.new db/migrations/200001010000
 cp config/.config.example.php config/.config.php
 cp config/appprofile.example.php config/appprofile.php
 wget https://getcomposer.org/installer -O composer.phar
+php composer.phar
 php composer.phar install
 ```
 
@@ -72,6 +73,7 @@ git clone -b new-feat https://github.com/Anankke/SSPanel-Uim.git .
 cp config/.config.example.php config/.config.php
 cp config/appprofile.example.php config/appprofile.php
 wget https://getcomposer.org/installer -O composer.phar
+/usr/bin/php7.4 composer.phar
 /usr/bin/php7.4 composer.phar install
 ```
 然后
