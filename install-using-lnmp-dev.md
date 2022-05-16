@@ -328,12 +328,6 @@ rm crontab.list
 7 0 1 * * /usr/bin/php /home/wwwroot/sspanel/xcat FinanceMail month
 ```
 
-# 安全建议
-
-如需在生产模式开启 `debug` 模式，可以执行 `bash block-whoops-env.sh` ，便能将敏感的环境参数隐藏
-
-执行 `bash block-whoops-env.sh recover` 可以使用备份恢复修改的文件
-
 # 如何同步更新
 
 如果你使用原版主题（dev）分支，可以在网站根目录下执行以下命令
