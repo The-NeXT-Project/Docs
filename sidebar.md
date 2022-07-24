@@ -10,7 +10,7 @@
 - **更新**
 - [升级 SSPanel UIM](update)
 - **节点相关**
-- [shadowsocks-mod 后端一键安装脚本（Python，开源，免费）](turnkey-install-for-ssr-node)
+- [shadowsocks-mod（Python，开源，免费）](shadowsocks-mod-install-script)
 - [TrojanX（Rust，开源，免费）](https://github.com/sspanel-uim/TrojanX/wiki)
 - [soga（Go，闭源，付费）](https://github.com/sprov065/soga)
 - **进阶**
