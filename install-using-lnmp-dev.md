@@ -327,19 +327,3 @@ rm crontab.list
 6 0 * * 0 /usr/bin/php /home/wwwroot/sspanel/xcat FinanceMail week
 7 0 1 * * /usr/bin/php /home/wwwroot/sspanel/xcat FinanceMail month
 ```
-
-# 如何同步更新
-
-如果你使用原版主题（dev）分支，可以在网站根目录下执行以下命令
-
-```
-git pull
-```
-这会与 `github` 上的 `dev` 分支同步文件变动。有时候，光这么做可能不够，你可能还需要
-```
-composer update
-vendor/bin/phinx migrate
-php xcat Tool importAllSettings
-```
-
-同时需要注意有没有什么参数在 `.config.example.php` 文件中有，而在你的 `.config.php` 文件中没有的（你可以谷歌一些在线文本比对工具来方便排查）

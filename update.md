@@ -4,12 +4,20 @@
 
 首先 `cd` 到你网站的存放目录，使用 `ls` 确认当前目录下存在 `.git` 文件夹。如果不存在，需要重新执行一次安装。
 
-使用下述指令升级 SSPanel UIM 到最新版本（Dev版）：
+更新本地文件至最新版本（dev分支）：
 
 ```bash
 $ git fetch --all
 $ git reset --hard origin/dev
 $ git pull
+```
+
+更新本地文件至最新版本（new-feat分支）：
+
+```bash
+$ git fetch --all
+$ git reset --hard origin/dev
+$ git pull origin new-feat:new-feat
 ```
 
 !> 你会丢失除 `.config.php` 文件以外的所有改动，因此请自行做好文件备份。
@@ -20,7 +28,10 @@ $ git pull
 在当前目录下，执行下述命令升级 config
 
 ```bash
+php composer.phar u
+php vendor/bin/phinx migrate
 php xcat Update
+php xcat Tool importAllSettings
 ```
 
 上述命令会在 迁移/更新 操作之前自动备份原 config 文件到 `.config.php.bak`，迁移/更新操作完成之后会为你输出新旧配置之间的差异

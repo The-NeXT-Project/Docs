@@ -6,20 +6,19 @@
 - [通用订阅](universal-subscription)
 - [支付网关](setup-payment-gateway)
 - [自定义配置使用教程](setup-custom-config)
-- **开发者文档**
 - [数据库化设置](database-setting)
-- [phinx文档](phinx-doc)
 - **更新**
 - [升级 SSPanel UIM](update)
-- **节点后端相关**
-- [SSR后端一键安装脚本](turnkey-install-for-ssr-node)
-- [v2ray by indexyz](v2ray-indexyz)
-- [Trojan Yahagi.js](trojan-cluster)
-- [soga](https://github.com/sprov065/soga)
+- **节点相关**
+- [shadowsocks-mod 后端一键安装脚本（Python，开源，免费）](turnkey-install-for-ssr-node)
+- [TrojanX（Rust，开源，免费）](https://github.com/sspanel-uim/TrojanX/wiki)
+- [soga（Go，闭源，付费）](https://github.com/sprov065/soga)
 - **进阶**
 - [常用审计规则](useful-detect-rules)
 - [各示例图片路径](imgs-dir)
 - [Telegram OAuth 配置](setup-telegram-oauth)
+- [phinx 文档](phinx-doc)
+- [API 文档](https://github.com/sspanel-uim/API-documents)
+- [WebAPI 文档](https://github.com/sspanel-uim/WebAPI-documents)
 - **Q & A**
 - [魔改常见问题解答](q-and-a)
-- [Privacy Policy](privacy-policy)
