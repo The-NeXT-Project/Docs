@@ -4,7 +4,7 @@
 - [使用 CloudPanel v2](install-using-cloudpanel-v2)
 - **使用**
 - [通用订阅](universal-subscription)
-- [支付网关](setup-payment-gateway)
+- [支付网关](payment-gateway)
 - [自定义配置使用教程](setup-custom-config)
 - [数据库化设置](database-setting)
 - **更新**
