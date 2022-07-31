@@ -11,7 +11,7 @@
 - [升级 SSPanel UIM](update)
 - **节点相关**
 - [shadowsocks-mod（Python，开源，免费）](shadowsocks-mod-install-script)
-- [TrojanX（Rust，开源，免费）](https://github.com/sspanel-uim/TrojanX/wiki)
+- [TrojanX（Rust，开源，免费）](trojanx-install-script)
 - [soga（Go，闭源，付费）](https://github.com/sprov065/soga)
 - **进阶**
 - [常用审计规则](useful-detect-rules)

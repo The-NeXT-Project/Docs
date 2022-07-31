@@ -1,4 +1,4 @@
-# shadowsocks-mod 一键安装脚本
+# TrojanX 一键安装脚本
 
 这里提供了 SSPanel-UIM 官方配套后端的一键安装脚本使用说明。
 
@@ -6,52 +6,52 @@
 
 ### 项目地址
 
-[https://github.com/Anankke/shadowsocks-mod](https://github.com/Anankke/shadowsocks-mod)
+[https://github.com/sspanel-uim/TrojanX](https://github.com/sspanel-uim/TrojanX)
 
 ### 脚本功能
 
 * 配置 SSPanel-UIM RPM Repository
-* 安装 shadowsocks-server
-* 配置 shadowsocks-server
-* 更新 SSPanel-UIM RPM Repository 和 shadowsocks-server
+* 安装 trojan-server 和 acme.sh
+* 配置 trojan-server 和 acme.sh
+* 更新 SSPanel-UIM RPM Repository，trojan-server 和 acme.sh
 
 ### 安装
 
 ```bash
 dnf install wget -y
 wget https://raw.githubusercontent.com/M1Screw/Airport-toolkit/master/ssr_node.sh
-chmod +x ssr_node.sh
-./ssr_node.sh install
+chmod +x trojan_node.sh
+./trojan_node.sh install
 ```
 
 ### 配置
 
 ```bash
-./ssr_node.sh config
+./trojan_node.sh config
 ```
 
 ### 更新
 
 ```bash
-./ssr_node.sh update
+./trojan_node.sh update
 ```
 
 ### 卸载
 
 ```bash
-dnf remove shadowsocks-server -y
+dnf remove trojan-server -y
 ```
 
 ### 服务启动
 
 ```bash
-systemctl start shadowsocks-server
+systemctl start trojan-server
 ```
 
 ### 服务停止
 
 ```bash
-systemctl stop shadowsocks-server
+systemctl stop trojan-server
 ```
 
 ### 注意事项
