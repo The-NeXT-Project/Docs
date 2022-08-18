@@ -1,6 +1,6 @@
 - **安装**
-- [部署 new-feat 分支](install-using-lnmp-new-feat)
 - [部署 dev 分支](install-using-lnmp-dev)
+- [部署 new-feat 分支](install-using-lnmp-new-feat)
 - [使用 CloudPanel v2](install-using-cloudpanel-v2)
 - **使用**
 - [通用订阅](universal-subscription)
