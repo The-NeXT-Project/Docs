@@ -39,7 +39,7 @@ chmod +x trojan_node.sh
 ### 卸载
 
 ```bash
-dnf remove trojan-server -y
+./trojan_node.sh uninstall
 ```
 
 ### 服务启动

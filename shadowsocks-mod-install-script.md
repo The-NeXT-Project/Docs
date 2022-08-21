@@ -39,7 +39,7 @@ chmod +x ssr_node.sh
 ### 卸载
 
 ```bash
-dnf remove shadowsocks-server -y
+./ssr_node.sh uninstall
 ```
 
 ### 服务启动

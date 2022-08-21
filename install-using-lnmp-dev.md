@@ -218,8 +218,6 @@ php composer.phar
 php composer.phar install
 chmod 755 -R *
 chown www -R *
-git config --global --add safe.directory $(pwd)
-git checkout .
 ```
 
 # 修改配置文件
@@ -244,11 +242,11 @@ $_ENV['db_password']  = 'sspanel';           //用户名对应的密码
 还需要依照注释，修改这些重要的参数
 
 ```
-$_ENV['key']        = '1145141919810';                //!!! 瞎 jb 修改此key为随机字符串确保网站安全 !!!
-$_ENV['debug']      = false;                          //正式环境请确保为 false
-$_ENV['appName']    = 'SSPanel-UIM';                      //站点名称
-$_ENV['baseUrl']    = 'https://sspanel.host';               //站点地址
-$_ENV['muKey']      = 'NimaQu';                       //用于校验魔改后端请求，可以随意修改，但请保持前后端一致，否则节点不能工作！
+$_ENV['key']        = 'ChangeMe';                     //请务必修改此key为随机字符串
+$_ENV['debug']      = false;                          //debug模式开关，生产环境请保持为false
+$_ENV['appName']    = 'SSPanel-UIM';                  //站点名称
+$_ENV['baseUrl']    = 'https://example.com';          //站点地址
+$_ENV['muKey']      = 'SSPanel';                      //WebAPI密钥，用于节点服务端与面板通信
 ```
 
 # 创建数据库
@@ -281,12 +279,6 @@ vendor/bin/phinx migrate
 
 ```
 php xcat Tool importAllSettings
-```
-
-导入 Telegram 配置项目
-
-```
-php xcat Tool detectConfigs
 ```
 
 创建管理员账户
