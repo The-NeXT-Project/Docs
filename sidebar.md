@@ -1,3 +1,6 @@
+- **总览**
+- [面板架构](panel-component)
+- [更新日志](release-note)
 - **安装**
 - [部署 dev 分支](install-using-lnmp-dev)
 - [部署 new-feat 分支](install-using-lnmp-new-feat)
@@ -15,10 +18,8 @@
 - [soga（Go，闭源，付费）](https://github.com/sprov065/soga)
 - **进阶**
 - [常用审计规则](useful-detect-rules)
-- [各示例图片路径](imgs-dir)
 - [Telegram OAuth 配置](setup-telegram-oauth)
 - [phinx 文档](phinx-doc)
 - [API 文档](https://github.com/sspanel-uim/API-documents)
-- [WebAPI 文档](https://github.com/sspanel-uim/WebAPI-documents)
 - **Q & A**
 - [魔改常见问题解答](q-and-a)
