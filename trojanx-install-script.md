@@ -19,7 +19,7 @@
 
 ```bash
 dnf install wget -y
-wget https://raw.githubusercontent.com/M1Screw/Airport-toolkit/master/ssr_node.sh
+wget https://raw.githubusercontent.com/M1Screw/Airport-toolkit/master/trojan_node.sh
 chmod +x trojan_node.sh
 ./trojan_node.sh install
 ```
