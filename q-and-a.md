@@ -7,10 +7,6 @@
 - 检查 BaseUrl 是否为 https
 - 检查网站 ssl 证书是否有效
 
-## 从其他版本(91vps,魔改原版）等更新来的，节点列表报错500
-
-- 请手动对照 .config.php.example 更新 .config.php，或者使用 `php xcat Update` 自动更新 .config.php
-
 ## 更新订阅链接失效解決方法：
 
 源站关闭所有 WAF 如 Nginx WAF 插件或者 btwaf。
@@ -18,9 +14,8 @@
 Cloudflare 上设置以下 Page Rules：
 
 ```
-/ssr-download/ssr/*
 /link/*
-/link/*
+/sub/*
 ```
 
 ```
@@ -48,21 +43,21 @@ ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
 默认节点命名规则：
 
 ```
-国家/地区的名字+一个空格
+国家/地区的名字/UN 代码/ISO Alpha-2 代码/ISO Alpha-3 代码 + 一个空格
 ```
 
 例：
 
 ```
-美国 A节点 //自动显示 美国.jpg
+United States Of America A节点 //自动显示美国国旗
 ```
 
 ```
-中国 深圳vps //自动显示 中国.jpg
+CAN 多伦多vps //自动显示加拿大国旗
 ```
 
 ```
-英国 balabala //自动显示 英国.jpg
+826 balabala //自动显示英国国旗
 ```
 
 然后将 config 文的
@@ -74,8 +69,6 @@ $System_Config['enable_flag']='false';
 ```php
 $System_Config['enable_flag']='true';
 ```
-
-如果有其他需求（比如喜欢把国家/地区名放到中间或后面、不想用空格），可以自行修改下方 `$System_Config['flag_regex']` 中的正则表达式
 
 ## 错误 `Undefined offset :0 in`
 
@@ -115,14 +108,16 @@ $System_Config['enable_flag']='true';
 
 Git 版本过低，请前往 [Git 官网下载页](https://git-scm.com/downloads) 查看升级指导。
 
-## 邮件队列问题
-
-邮件队列定时任务执行过程中在意外或手动停止后，若此时执行提示 **程序正在运行中** 请前往 `/storage` 删除 email_queue.
-
 ## master 分支切换到 dev 分支出现报错
 
 请仔细对比自己的数据库与dev版本数据表以及数据项目的不同并手动添加，并且要注意更改 cron 任务的指令格式，并在完成代码升级后运行。
 
 ```bash
+git fetch --all
+git reset --hard origin/dev
+git pull
+php composer.phar u
+php vendor/bin/phinx migrate
 php xcat Update
+php xcat Tool importAllSettings
 ```
