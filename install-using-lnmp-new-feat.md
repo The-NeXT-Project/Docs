@@ -246,12 +246,6 @@ $_ENV['baseUrl'] = 'https://domain.com'; // 站点地址
 vendor/bin/phinx migrate
 ```
 
-创建管理员账户
-
-```
-php xcat User createAdmin
-```
-
 下载 ip 数据库
 
 ```
@@ -262,6 +256,12 @@ php xcat Tool initQQwry
 
 ```
 php xcat Tool importAllSettings
+```
+
+创建管理员账户
+
+```
+php xcat User createAdmin
 ```
 
 # 配置必要定时任务
