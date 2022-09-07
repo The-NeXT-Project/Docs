@@ -1,6 +1,7 @@
 # 更新日志
 
 ## 2022.9
+
 ### What's Changed
 * 新的一键安装&更新脚本
 * 修复了面板内置的 Telegram Bot @RoromoriYuzu
