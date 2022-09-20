@@ -2,12 +2,10 @@
 - [面板架构](panel-component)
 - [更新日志](release-note)
 - **安装**
-- [部署 dev 分支](install-using-lnmp-dev)
-- [部署 new-feat 分支](install-using-lnmp-new-feat)
-- [使用 CloudPanel v2](install-using-cloudpanel-v2)
+- [使用 oneinstack 安裝](install-using-oneinstack)
+- [使用 CloudPanel v2 安裝](install-using-cloudpanel-v2)
 - **使用**
 - [通用订阅](universal-subscription)
-- [支付网关](payment-gateway)
 - [自定义配置使用教程](setup-custom-config)
 - [数据库化设置](database-setting)
 - **更新**
@@ -15,11 +13,10 @@
 - **节点相关**
 - [shadowsocks-mod（Python，开源，免费）](shadowsocks-mod-install-script)
 - [TrojanX（Rust，开源，免费）](trojanx-install-script)
-- [soga（Go，闭源，付费）](https://github.com/sprov065/soga)
 - **进阶**
 - [常用审计规则](useful-detect-rules)
 - [Telegram OAuth 配置](setup-telegram-oauth)
-- [phinx 文档](phinx-doc)
+- [phinx 文档](https://book.cakephp.org/phinx/0/en/index.html)
 - [API 文档](https://github.com/sspanel-uim/API-documents)
 - **Q & A**
 - [魔改常见问题解答](q-and-a)

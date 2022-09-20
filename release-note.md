@@ -1,5 +1,12 @@
 # 更新日志
 
+## 2022.10
+
+### What's Changed
+* TBD
+
+**Full Changelog**: https://github.com/Anankke/SSPanel-Uim/compare/2022.9...2022.10
+
 ## 2022.9
 
 ### What's Changed

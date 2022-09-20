@@ -1,17 +1,13 @@
-# 过时的文档
-
-请注意，这份文档已经过时。文章所提供的方法可能无法成功部署项目。在依照此教程操作前，建议优先考虑其他教程
-
 # 使用 OneinStack 部署 SSPanel UIM
 
-?> 教程使用的环境：CentOS 8/x86_64 架构
+?> 教程使用的环境：CentOS Stream 9/x86_64 架构
 
 ## 安装 OneinStack
 
 OneinStack 官方网站：https://oneinstack.com/ 。使用 https://oneinstack.com/auto/ 指定一个客制化的安装方案，以下为推荐使用的软件及其版本：
 
 - Nginx
-- PHP 7.4 with OPcache
+- PHP 8.0 with OPcache
 - MariaDB 10.6
 - phpMyAdmin
 
@@ -39,9 +35,7 @@ service php-fpm restart
 虚拟主机设置完成后，前往你所设置的网站根目录文件夹，执行以下命令：
 
 ```bash
-yum install git -y
 git clone -b dev https://github.com/Anankke/SSPanel-Uim.git .
-git config core.filemode false
 wget https://getcomposer.org/installer -O composer.phar
 php composer.phar
 php composer.phar install
@@ -69,9 +63,7 @@ chmod -R 755 /path/to/your/site
 chown -R www:www /path/to/your/site
 ```
 
-完成后我们就可以创建数据库了，这步强烈建议使用非root用户并且限制该用户仅可访问网站数据库。
-
-创建一个编码为 `utf8mb4_unicode_ci` 的数据库，然后将 `sql` 目录下的 `glzjin_all.sql` 导入至该数据库。
+完成后我们就可以创建数据库和对应的用户了，这步强烈建议使用非root用户并且限制该用户仅可访问对应的网站数据库。
 
 ?> 通过 http://IP/phpMyAdmin 可以登录数据库，进行可视化的数据库操作。请务必在完成所有必要的数据库操作后删除或者改名位于 `/data/wwwroot/dafault` 下的 `phpMyAdmin` 目录以避免潜在的安全威胁。
 
@@ -88,6 +80,9 @@ vi config/.config.php
 接下来执行如下站点初始化设置
 
 ```bash
+mv db/migrations/20000101000000_init_database.php.new db/migrations/20000101000000_init_database.php
+php vendor/bin/phinx migrate
+php xcat Tool importAllSettings
 php xcat User createAdmin
 php xcat Tool initQQWry
 php xcat ClientDownload
@@ -96,11 +91,9 @@ php xcat ClientDownload
 使用 `crontab -e` 指令设置 SSPanel 的基本 cron 任务：
 
 ```
-*/1 * * * * /usr/local/php/bin/php /path/to/your/site/xcat  Job SendMail
 */1 * * * * /usr/local/php/bin/php /path/to/your/site/xcat  Job CheckJob
 0 */1 * * * /usr/local/php/bin/php /path/to/your/site/xcat  Job UserJob
 0 0 * * * /usr/local/php/bin/php -n /path/to/your/site/xcat Job DailyJob
-30 23 * * * /usr/local/php/bin/php /path/to/your/site/xcat SendDiaryMail
 ```
 
 设置财务报表
@@ -115,10 +108,4 @@ php xcat ClientDownload
 
 ```
 */1 * * * * /usr/local/php/bin/php /path/to/your/site/xcat DetectGFW
-```
-
-每天1点以简单模式备份一次数据库和站点配置文件
-
-```
-0 1 * * * /usr/local/php/bin/php -n /path/to/your/site/xcat Backup simple
 ```
