@@ -35,11 +35,13 @@ service php-fpm restart
 虚拟主机设置完成后，前往你所设置的网站根目录文件夹，执行以下命令：
 
 ```bash
-git clone -b dev https://github.com/Anankke/SSPanel-Uim.git .
+git clone -b 2022.9 --depth 1 https://github.com/Anankke/SSPanel-Uim.git .
 wget https://getcomposer.org/installer -O composer.phar
 php composer.phar
 php composer.phar install
 ```
+
+?> 这里的 2022.9 代表的是 SSPanel UIM 的版本，你可以在 [Release](https://github.com/Anankke/SSPanel-Uim/releases) 页面中查看当前的最新稳定版本或者是输入 dev 使用开发版。请注意，dev 分支可能在使用过程中出现不可预知的问题。
 
 修改 Nginx vhost 配置文件
 
