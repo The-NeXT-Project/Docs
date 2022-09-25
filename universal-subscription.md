@@ -1,6 +1,15 @@
 # 通用订阅
 
-## 下发范例
+## 使用范例
+
+### SSPanel-UIM 订阅
+
+请求路径
+```
+/sub/UserSubscriptionKey/all
+```
+
+下发范例
 
 ```json
 {
@@ -24,26 +33,12 @@
             "plugin":"",
             "plugin_option":"",
             "remark":"This is a shadowsocks node."
-        },
+        }
         {
-            "name":"SSR_Node_2",
+            "name":"V2Ray_Node_2",
             "id":"2",
-            "type":"ssr",
+            "type":"vmess",
             "address":"node2.sspanel.org",
-            "port":"8388",
-            "password":"shadowsocksr",
-            "encryption":"none",
-            "protocol":"",
-            "protocol_param":"",
-            "obfs":"",
-            "obfs_param":"",
-            "remark":"This is a shadowsocksr node."
-        },
-        {
-            "name":"V2Ray_Node_3",
-            "id":"3",
-            "type":"v2ray",
-            "address":"node3.sspanel.org",
             "port":"443",
             "uuid":"",
             "alterid":"",
@@ -59,8 +54,8 @@
             "remark":"This is a vmess/vless node."
         },
         {
-            "name":"Trojan_Node_4",
-            "id":"4",
+            "name":"Trojan_Node_3",
+            "id":"3",
             "type":"trojan",
             "address":"node4.sspanel.org",
             "host":"node4.sspanel.org",
@@ -79,3 +74,12 @@
     ]
 }
 ```
+
+### Clash 订阅
+
+请求路径
+```
+/sub/UserSubscriptionKey/clash
+```
+
+与原有订阅系统的 `/link/UserSubscriptionKey?clash=1` 所下发的 yaml 配置等效
