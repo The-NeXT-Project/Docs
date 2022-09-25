@@ -6,6 +6,7 @@
 - 检查网站是否启用 https
 - 检查 BaseUrl 是否为 https
 - 检查网站 ssl 证书是否有效
+- 检查服务器能否正常连接 Telegram API
 
 ## 更新订阅链接失效解決方法：
 
@@ -14,14 +15,12 @@
 Cloudflare 上设置以下 Page Rules：
 
 ```
-/link/*
-/sub/*
+*.example.com/link/*
+*.example.com/sub/*
 ```
 
 ```
-Disable Security
-Security Level - Essentially Off
-Web Application Firewall（如果有）- Off
+Cache Level - Bypass
 ```
 
 如果面板在 Cloudflare 上启用了 HTTPS，请在 `Crypto` 处修改 `Minimum TLS Version` 为 `TLS 1.0` 协议。
@@ -69,18 +68,6 @@ $System_Config['enable_flag']='false';
 ```php
 $System_Config['enable_flag']='true';
 ```
-
-## 错误 `Undefined offset :0 in`
-
-常见于使用宝塔、对接节点数量较多的情况。
-
-在宝塔面板中找到 PHP，点击设置：
-
-- 在 **禁用函数** 一栏找到 `system` `putenv` `proc_open` `proc_get_status` 全部取出
-- 在 **性能调整** 中，把 PHP 运行模式设置为 **静态**
-- 在 **配置文件** 中 按 <kbd>Ctrl</kbd> + <kbd>F</kbd> 搜索 `display_errors` 将 `=` 后的值改为 `Off` 后保存
-
-![](https://i.loli.net/2018/04/06/5ac64a16dbeaf.png)
 
 ## IIS 伪静态配置写法
 

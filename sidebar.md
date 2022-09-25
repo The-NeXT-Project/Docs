@@ -2,8 +2,8 @@
 - [面板架构](panel-component)
 - [更新日志](release-note)
 - **安装**
-- [使用 oneinstack 安裝](install-using-oneinstack)
-- [使用 CloudPanel v2 安裝](install-using-cloudpanel-v2)
+- [使用 Oneinstack 安裝](install-using-oneinstack)
+- [使用 CloudPanel 安裝](install-using-cloudpanel-v2)
 - **使用**
 - [通用订阅](universal-subscription)
 - [自定义配置使用教程](setup-custom-config)
@@ -11,9 +11,10 @@
 - **更新**
 - [升级 SSPanel UIM](update)
 - **节点相关**
-- [shadowsocks-mod（Python，开源，免费）](shadowsocks-mod-install-script)
-- [TrojanX（Rust，开源，免费）](trojanx-install-script)
+- [shadowsocks-mod](shadowsocks-mod-install-script)
+- [TrojanX](trojanx-install-script)
 - **进阶**
+- [备份你的站点](backup-your-site)
 - [常用审计规则](useful-detect-rules)
 - [Telegram OAuth 配置](setup-telegram-oauth)
 - [phinx 文档](https://book.cakephp.org/phinx/0/en/index.html)
