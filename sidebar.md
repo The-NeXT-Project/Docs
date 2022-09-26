@@ -1,6 +1,7 @@
 - **总览**
 - [面板架构](panel-component)
 - [更新日志](release-note)
+- [贡献者](contributors)
 - **安装**
 - [使用 Oneinstack 安裝](install-using-oneinstack)
 - [使用 CloudPanel 安裝](install-using-cloudpanel-v2)
