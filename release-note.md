@@ -3,7 +3,22 @@
 ## 2022.10
 
 ### What's Changed
-* TBD
+* 更换了 qqwry.dat 下载源，现在纯真 IP 库可以正常更新了
+* 使用 crc32c 计算 Etag，降低了 API 性能消耗
+* 部分 php 函数调用改为 fully-qualified，在搭配 OPcache 的情况下能进一步提升性能
+* 重做了节点性能状态功能，大幅度减少了用户节点列表页面所产生的 SQL 查询（减少~50%）
+* WebAPI 额外新增了 “WebAPI-ETAG” 响应头用以解决 Cloudflare 等 CDN 强行去除返回数据中 ETag 的问题
+* 管理面板和注册/登录页面默认调用 Material Design Icons，使用更符合逻辑的图标
+* 修正了一个会导致 xcat Update 迁移配置出错的问题
+* 将部分 xcat Update 功能迁移至了 update.sh
+* 新增了彩虹易支付网关支付通道的选择开关
+* 清理了 repo 代码中已经远程化的内容，为之后新增主题做准备
+* 重做邮件队列功能，将所有定时邮件更改为使用邮件队列发送
+* 将每日邮件发送指令与每日任务合并，并修复了其功能
+* update.sh 现在会清理无用的 branch 和 tag，减少服务器空间占用
+* 修复了 AWS SES API 发件功能，现在可以在设置中心内一键启用
+* xcat ClientDownload 现在会从 config/clients.json 读取配置文件，客制化更简单了
+* 整理了冗余代码，为之后的面板重构做准备
 
 **Full Changelog**: https://github.com/Anankke/SSPanel-Uim/compare/2022.9...2022.10
 
@@ -34,24 +49,3 @@
 * 更新了 js 依赖库的版本 
 
 **Full Changelog**: https://github.com/Anankke/SSPanel-Uim/compare/2022.8...2022.9
-
-## 2022.8
-
-### What's Changed
-* Fix CanvasJS loads 4 times in a single page by @M1Screw in https://github.com/Anankke/SSPanel-Uim/pull/1506
-* fix 500 by @iamsaltedfish in https://github.com/Anankke/SSPanel-Uim/pull/1510
-* Fix Docker CI & Update Readme by @M1Screw in https://github.com/Anankke/SSPanel-Uim/pull/1514
-* Add back parseArgs to fix bug by @zhyi828 in https://github.com/Anankke/SSPanel-Uim/pull/1521
-* feat: merge gconfig with database setting by @M1Screw in https://github.com/Anankke/SSPanel-Uim/pull/1522
-* fix: default bool value by @M1Screw in https://github.com/Anankke/SSPanel-Uim/pull/1523
-* Hotfix for Lint CI issue by @M1Screw in https://github.com/Anankke/SSPanel-Uim/pull/1527
-* fix: phinx migrate error by @M1Screw in https://github.com/Anankke/SSPanel-Uim/pull/1528
-* feat: new lint ci with bugfix by @M1Screw in https://github.com/Anankke/SSPanel-Uim/pull/1529
-* 修复无法购买流量包 by @RoromoriYuzu in https://github.com/Anankke/SSPanel-Uim/pull/1530
-* 修复无法添加邀请链接数量 by @RoromoriYuzu in https://github.com/Anankke/SSPanel-Uim/pull/1531
-* Dev 20220822 by @M1Screw in https://github.com/Anankke/SSPanel-Uim/pull/1532
-
-### New Contributors
-* @zhyi828 made their first contribution in https://github.com/Anankke/SSPanel-Uim/pull/1521
-
-**Full Changelog**: https://github.com/Anankke/SSPanel-Uim/compare/2022.6...2022.8
