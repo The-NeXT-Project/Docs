@@ -4,7 +4,6 @@
 - [贡献者](contributors)
 - **安装**
 - [使用 Oneinstack 安裝](install-using-oneinstack)
-- [使用 CloudPanel 安裝](install-using-cloudpanel-v2)
 - **使用**
 - [通用订阅](universal-subscription)
 - [自定义配置使用教程](setup-custom-config)
