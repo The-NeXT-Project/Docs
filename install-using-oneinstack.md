@@ -85,7 +85,7 @@ vi config/.config.php
 mv db/migrations/20000101000000_init_database.php.new db/migrations/20000101000000_init_database.php
 php vendor/bin/phinx migrate
 php xcat Tool importAllSettings
-php xcat Tool createAdmin
+php xcat User createAdmin
 php xcat Tool initQQWry
 php xcat ClientDownload
 ```
