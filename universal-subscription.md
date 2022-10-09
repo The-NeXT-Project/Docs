@@ -2,18 +2,18 @@
 
 ## 使用范例
 
-### SSPanel-UIM 订阅
+### SSPanel-UIM json 订阅
 
 请求路径
 ```
-/sub/UserSubscriptionKey/all
+/sub/UserSubscriptionKey/json
 ```
 
 下发范例
 
 ```json
 {
-    "version": "1",
+    "version": "2",
     "sub_name":"SSPanel",
     "user_email":"user@sspanel.org",
     "user_name":"ssp_user",
