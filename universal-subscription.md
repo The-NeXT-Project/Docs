@@ -1,8 +1,6 @@
 # 通用订阅
 
-## 使用范例
-
-### SSPanel-UIM json 订阅
+## SSPanel-UIM json 订阅
 
 请求路径
 ```
@@ -75,11 +73,11 @@
 }
 ```
 
-### Clash 订阅
+## Clash 订阅
 
 请求路径
 ```
 /sub/UserSubscriptionKey/clash
 ```
 
-与原有订阅系统的 `/link/UserSubscriptionKey?clash=1` 所下发的 yaml 配置等效
+与原有订阅系统的 `/link/UserSubscriptionKey?clash=1` 等效
