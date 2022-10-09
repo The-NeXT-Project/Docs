@@ -68,3 +68,9 @@ SSPanel UIM 的开发离不开所有用户，[贡献代码](https://github.com/A
 [**Irohaede**](https://github.com/Irohaede)
 
 - TrojanX 开发与维护
+
+[**iamsaltedfish**](https://github.com/iamsaltedfish)
+
+- 面板数据库化配置
+- phinx 数据库迁移
+- tabler 主题
