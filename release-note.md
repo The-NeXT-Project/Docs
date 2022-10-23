@@ -1,5 +1,32 @@
 # 更新日志
 
+## 2022.11
+
+### What's Changed
+* 新增用户每小时流量记录功能
+* 修正了一个当 Telegram 用户名为空时绑定出错的问题
+* 优化了每日邮件的显示
+* 新增了 tabler 主题，并适配了用户中心，登录，注册等界面
+* 更新通用订阅系统至 version 2，使用了更清晰的参数，并移除了 SSR 的下发
+* 现在通用订阅系统支持 json 和 clash 两种格式的下发，并且重写了底层的代码逻辑
+* 清理了主题中大量冗余和无用的 JavaScript 脚本，减少不必要的资源消耗
+* 新增了系统级别的暗色主题支持，目前已经适配 tabler 主题，用户可以在下拉选单中一键切换
+* 修正了 tabler 主题中的用户邮件修改逻辑
+* 现在通用订阅将会使用 subUrl，并且移除了默认配置中硬编码的 URL
+* tabler 主题中新增了全新的 user/server 入口，为用户提供了更清晰直白的节点状态显示
+* 后端添加了全新的 ServerController，为之后的重写节点配置显示和下发做准备
+* 使用 Cloudflare Turnstile 替代 Google reCaptcha 作为默认的 Captcha 供应商，优化了使用体验并能够更好地保护用户隐私
+* 重做了 Captcha 系统的逻辑，为之后的 GeeTest v4 接入做准备
+* 优化了 ETag 的生成和优化了 WebAPI 的性能 @Irohaede
+* 移除了 WebAPI 中不需要节点 ID 即可更新的问题，现在所有相关 WebAPI 请求必须带上有效的 node_id
+* 修正了 WebAPI 中潜在的安全风险，完善了相关功能
+* 现在用户密码重置页面支持 Captcha 保护
+* 修正了一个注册时前端传递的邀请码为空时会导致注册失败的问题
+* 更新了面板的依赖，其中包括许多重要的功能与安全修正
+* 优化了 tabler 主题中的一些显示细节
+
+**Full Changelog**: https://github.com/Anankke/SSPanel-Uim/compare/2022.10...2022.11
+
 ## 2022.10
 
 ### What's Changed
