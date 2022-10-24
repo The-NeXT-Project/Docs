@@ -1,14 +1,6 @@
 # 贡献者
 
-SSPanel UIM 的开发离不开所有用户，[贡献代码](https://github.com/Anankke/SSPanel-Uim/graphs/contributors)和提交 Issue 的人。
-
-[**Anankke**](https://github.com/Anankke)
-
-- 面板现 **维护者**
-
-[**galaxychuck**](https://github.com/galaxychuck)
-
-- 面板 **原作者**
+SSPanel UIM 的开发离不开所有用户，[贡献代码](https://github.com/sspanel-uim/SSPanel-Uim-Dev/graphs/contributors)和提交 Issue 的人。
 
 [**dumplin**](https://github.com/dumplin233)
 

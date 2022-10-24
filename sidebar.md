@@ -2,6 +2,7 @@
 - [面板架构](panel-component)
 - [更新日志](release-note)
 - [贡献者](contributors)
+- [捐赠](donation)
 - **安装**
 - [使用 Oneinstack 安裝](install-using-oneinstack)
 - **使用**
