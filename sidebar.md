@@ -7,8 +7,7 @@
 - [使用 Oneinstack 安裝](install-using-oneinstack)
 - **使用**
 - [通用订阅](universal-subscription)
-- [自定义配置使用教程](setup-custom-config)
-- [数据库化设置](database-setting)
+- [自定义配置](setup-custom-config)
 - **更新**
 - [升级 SSPanel UIM](update)
 - **节点相关**
@@ -18,6 +17,7 @@
 - [备份你的站点](backup-your-site)
 - [常用审计规则](useful-detect-rules)
 - [Telegram OAuth 配置](setup-telegram-oauth)
+- [数据库化设置](database-setting)
 - [phinx 文档](https://book.cakephp.org/phinx/0/en/index.html)
 - [API 文档](https://github.com/sspanel-uim/API-documents)
 - **Q & A**
