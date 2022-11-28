@@ -86,8 +86,8 @@ mv db/migrations/20000101000000_init_database.php.new db/migrations/200001010000
 php vendor/bin/phinx migrate
 php xcat Tool importAllSettings
 php xcat Tool createAdmin
-php xcat Tool initQQWry
 php xcat ClientDownload
+bash udpate.sh
 ```
 
 使用 `crontab -e` 指令设置 SSPanel 的基本 cron 任务：
