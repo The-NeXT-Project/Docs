@@ -46,7 +46,24 @@
 	"mux": "0",
 	"transport": "none",
 	"transport_plugin": "",
-	"transport_method": ""
+	"transport_method": "",
+	//Clash 相关，不影响节点配置下发
+	//参考文档 https://github.com/Dreamacro/clash/wiki/configuration
+	"plugin-opts": {
+        // 对应 Clash yaml 文件中 plugin-opts 的配置
+    },
+	"ws-opts": {
+        // 对应 Clash yaml 文件中 ws-opts 的配置
+    },
+	"h2-opts": {
+        // 对应 Clash yaml 文件中 h2-opts 的配置
+    },
+	"http-opts": {
+        // 对应 Clash yaml 文件中 http-opts 的配置
+    },
+	"grpc-opts": {
+        // 对应 Clash yaml 文件中 grpc-opts 的配置
+    }
 }
 ```
 
