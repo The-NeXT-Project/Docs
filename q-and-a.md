@@ -37,37 +37,6 @@ ssl_protocols TLSv1.1 TLSv1.2;
 ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
 ```
 
-## 配置节点国旗
-
-默认节点命名规则：
-
-```
-国家/地区的名字/UN 代码/ISO Alpha-2 代码/ISO Alpha-3 代码 + 一个空格
-```
-
-例：
-
-```
-United States Of America A节点 //自动显示美国国旗
-```
-
-```
-CAN 多伦多vps //自动显示加拿大国旗
-```
-
-```
-826 balabala //自动显示英国国旗
-```
-
-然后将 config 文的
-
-```php
-$System_Config['enable_flag']='false';
-```
-
-```php
-$System_Config['enable_flag']='true';
-```
 
 ## IIS 伪静态配置写法
 

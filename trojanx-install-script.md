@@ -53,7 +53,3 @@ systemctl start trojan-server
 ```bash
 systemctl stop trojan-server
 ```
-
-### 注意事项
-
-* 所有跟节点安装本身无关的功能会通过单独的脚本提供（例如 BBR 加速一键配置功能在 [Airport-toolkit](https://github.com/M1Screw/Airport-toolkit) 中通过 bbr_c7/bbr_c8.sh 脚本提供）
