@@ -12,8 +12,8 @@
 
 节点类型 | 下发的数据
 --------|--------
-SS/SSR | method, node_speedlimit, 'node_iplimit', port, passwd, node_connector, alive_ip
-V2Ray  | node_speedlimit, 'node_iplimit', node_connector, uuid, alive_ip
+Shadowsocks | method, node_speedlimit, 'node_iplimit', port, passwd, node_connector, alive_ip
+Vmess/Vless  | node_speedlimit, 'node_iplimit', node_connector, uuid, alive_ip
 Trojan | node_speedlimit, 'node_iplimit', node_connector, uuid, alive_ip
 
 ---
