@@ -10,15 +10,13 @@
 - [自定义配置](setup-custom-config)
 - **更新**
 - [升级 SSPanel UIM](update)
-- **节点相关**
-- [shadowsocks-mod](shadowsocks-mod-install-script)
+- **节点服务端**
 - [TrojanX](trojanx-install-script)
 - **进阶**
 - [备份你的站点](backup-your-site)
 - [常用审计规则](useful-detect-rules)
-- [Telegram OAuth 配置](setup-telegram-oauth)
 - [数据库化设置](database-setting)
+- [WebAPI 文档](webapi)
 - [phinx 文档](https://book.cakephp.org/phinx/0/en/index.html)
-- [API 文档](https://github.com/sspanel-uim/API-documents)
 - **Q & A**
 - [魔改常见问题解答](q-and-a)
