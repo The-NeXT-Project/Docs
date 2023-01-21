@@ -2,7 +2,7 @@
 
 最后修改：2023.01.19
 
-路由前缀为 `/mod_mu/`， 所有请求必须带 api 参数（即 config 中的 muKey）并且面板中启用了 WebAPI 功能。除非特别说明，所有返回值均使用 json 编码。
+路由前缀为 `/mod_mu/`， 所有请求必须带 key 参数（即 config 中的 muKey）并且面板中启用了 WebAPI 功能。除非特别说明，所有返回值均使用 json 编码。
 
 ## User
 
