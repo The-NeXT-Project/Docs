@@ -12,9 +12,9 @@
 
 节点类型 | 下发的数据
 --------|--------
-Shadowsocks | method, node_speedlimit, 'node_iplimit', port, passwd, node_connector, alive_ip
-Vmess/Vless  | node_speedlimit, 'node_iplimit', node_connector, uuid, alive_ip
-Trojan | node_speedlimit, 'node_iplimit', node_connector, uuid, alive_ip
+Shadowsocks | method, node_speedlimit, node_iplimit, port, passwd, node_connector, alive_ip
+Vmess/Vless  | node_speedlimit, node_iplimit, node_connector, uuid, alive_ip
+Trojan | node_speedlimit, node_iplimit, node_connector, uuid, alive_ip
 
 ---
 路由 | 方式 | 参数 | 描述
@@ -47,3 +47,10 @@ Trojan | node_speedlimit, 'node_iplimit', node_connector, uuid, alive_ip
 路由 | 方式 | 参数 | 返回值 |描述
 -----|------|-----|-------|----
 `/func/ping` | GET | N/A | N/A | Ping? Pong!
+
+## Media
+
+---
+路由 | 方式 | 参数 | 返回值 |描述
+-----|------|-----|-------|----
+`/media/save_report` | POST | node_id, content | N/A | 上报节点流媒体解锁报告
