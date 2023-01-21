@@ -37,11 +37,6 @@ Trojan | node_speedlimit, 'node_iplimit', node_connector, uuid, alive_ip
 -----|------|-----|-------|----
 `/nodes/{id}/info` | GET | node_id | node_group, node_class, node_speedlimit, traffic_rate, mu_only, sort, server, disconnect_time, type | 获取当前请求节点的节点设置
 
----
-路由 | 方式 | 参数 | 返回值 | 描述
------|------|-----|--------|-------
-`/nodes` | GET | N/A | nodes | 获取当前站点中所有节点的信息
-
 ## Func
 
 路由 | 方式 | 参数 | 返回值 |描述
