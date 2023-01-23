@@ -86,10 +86,10 @@ server {
         location / {
     try_files $uri /index.php$is_args$args;
 }
-                location ~ \.php$ {
+        location ~ \.php$ {
         fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
-                include        fastcgi_params;
-                fastcgi_pass unix:/run/php81-fpm/php-fpm.sock;
+        include        fastcgi_params;
+        fastcgi_pass unix:/run/php81-fpm/php-fpm.sock;
         }
 
 }
@@ -103,11 +103,7 @@ chmod -R 755 /path/to/your/site
 chown -R http:http /path/to/your/site
 ```
 
-完成后我们就可以创建数据库和对应的用户了，这步强烈建议使用非root用户并且限制该用户仅可访问对应的网站数据库。
-
-?> 通过 http://IP/phpMyAdmin 可以登录数据库，进行可视化的数据库操作。请务必在完成所有必要的数据库操作后删除或者改名位于 `/data/wwwroot/dafault` 下的 `phpMyAdmin` 目录以避免潜在的安全威胁。
-
-接下来编辑网站配置文件，将刚才设置的数据库连接信息填入其中，然后阅读其他配置的说明进行站点客制化。
+配置数据库，将上文的SQL填写到配置文件
 
 ```bash
 cp config/.config.example.php config/.config.php
@@ -121,31 +117,31 @@ vi config/.config.php
 
 ```bash
 mv db/migrations/20000101000000_init_database.php.new db/migrations/20000101000000_init_database.php
-php vendor/bin/phinx migrate
-php xcat Tool importAllSettings
-php xcat Tool createAdmin
-php xcat ClientDownload
+php81 vendor/bin/phinx migrate
+php81 xcat Tool importAllSettings
+php81 xcat Tool createAdmin
+php81 xcat ClientDownload
 bash update.sh
 ```
 
 使用 `crontab -e` 指令设置 SSPanel 的基本 cron 任务：
 
 ```
-*/1 * * * * /usr/local/php/bin/php /path/to/your/site/xcat  Job CheckJob
-0 */1 * * * /usr/local/php/bin/php /path/to/your/site/xcat  Job UserJob
-0 0 * * * /usr/local/php/bin/php -n /path/to/your/site/xcat Job DailyJob
+*/1 * * * * /usr/bin/php81 /path/to/your/site/xcat  Job CheckJob
+0 */1 * * * /usr/bin/php81 /path/to/your/site/xcat  Job UserJob
+0 0 * * * /usr/bin/php81 -n /path/to/your/site/xcat Job DailyJob
 ```
 
 设置财务报表
 
 ```
-5 0 * * * /usr/local/php/bin/php /path/to/your/site/xcat FinanceMail day 
-6 0 * * 0 /usr/local/php/bin/php /path/to/your/site/xcat FinanceMail week
-7 0 1 * * /usr/local/php/bin/php /path/to/your/site/xcat FinanceMail month
+5 0 * * * /usr/bin/php81 /path/to/your/site/xcat FinanceMail day 
+6 0 * * 0 /usr/bin/php81 /path/to/your/site/xcat FinanceMail week
+7 0 1 * * /usr/bin/php81 /path/to/your/site/xcat FinanceMail month
 ```
 
 设置节点 GFW 检测
 
 ```
-*/1 * * * * /usr/local/php/bin/php /path/to/your/site/xcat DetectGFW
+*/1 * * * * /usr/bin/php81 /path/to/your/site/xcat DetectGFW
 ```
