@@ -50,7 +50,6 @@ Trojan | node_speedlimit, node_iplimit, node_connector, uuid, alive_ip
 
 ## Media
 
----
 路由 | 方式 | 参数 | 返回值 |描述
 -----|------|-----|-------|----
 `/media/save_report` | POST | node_id, content | N/A | 上报节点流媒体解锁报告
