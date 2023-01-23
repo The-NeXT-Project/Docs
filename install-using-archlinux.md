@@ -38,6 +38,7 @@ MariaDB> CREATE DATABASE 'sspanel'@'localtion' IDENTIFIED BY 'PASSWD';
 MariaDB> GRANT ALL PRIVILEGES ON sspanel.* TO 'sspanel'@'localhost';
 ```
 安装PHP相关
+
 ?> Arch官方包中缺少过多依赖，因此使用AUR(Arch User Repository)~~安装~~编译安装php81全家桶
 
 安装AUR管理器
