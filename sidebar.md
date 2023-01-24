@@ -5,6 +5,7 @@
 - [捐赠](donation)
 - **安装**
 - [使用 Oneinstack 安裝](install-using-oneinstack)
+- [使用 Arch Linux 安裝](install-using-archlinux)
 - **使用**
 - [通用订阅](universal-subscription)
 - [自定义配置](setup-custom-config)

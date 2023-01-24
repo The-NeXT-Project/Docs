@@ -1,7 +1,3 @@
-# 过时的文档
-
-请注意，这份文档已经过时。文章所提供的方法可能无法成功部署项目。在依照此教程操作前，建议优先考虑其他教程
-
 # 使用 RPM 包部署 SSPanel UIM
 
 ?> 教程使用的环境：RHEL 8.3/ARM64 架构
@@ -138,7 +134,7 @@ vi /etc/nginx/conf.d/你设置的网站域名.conf
 ```
 
 然后写入如下的配置内容，注意修改网站文件路径和网站域名
-```
+```nginx
 server {  
         listen 80;
         listen [::]:80;
@@ -186,19 +182,19 @@ mysql -u root -p
 ```
 
  输入使用你刚刚在安装时设置的密码，然后创建一个编码为 `utf8mb4_unicode_ci` 的数据库，数据库名称可以任选，这里使用 sspanel 作为示例
-```MariaDB
+```sql
 MariaDB [(none)]> CREATE DATABASE sspanel CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-然后创建一个本地数据库用户，并限制该用户的权限至只能操作新创建的这个数据库，这里使用 sspanel 作为用户名，使用 sspanel 作为这个用户的密码
-```MariaDB
+然后创建一个本地数据库用户，并限制该用户的权限至只能操作新创建的这个数据库，这里使用 sspanel 作为用户名，使用 sspanel-password 作为这个用户的密码
+```sql
 MariaDB [(none)]> CREATE USER 'sspanel'@'localhost';
 MariaDB [(none)]> GRANT ALL PRIVILEGES ON sspanel.* TO 'sspanel'@'localhost' IDENTIFIED BY 'sspanel';
 MariaDB [(none)]> FLUSH PRIVILEGES;
 ```
 
 导入面板的 sql 文件
-```MariaDB
+```sql
 MariaDB [(none)]> USE sspanel;
 MariaDB [(sspanel)]> SOURCE /path/to/your/site/sql/glzjin_all.sql;
 ```
@@ -216,19 +212,20 @@ vi config/.config.php
 接下来执行如下站点初始化设置
 
 ```bash
-php xcat User createAdmin
-php xcat Tool initQQWry
+mv db/migrations/20000101000000_init_database.php.new db/migrations/20000101000000_init_database.php
+php vendor/bin/phinx migrate
+php xcat Tool importAllSettings
+php xcat Tool createAdmin
 php xcat ClientDownload
+bash update.sh
 ```
 
 使用 `crontab -e` 指令设置 SSPanel 的基本 cron 任务：
 
 ```
-*/1 * * * * /usr/bin/php /path/to/your/site/xcat  Job SendMail
 */1 * * * * /usr/bin/php /path/to/your/site/xcat  Job CheckJob
 0 */1 * * * /usr/bin/php /path/to/your/site/xcat  Job UserJob
 0 0 * * * /usr/bin/php -n /path/to/your/site/xcat Job DailyJob
-30 23 * * * /usr/bin/php /path/to/your/site/xcat SendDiaryMail
 ```
 
 设置财务报表
@@ -243,10 +240,4 @@ php xcat ClientDownload
 
 ```
 */1 * * * * /usr/bin/php /path/to/your/site/xcat DetectGFW
-```
-
-每天1点以简单模式备份一次数据库和站点配置文件
-
-```
-0 1 * * * /usr/bin/php -n /path/to/your/site/xcat Backup simple
 ```

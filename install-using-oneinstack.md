@@ -52,7 +52,7 @@ service nginx restart
 
 在对应的 vhost 的配置文件中添加如下伪静态规则，并将网站目录（即 `root` 配置项）后添加 `/public`
 
-```
+```nginx
 location / {
     try_files $uri /index.php$is_args$args;
 }

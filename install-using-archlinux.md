@@ -32,7 +32,7 @@ mariadb-secure-installation
 mysql -uroot
 ```
 创建SSPanel用户以及数据库
-```
+```sql
 MariaDB> CREATE USER `sspanel`;
 MariaDB> CREATE DATABASE 'sspanel'@'localtion' IDENTIFIED BY 'PASSWD';
 MariaDB> GRANT ALL PRIVILEGES ON sspanel.* TO 'sspanel'@'localhost';
@@ -76,7 +76,7 @@ systemctl reload nginx
 ```
 
 示例配置
-```
+```nginx
 server {
         listen 80;
         listen 443 ssl http2;
