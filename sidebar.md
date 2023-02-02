@@ -4,11 +4,11 @@
 - [贡献者](contributors)
 - [捐赠](donation)
 - **安装**
-- [使用 Oneinstack 安裝](install-using-oneinstack)
-- [使用 Arch Linux 安裝](install-using-archlinux)
+- [Oneinstack](install-using-oneinstack)
+- [Arch Linux](install-using-archlinux)
 - **使用**
 - [通用订阅](universal-subscription)
-- [自定义配置](setup-custom-config)
+- [自定义配置](custom-config)
 - **更新**
 - [升级 SSPanel UIM](update)
 - **节点服务端**
@@ -16,8 +16,8 @@
 - **进阶**
 - [备份你的站点](backup-your-site)
 - [常用审计规则](useful-detect-rules)
-- [数据库化设置](database-setting)
-- [WebAPI 文档](webapi)
-- [phinx 文档](https://book.cakephp.org/phinx/0/en/index.html)
+- **设计文档**
+- [DB 化配置](database-setting)
+- [WebAPI](webapi)
 - **Q & A**
 - [魔改常见问题解答](q-and-a)

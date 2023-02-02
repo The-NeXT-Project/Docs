@@ -1,4 +1,4 @@
-# 自定义配置使用教程
+# 自定义配置
 
 ## 可配置选项一览
 
@@ -9,16 +9,9 @@
     "offset_port_node": "", //节点服务器下发的端口
     "server_user": "", //前端/订阅中下发的服务器地址
     "host": "", //SNI
-	//SS
-	"plugin": "", //SS插件
-	"plugin_option": "", //SS插件参数
-    //SSR单端口多用户
-    "mu_port": "443", //只可填写一个。如果不填则会按照 节点服务器下发的端口 -> 前端/订阅中下发的端口 的顺序取值
-	"mu_password": "xxxxxx",//單端口密碼
-    "mu_encryption": "none",
-    "mu_protocol": "auth_aes128_md5",
-    "mu_obfs": "plain",
-    "mu_suffix": "cloudfront.net",
+	//Shadowsocks
+	"plugin": "", //SIP002插件
+	"plugin_option": "", //插件参数
     //V2Ray
     "v2_port": "",
     "tls": "0",
@@ -47,7 +40,7 @@
 	"transport": "none",
 	"transport_plugin": "",
 	"transport_method": "",
-	//Clash 相关，不影响节点配置下发
+	//Clash 相关，仅用于 Clash 通用订阅，不影响节点配置下发
 	//参考文档 https://github.com/Dreamacro/clash/wiki/configuration
 	"plugin-opts": {
         // 对应 Clash yaml 文件中 plugin-opts 的配置

@@ -53,16 +53,19 @@ SSPanel UIM 的开发离不开所有用户，[贡献代码](https://github.com/s
 
 [**M1Screw**](https://github.com/M1Screw)
 
-- Wiki 维护与重写部分安装教程
-- 面板 Bug 修复与维护
-- 重写面板的一些功能
+- Wiki 维护
+- Dev Blog 维护
+- SSPanel-UIM RPM 软件源维护
+- CI/CD 系统维护
+- 项目进度管理
+- Release 管理
 
 [**Irohaede**](https://github.com/Irohaede)
 
 - TrojanX 开发与维护
+- Slim 4.x 兼容性修复
 
 [**iamsaltedfish**](https://github.com/iamsaltedfish)
 
 - 面板数据库化配置
-- phinx 数据库迁移
 - tabler 主题
