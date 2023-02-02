@@ -1,5 +1,8 @@
-# 结构
-```
+# 数据库化配置
+
+## 数据表设计
+
+```sql
 CREATE TABLE `config` (
   `id` int(11) NOT NULL COMMENT '主键',
   `item` text NOT NULL COMMENT '项',
@@ -12,7 +15,7 @@ CREATE TABLE `config` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ```
 
-# 说明
+## 表结构
 
 `id` 主键
 
@@ -30,9 +33,11 @@ CREATE TABLE `config` (
 
 `mark` 备注
 
-# 特别说明
-若将值类型设置为 `array` ，在存储时需要先 `json_encode()` ，需要读取时再 `json_decode()`
-```
+> 注意，若将值类型设置为 `array` ，在存储时需要先 `json_encode()` ，需要读取时再 `json_decode()`
+
+## 代码范例
+
+```php
 <?php
 ...
 use App\Models\Setting;
@@ -57,27 +62,39 @@ $recharge_limit = json_decode($config->value, true); // array
 ?>
 ```
 
-# 方法
+## 方法
+
 使用 `use` 操作符导入
-```
+
+```php
 use App\Models\Setting;
 ```
-## obtain
+
+### obtain
+
 获取单个项目的配置。例如：
-```
+
+```php
 Setting::obtain('f2f_pay_app_id');
 ```
-## getClass
+
+### getClass
+
 获取某一分类下的所有值，返回关联数组
-```
+
+```php
 Setting::getClass('f2f');
 ```
+
 调用这些值
-```
+
+```php
 $configs = Setting::getClass('f2f');
 
 $f2f_pay_app_id = $configs['f2f_pay_app_id'];
 $f2f_pay_pid = $configs['f2f_pay_pid'];
 ```
-## getPublicConfig
+
+### getPublicConfig
+
 为 `/src/Services/Config.php` 提供的方法，将所有被标记为是公共参数的配置项目，以关联数组的形式返回

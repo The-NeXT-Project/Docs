@@ -6,25 +6,26 @@
 
 首先下载脚本
 
-```
+```bash
 wget https://raw.githubusercontent.com/M1Screw/Airport-toolkit/master/b2_backup.sh
 chmod +x b2_backup.sh
 ```
 
-跑一下脚本初始化
-```
+脚本初始化
+
+```bash
 ./b2_backup.sh init
 ```
 
 下载默认配置文件
 
-```
+```bash
 wget https://raw.githubusercontent.com/M1Screw/Airport-toolkit/master/b2_backup_config
 ```
 
 修改其中的配置，然后将配置文件修改为一个合适的名字，比如 sspanel_backup_config，将其放到跟脚本同一个目录下，然后运行脚本
 
-```
+```bash
 ./b2_backup.sh backup sspanel_backup_config
 ```
 

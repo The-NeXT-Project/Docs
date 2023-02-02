@@ -25,18 +25,6 @@ Cache Level - Bypass
 
 如果面板在 Cloudflare 上启用了 HTTPS，请在 `Crypto` 处修改 `Minimum TLS Version` 为 `TLS 1.0` 协议。
 
-宝塔搭建的可以在站点修改配置文件中找到
-
-```
-ssl_protocols TLSv1.1 TLSv1.2;
-```
-
-改为
-
-```
-ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-```
-
 
 ## IIS 伪静态配置写法
 
@@ -58,22 +46,4 @@ ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
         </rewrite>
     </system.webServer>
 </configuration>
-```
-
-## Git 报错 `Peer reports incompatible or unsupported protocol version`
-
-Git 版本过低，请前往 [Git 官网下载页](https://git-scm.com/downloads) 查看升级指导。
-
-## master 分支切换到 dev 分支出现报错
-
-请仔细对比自己的数据库与dev版本数据表以及数据项目的不同并手动添加，并且要注意更改 cron 任务的指令格式，并在完成代码升级后运行。
-
-```bash
-git fetch --all
-git reset --hard origin/dev
-git pull
-php composer.phar u
-php vendor/bin/phinx migrate
-php xcat Update
-php xcat Tool importAllSettings
 ```
