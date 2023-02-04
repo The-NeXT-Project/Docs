@@ -7,7 +7,7 @@
 OneinStack 官方网站：https://oneinstack.com/ 。使用 https://oneinstack.com/auto/ 指定一个客制化的安装方案，以下为推荐使用的软件及其版本：
 
 - Nginx
-- PHP 8.0 with OPcache
+- PHP 8.1 with OPcache
 - MariaDB 10.6
 - phpMyAdmin
 
@@ -20,14 +20,16 @@ cd oneinstack
 ./vhost.sh
 ```
 
-在加密选择的部分，如果是裸站使用 `Let's Encrypt` 证书，如网站需要加设 CDN 例如 Cloudfalre 则使用自签证书即可。
+在加密选择的部分，如果是不加 CDN 则可使用 `Let's Encrypt` 证书，如网站需要加设 CDN 例如 Cloudfalre 等，则使用自签证书即可。
 
 编辑 php.ini，删除 disable_functions 中的 proc_open, proc_get_status
+
 ```bash
 vi /usr/local/php/etc/php.ini
 ```
 
 重启php服务：
+
 ```bash
 service php-fpm restart
 ```
@@ -35,13 +37,13 @@ service php-fpm restart
 虚拟主机设置完成后，前往你所设置的网站根目录文件夹，执行以下命令：
 
 ```bash
-git clone -b 2022.9 --depth 1 https://github.com/Anankke/SSPanel-Uim.git .
+git clone -b 2022.12 --depth 1 https://github.com/Anankke/SSPanel-Uim.git .
 wget https://getcomposer.org/installer -O composer.phar
 php composer.phar
 php composer.phar install
 ```
 
-?> 这里的 2022.9 代表的是 SSPanel UIM 的版本，你可以在 [Release](https://github.com/Anankke/SSPanel-Uim/releases) 页面中查看当前的最新稳定版本或者是输入 dev 使用开发版。请注意，dev 分支可能在使用过程中出现不可预知的问题。
+?> 这里的 2022.12 代表的是 SSPanel UIM 的版本，你可以在 [Release](https://github.com/Anankke/SSPanel-Uim/releases) 页面中查看当前的最新稳定版本或者是输入 dev 使用开发版。请注意，dev 分支可能在使用过程中出现不可预知的问题。
 
 修改 Nginx vhost 配置文件
 
@@ -67,7 +69,7 @@ chown -R www:www /path/to/your/site
 
 完成后我们就可以创建数据库和对应的用户了，这步强烈建议使用非root用户并且限制该用户仅可访问对应的网站数据库。
 
-?> 通过 http://IP/phpMyAdmin 可以登录数据库，进行可视化的数据库操作。请务必在完成所有必要的数据库操作后删除或者改名位于 `/data/wwwroot/dafault` 下的 `phpMyAdmin` 目录以避免潜在的安全威胁。
+?> 通过 http://服务器IP/phpMyAdmin 可以登录数据库，进行可视化的数据库操作。请务必在完成所有必要的数据库操作后删除或者改名位于 `/data/wwwroot/dafault` 下的 `phpMyAdmin` 目录以避免安全问题。
 
 接下来编辑网站配置文件，将刚才设置的数据库连接信息填入其中，然后阅读其他配置的说明进行站点客制化。
 
@@ -82,8 +84,7 @@ vi config/.config.php
 接下来执行如下站点初始化设置
 
 ```bash
-mv db/migrations/20000101000000_init_database.php.new db/migrations/20000101000000_init_database.php
-php vendor/bin/phinx migrate
+php xcat Migration new
 php xcat Tool importAllSettings
 php xcat Tool createAdmin
 php xcat ClientDownload
@@ -92,7 +93,7 @@ bash update.sh
 
 使用 `crontab -e` 指令设置 SSPanel 的基本 cron 任务：
 
-```
+```bash
 */1 * * * * /usr/local/php/bin/php /path/to/your/site/xcat  Job CheckJob
 0 */1 * * * /usr/local/php/bin/php /path/to/your/site/xcat  Job UserJob
 0 0 * * * /usr/local/php/bin/php -n /path/to/your/site/xcat Job DailyJob
@@ -100,7 +101,7 @@ bash update.sh
 
 设置财务报表
 
-```
+```bash
 5 0 * * * /usr/local/php/bin/php /path/to/your/site/xcat FinanceMail day 
 6 0 * * 0 /usr/local/php/bin/php /path/to/your/site/xcat FinanceMail week
 7 0 1 * * /usr/local/php/bin/php /path/to/your/site/xcat FinanceMail month
@@ -108,6 +109,6 @@ bash update.sh
 
 设置节点 GFW 检测
 
-```
+```bash
 */1 * * * * /usr/local/php/bin/php /path/to/your/site/xcat DetectGFW
 ```
