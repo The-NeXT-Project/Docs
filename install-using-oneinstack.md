@@ -94,6 +94,7 @@ bash update.sh
 使用 `crontab -e` 指令设置 SSPanel 的基本 cron 任务：
 
 ```bash
+*/5 * * * * /usr/local/php/bin/php /path/to/your/site/xcat  Cron
 */1 * * * * /usr/local/php/bin/php /path/to/your/site/xcat  Job CheckJob
 0 */1 * * * /usr/local/php/bin/php /path/to/your/site/xcat  Job UserJob
 0 0 * * * /usr/local/php/bin/php -n /path/to/your/site/xcat Job DailyJob
