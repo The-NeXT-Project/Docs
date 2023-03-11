@@ -1,5 +1,11 @@
 # 更新日志
 
+## 2022.12.1
+### What's Changed
+* TBD
+
+**Full Changelog**: https://github.com/Anankke/SSPanel-Uim/compare/2022.12...2022.12.1
+
 ## 2022.12
 ### What's Changed
 * 修正了一个节点页面显示的问题
