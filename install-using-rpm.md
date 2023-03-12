@@ -69,7 +69,7 @@ dnf module enable php:8.1
 然后安装所需的 PHP 模组
 
 ```bash
-dnf install php-fpm php-cli php-mysqlnd php-curl php-gd php-mbstring php-xml php-xmlrpc php-opcache php-zip php php-json php-bz2 php-bcmath
+dnf install php-fpm php-cli php-mysqlnd php-curl php-gd php-mbstring php-xml php-opcache php-zip php php-json php-bz2 php-bcmath
 ```
 
 启动 php-fpm 服务并设置开机启动
@@ -242,6 +242,7 @@ bash update.sh
 使用 `crontab -e` 指令设置 SSPanel 的基本 cron 任务：
 
 ```bash
+*/5 * * * * /usr/bin/php /path/to/your/site/xcat  Cron
 */1 * * * * /usr/bin/php /path/to/your/site/xcat  Job CheckJob
 0 */1 * * * /usr/bin/php /path/to/your/site/xcat  Job UserJob
 0 0 * * * /usr/bin/php -n /path/to/your/site/xcat Job DailyJob
