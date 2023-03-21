@@ -108,7 +108,7 @@ MariaDB 官方提供了一个完善的 RPM 源，我们使用它
 ```
 [MariaDB]
 name=MariaDB
-baseurl=http://yum.mariadb.org/10.10/rhel9-amd64/
+baseurl=http://yum.mariadb.org/10.11/rhel9-amd64/
 gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
 gpgcheck=1
 ```
@@ -125,7 +125,7 @@ dnf update
 dnf module disable mysql mariadb
 ```
 
-安装 MariaDB 10.10
+安装 MariaDB 10.11
 
 ```bash
 dnf install mariadb-server
