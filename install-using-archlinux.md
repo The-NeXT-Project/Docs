@@ -140,7 +140,6 @@ php81 xcat Migration new
 php81 xcat Tool importAllSettings
 php81 xcat Tool createAdmin
 php81 xcat ClientDownload
-bash update.sh
 ```
 
 使用 `crontab -e` 指令设置 SSPanel 的基本 cron 任务：
