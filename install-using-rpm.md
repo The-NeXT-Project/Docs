@@ -238,6 +238,12 @@ php xcat Tool createAdmin
 php xcat ClientDownload
 ```
 
+如果你希望使用 Maxmind GeoLite2 数据库来提供 IP 地理位置信息，首先你需要配置 `config/.config.php` 中的 `maxmind_license_key` 选项，然后执行如下命令：
+
+```bash
+php xcat Update
+```
+
 使用 `crontab -e` 指令设置 SSPanel 的基本 cron 任务：
 
 ```bash
