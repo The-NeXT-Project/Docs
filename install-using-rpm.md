@@ -248,7 +248,6 @@ php xcat Update
 
 ```bash
 */5 * * * * /usr/bin/php /path/to/your/site/xcat  Cron
-*/1 * * * * /usr/bin/php /path/to/your/site/xcat  Job CheckJob
 0 */1 * * * /usr/bin/php /path/to/your/site/xcat  Job UserJob
 0 0 * * * /usr/bin/php -n /path/to/your/site/xcat Job DailyJob
 ```
