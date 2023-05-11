@@ -152,20 +152,4 @@ php81 xcat Update
 
 ```bash
 */5 * * * * /usr/bin/php81 /path/to/your/site/xcat  Cron
-0 */1 * * * /usr/bin/php81 /path/to/your/site/xcat  Job UserJob
-0 0 * * * /usr/bin/php81 -n /path/to/your/site/xcat Job DailyJob
-```
-
-设置财务报表
-
-```bash
-5 0 * * * /usr/bin/php81 /path/to/your/site/xcat FinanceMail day 
-6 0 * * 0 /usr/bin/php81 /path/to/your/site/xcat FinanceMail week
-7 0 1 * * /usr/bin/php81 /path/to/your/site/xcat FinanceMail month
-```
-
-设置节点 GFW 检测
-
-```bash
-*/1 * * * * /usr/bin/php81 /path/to/your/site/xcat DetectGFW
 ```
