@@ -1,5 +1,3 @@
-# 常用审计规则
-
 |规则描述|规则正则表达式|规则匹配类型|
 |:---|:---|:---|
 |屏蔽BT防止版权争议| `(torrent\|\.torrent\|peer_id=\|info_hash\|get_peers\|find_node\|BitTorrent\|announce_peer\|announce\.php\?passkey=)` |数据包明文匹配|

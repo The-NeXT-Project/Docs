@@ -1,5 +1,3 @@
-# 使用 RPM 包部署 SSPanel UIM
-
 ?> 教程使用的环境：CentOS Stream 9/x86_64 架构
 
 ## 禁用 SELinux

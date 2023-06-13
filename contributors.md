@@ -1,5 +1,3 @@
-# 贡献者
-
 SSPanel UIM 的开发离不开所有用户，[贡献代码](https://github.com/sspanel-uim/SSPanel-Uim-Dev/graphs/contributors)和提交 Issue 的人。
 
 [**dumplin**](https://github.com/dumplin233)

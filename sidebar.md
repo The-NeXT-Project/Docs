@@ -12,8 +12,6 @@
 - [自定义配置](custom-config)
 - **更新**
 - [升级 SSPanel UIM](update)
-- **节点服务端**
-- [TrojanX](trojanx-install-script)
 - **进阶**
 - [备份你的站点](backup-your-site)
 - [常用审计规则](useful-detect-rules)

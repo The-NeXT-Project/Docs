@@ -1,5 +1,3 @@
- # 使用 Arch Linux 部署 SSPanel UIM
-
 ?> 教程使用的环境：Arch Linux/x86_64 架构
 
 ## 安装

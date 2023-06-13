@@ -1,5 +1,3 @@
-# 使用 OneinStack 部署 SSPanel UIM
-
 ?> 教程使用的环境：CentOS Stream 9/x86_64 架构
 
 ## 安装 OneinStack

@@ -1,5 +1,3 @@
-# 如何备份你的站点
-
 ## 使用 B2 Cloud Storage
 
 在使用这个脚本之前你需要注册一个 [B2 Cloud Storage](https://www.backblaze.com/b2/cloud-storage.html) 账号，然后创建一个 Bucket 和应用密钥。
