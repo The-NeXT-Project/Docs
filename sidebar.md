@@ -10,6 +10,7 @@
 - **使用**
 - [通用订阅](universal-subscription)
 - [自定义配置](custom-config)
+- [新商店系统](new-shop)
 - **更新**
 - [升级 SSPanel UIM](update)
 - **进阶**
