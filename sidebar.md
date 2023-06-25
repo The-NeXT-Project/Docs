@@ -5,7 +5,6 @@
 - [捐赠](donation)
 - **安装**
 - [Oneinstack](install-using-oneinstack)
-- [Arch Linux](install-using-archlinux)
 - [CentOS/RHEL](install-using-rpm)
 - **使用**
 - [通用订阅](universal-subscription)

@@ -182,13 +182,14 @@ systemctl reload nginx
 虚拟主机设置完成后，前往你所设置的网站根目录文件夹，执行以下命令：
 
 ```bash
-dnf install git
-git clone -b dev https://github.com/Anankke/SSPanel-Uim.git .
-git config core.filemode false
+dnf install git -y
+git clone -b 2023.3 https://github.com/Anankke/SSPanel-Uim.git .
 wget https://getcomposer.org/installer -O composer.phar
 php composer.phar
-php composer.phar install
+php composer.phar install --no-dev
 ```
+
+?> 这里的 2023.3 代表的是 SSPanel UIM 的版本，你可以在 [Release](https://github.com/Anankke/SSPanel-Uim/releases) 页面中查看当前的最新稳定版本或者是输入 dev 使用开发版。请注意，dev 分支可能在使用过程中出现不可预知的问题。
 
 然后设置网站目录的整体权限
 
