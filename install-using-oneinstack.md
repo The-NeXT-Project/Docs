@@ -6,7 +6,8 @@ OneinStack 官方网站：https://oneinstack.com/ 。使用 https://oneinstack.c
 
 - Nginx
 - PHP 8.2 with OPcache
-- MariaDB 10.6
+- MariaDB 10.11
+- Redis 7.0
 - phpMyAdmin
 
 ?> 所有 OneinStack 支持系统版本均可使用此教程安装
