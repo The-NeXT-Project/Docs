@@ -3,10 +3,36 @@
 配套数据库版本 ```2023071000```
 
 ### What's Changed
-* TBD
+* 创建管理员账户时将会根据站点的随机端口设置账户端口生成而不是使用 1025 端口
+* 修正了 WebAPI 的 ETag 格式错误而导致其被 Cloudflare CDN 移除的问题
+* 使用 xxh64 取代 crc32c 作为 Etag 的生成算法以改善 arm64 环境下的性能（需要 PHP8.1+）
+* 使用 daily_mail_enable 取代 sendDailyMail 值设置用户的每日邮件接收设置
+* 现在 xcat ClientDownload 指令必须使用与其文件所有者相同的用户执行
+* 移除了 user 表的 node_connector 值与 WebAPI 中的下发（使用 0 替代），请使用 node_iplimit 限制用户在线 IP 数
+* 移除了 node 表的 mu_only 值与 WebAPI 中的下发（使用 0 替代）
+* 优化了数据表的设计，调整了部分数值类型，新增了部分表的索引，移除了默认 NULL 值的使用，提升了查询性能与降低数据库储存消耗
+* 移除了闲置用户清理功能
+* 修正了特定情况下非管理员用户访问管理员路径时不会正常触发 302 重定向的问题
+* 修正了邮件样式在部分客户端中显示异常的问题
+* 修正了用户最后登录时间没有被正常记录的问题 
+* 使用 DiceBear 替换 Gravatar 作为用户头像供应商
+* 使用 Redis 替换 MariaDB 作为邮件验证/密码重置/Telegram 绑定密钥的储存后端
+* 修正了 fuck.js 的部分功能实现
+* 修正了当优惠码没有设置过期时间时无法正常使用的问题
 
 ### What's New
-* TBD
+* 现在优惠码可以设置总使用次数限制
+* 管理员优惠码界面将会显示每个优惠码的累计使用次数
+* 现在 Telegram Bot 可以发送 Html 与 MarkdownV2 格式的信息了
+* 新增了时间包与流量包商品类型
+* 新增了闲置用户检测功能
+* 现在管理员主页将会显示站点账户的闲置情况
+* 新增了基于 Cloudflare R2 的客户端下载功能
+* 新增了 WebAPI 与用户订阅系统的速率限制（Rate Limit）功能
+* 现在站点运营者可自定义用户订阅链接的长度
+* xcat Tool 中新增了清除所有用户订阅链接的功能（xcat Tool clearSubToken）
+* 新的使用 GPT-4 自动生成的代码单元测试（让我们现实一点，没有人类程序员喜欢写单元测试）
+* 现在站点运营者可以分别设定邮箱验证码与邮箱重设密码链接的有效期了
 
 **Full Changelog**: https://github.com/Anankke/SSPanel-Uim/compare/2023.3...2023.4
 
