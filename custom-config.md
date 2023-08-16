@@ -8,6 +8,7 @@
     "server_user": "", //前端/订阅中下发的服务器地址
     "host": "", //SNI
 	//Shadowsocks
+        "mu_encryption": "chacha20-ietf-poly1305" // 加密方式
 	"plugin": "", //SIP002插件
 	"plugin_option": "", //插件参数
     //V2Ray
