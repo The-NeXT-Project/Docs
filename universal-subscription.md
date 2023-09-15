@@ -1,8 +1,9 @@
 ## json 格式
 
 请求路径
+
 ```
-/sub/UserSubscriptionKey/json
+/sub/{$UserSubscriptionKey}/json
 ```
 
 下发范例
@@ -71,11 +72,18 @@
 }
 ```
 
-## Clash 格式
+## clash 格式
 
 请求路径
+
 ```
-/sub/UserSubscriptionKey/clash
+/sub/{$UserSubscriptionKey}/clash
 ```
 
-与原有订阅系统的 `/link/UserSubscriptionKey?clash=1` 等效
+## sing-box 格式
+
+请求路径
+
+```
+/sub/{$UserSubscriptionKey}/singbox
+```
