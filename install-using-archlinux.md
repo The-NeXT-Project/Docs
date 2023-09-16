@@ -12,7 +12,7 @@ Arch Linux 官方网站：https://archlinux.org/ 。
 ## 安装需要的包
 
 ```bash
-sudo pacman -S mariadb nginx-mainline base-devel git
+sudo pacman -S mariadb nginx-mainline base-devel git composer
 ```
 
 Mariadb安装后需要初始化
@@ -21,10 +21,10 @@ Mariadb安装后需要初始化
 mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
 ```
 
-启动数据库
+启动数据库和开机自启
 
 ```bash
-systemctl start mariadb
+systemctl enable mariadb --now
 ```
 
 提高初始安全性
@@ -59,16 +59,16 @@ cd yay
 makepkg -si
 ```
 
-安装PHP81全家桶
+安装PHP82全家桶
 
 ```bash
-yay -S $(yay -Ssq php81)
+yay -S $(yay -Ssq php82)
 ```
 
-启动PHP
+启动PHP和开机自启
 
 ```bash
-systemctl enable php81-fpm --now
+systemctl enable php82-fpm --now
 ```
 
 ## 部署 SSPanel UIM
@@ -77,7 +77,6 @@ systemctl enable php81-fpm --now
 
 ```bash
 git clone --depth 1 https://github.com/Anankke/SSPanel-Uim.git .
-wget https://getcomposer.org/installer -O composer.phar
 composer
 composer install
 ```
@@ -87,7 +86,8 @@ composer install
 修改 Nginx 配置文件
 
 ```bash
-vi /etc/nginx/nginx.conf
+vim /etc/nginx/nginx.conf
+# vim 可以替换为你喜欢的任何编辑器如 vi nano
 systemctl reload nginx
 ```
 
@@ -96,17 +96,17 @@ systemctl reload nginx
 ```nginx
 server {
         listen 80;
-        listen 443 ssl http2;
+        listen 443 ssl;
         server_name your_domain;
         root /path/to/your/site;
         index index.php;
         location / {
-    try_files $uri /index.php$is_args$args;
-}
+            try_files $uri /index.php$is_args$args;
+        }
         location ~ \.php$ {
-        fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        include        fastcgi_params;
-        fastcgi_pass unix:/run/php81-fpm/php-fpm.sock;
+                fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                include        fastcgi_params;
+                fastcgi_pass unix:/run/php81-fpm/php-fpm.sock;
         }
 
 }
