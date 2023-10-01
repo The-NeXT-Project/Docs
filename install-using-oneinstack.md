@@ -38,13 +38,13 @@ service php-fpm restart
 虚拟主机设置完成后，前往你所设置的网站根目录文件夹，执行以下命令：
 
 ```bash
-git clone -b 2023.3 https://github.com/Anankke/SSPanel-Uim.git .
+git clone -b 2023.5 https://github.com/Anankke/SSPanel-Uim.git .
 wget https://getcomposer.org/installer -O composer.phar
 php composer.phar
 php composer.phar install --no-dev
 ```
 
-?> 这里的 2023.3 代表的是 SSPanel UIM 的版本，你可以在 [Release](https://github.com/Anankke/SSPanel-Uim/releases) 页面中查看当前的最新稳定版本或者是输入 dev 使用开发版。请注意，dev 分支可能在使用过程中出现不可预知的问题。
+?> 这里的 2023.5 代表的是 SSPanel UIM 的版本，你可以在 [Release](https://github.com/Anankke/SSPanel-Uim/releases) 页面中查看当前的最新稳定版本或者是输入 dev 使用开发版。请注意，dev 分支可能在使用过程中出现不可预知的问题。
 
 修改 Nginx vhost 配置文件
 
@@ -88,10 +88,10 @@ vi config/.config.php
 php xcat Migration new
 php xcat Tool importAllSettings
 php xcat Tool createAdmin
-php xcat ClientDownload
+sudo -u www /usr/local/php/bin/php xcat ClientDownload
 ```
 
-如果你希望使用 Maxmind GeoLite2 数据库来提供 IP 地理位置信息，首先你需要配置 `config/.config.php` 中的 `maxmind_license_key` 选项，然后执行如下命令：
+SSPanel-UIM 依赖 Maxmind GeoLite2 数据库来提供 IP 地理位置信息，首先你需要配置 `config/.config.php` 中的 `maxmind_license_key` 选项，然后执行如下命令：
 
 ```bash
 php xcat Update
@@ -100,5 +100,5 @@ php xcat Update
 使用 `crontab -e` 指令设置 SSPanel 的基本 cron 任务：
 
 ```bash
-*/5 * * * * /usr/local/php/bin/php /path/to/your/site/xcat  Cron
+*/5 * * * * /usr/local/php/bin/php /path/to/your/site/xcat Cron
 ```

@@ -38,6 +38,7 @@
     "transport_method": "",
     //Clash 相关，仅用于 Clash 通用订阅，不影响节点配置下发
     //参考文档 https://dreamacro.github.io/clash/configuration/configuration-reference.html
+    "udp": "1",
     "plugin-opts": {
         // 对应 Clash yaml 文件中 plugin-opts 的配置
     },
@@ -53,10 +54,6 @@
     "grpc-opts": {
         // 对应 Clash yaml 文件中 grpc-opts 的配置
     }
-    // sing-box 相关
-    "transport": {}, // sing-box transport options, replacement for exists network settings
-    "acme": false,
-    "acme_email": "sspanel@example.org"
 }
 ```
 
@@ -224,7 +221,5 @@
     "offset_port_node": 8443,
     "host": "server_name",
     "insecure": false,
-    "acme": true,
-    "acme_email": "sspanel@example.org"
 }
 ```

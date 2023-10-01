@@ -5,6 +5,7 @@
 - [捐赠](donation)
 - **安装**
 - [Oneinstack](install-using-oneinstack)
+- [Ubuntu](install-using-ubuntu)
 - **使用**
 - [通用订阅](universal-subscription)
 - [自定义配置](custom-config)
