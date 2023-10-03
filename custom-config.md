@@ -116,7 +116,7 @@
     "alter_id": "0",
     "network": "ws",
     "security": "none",
-    "path": "/v2ray"
+    "path": "/some_path"
 }
 ```
 
@@ -130,7 +130,7 @@
     "alter_id": "0",
     "network": "ws",
     "security": "tls",
-    "path": "/v2ray"
+    "path": "/some_path"
 }
 ```
 
@@ -177,6 +177,18 @@
 }
 ```
 
+## ws示例
+
+``` json
+{
+    "offset_port_node": "443",
+    "server_sub": "hk.domain.com",
+    "host": "hk.domain.com",
+    "network": "ws",
+    "path": "/some_path"
+}
+```
+
 ## grpc示例
 
 ``` json
@@ -184,7 +196,7 @@
     "offset_port_node": "443",
     "server_sub": "hk.domain.com",
     "host": "hk.domain.com",
-    "grpc": "1",
+    "network": "grpc",
     "servicename": "some_name"
 }
 ```
