@@ -10,7 +10,7 @@
 
 ```json
 {
-    "version": "2",
+    "version": "3",
     "sub_name":"SSPanel",
     "user_email":"user@sspanel.org",
     "user_name":"ssp_user",
@@ -32,7 +32,7 @@
             "remark":"This is a shadowsocks node."
         }
         {
-            "name":"V2Ray_Node_2",
+            "name":"Vmess_Node_2",
             "id":"2",
             "type":"vmess",
             "address":"node2.sspanel.org",
@@ -47,8 +47,7 @@
             "host":"",
             "path":"",
             "tls":"",
-            "enable_vless":"",
-            "remark":"This is a vmess/vless node."
+            "remark":"This is a vmess node."
         },
         {
             "name":"Trojan_Node_3",
@@ -58,7 +57,6 @@
             "host":"node4.sspanel.org",
             "port":"443",
             "uuid":"",
-            "security":"tls",
             "mux": "0",
             "transport":"none",
             "transport_plugin":"",

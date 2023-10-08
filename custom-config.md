@@ -3,9 +3,8 @@
 ```json
 {
     //通用
-    "offset_port_user": "", //前端/订阅中下发的端口
+    "offset_port_user": "", //订阅中下发的端口
     "offset_port_node": "", //节点服务器下发的端口
-    "server_user": "", //前端/订阅中下发的服务器地址
     "host": "", //SNI
     //Shadowsocks
     "plugin": "", //SIP002插件
@@ -13,7 +12,6 @@
     //V2Ray
     "tls": "0",
     "enable_vless": "0",
-    "alter_id": "",
     "network": "",
     "security": "",
     "encryption":"",
@@ -27,13 +25,10 @@
     },
     //Trojan
     "allow_insecure": "0",
-    "grpc": "0",
     "servicename": "",
-    "enable_xtls": "",
     "flow": "",
-    //Trojan-Go
     "mux": "0",
-    "transport": "none",
+    "network": "",
     "transport_plugin": "",
     "transport_method": "",
     //Clash 相关，仅用于 Clash 通用订阅，不影响节点配置下发
@@ -53,6 +48,11 @@
     },
     "grpc-opts": {
         // 对应 Clash yaml 文件中 grpc-opts 的配置
+    },
+    //Clash.Meta 相关
+    //参考文档 https://github.com/MetaCubeX/Clash.Meta/blob/Alpha/docs/config.yaml
+    "reality-opts": {
+        // 对应 Clash.Meta 文件中 reality-opts 的配置
     }
 }
 ```
@@ -64,8 +64,6 @@
 ``` json
 {
     "offset_port_node": "12345",
-    "server_sub": "hk.domain.com",
-    "alter_id": "0",
     "network": "tcp",
     "security": "none",
 }
@@ -76,8 +74,6 @@
 ```json
 {
     "offset_port_node": "12345",
-    "server_sub": "hk.domain.com",
-    "alter_id": "0",
     "network": "tcp",
     "security": "none",
     "header": {
@@ -98,9 +94,7 @@
 ```json
 {
     "offset_port_node": "443",
-    "server_sub": "hk.domain.com",
     "host": "hk.domain.com",
-    "alter_id": "0",
     "network": "tcp",
     "security": "tls",
 }
@@ -111,9 +105,7 @@
 ```json
 {
     "offset_port_node": "80",
-    "server_sub": "hk.domain.com",
     "host": "hk.domain.com",
-    "alter_id": "0",
     "network": "ws",
     "security": "none",
     "path": "/some_path"
@@ -125,9 +117,7 @@
 ```json
 {
     "offset_port_node": "443",
-    "server_sub": "hk.domain.com",
     "host": "hk.domain.com",
-    "alter_id": "0",
     "network": "ws",
     "security": "tls",
     "path": "/some_path"
@@ -139,9 +129,7 @@
 ```json
 {
     "offset_port_node": "443",
-    "server_sub": "hk.domain.com",
     "host": "hk.domain.com",
-    "alter_id": "0",
     "network": "grpc",
     "security": "tls",
     "servicename": "some_name"
@@ -156,8 +144,6 @@
 {
     "offset_port_user": "8888",
     "offset_port_node": "12345",
-    "server_sub": "hk.domain.com",
-    "alter_id": "0",
     "network": "tcp",
     "security": "none",
 }
@@ -172,7 +158,6 @@
 ``` json
 {
     "offset_port_node": "443",
-    "server_sub": "hk.domain.com",
     "host": "hk.domain.com"
 }
 ```
@@ -182,7 +167,6 @@
 ``` json
 {
     "offset_port_node": "443",
-    "server_sub": "hk.domain.com",
     "host": "hk.domain.com",
     "network": "ws",
     "path": "/some_path"
@@ -194,7 +178,6 @@
 ``` json
 {
     "offset_port_node": "443",
-    "server_sub": "hk.domain.com",
     "host": "hk.domain.com",
     "network": "grpc",
     "servicename": "some_name"
@@ -209,7 +192,6 @@
 {
     "offset_port_user": "443",
     "offset_port_node": "12345",
-    "server_sub": "hk.domain.com",
     "host": "hk.domain.com"
 }
 ```
