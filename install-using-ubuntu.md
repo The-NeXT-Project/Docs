@@ -78,8 +78,8 @@ apt install php8.2-fpm php8.2-mysql php8.2-redis php8.2-bcmath php8.2-curl php8.
 启动 php-fpm 服务并设置开机启动
 
 ```bash
-systemctl start php-fpm
-systemctl enable php-fpm
+systemctl start php8.2-fpm
+systemctl enable php8.2-fpm
 ```
 
 ## 安装 MariaDB
@@ -194,7 +194,7 @@ server {
         listen [::]:80;
 
         root /path/to/your/site/public; #你的站点文件路径 + /public
-        index index.php index.html;
+        index index.php;
         server_name 你设置的网站域名;
 
         location / {
@@ -207,7 +207,7 @@ server {
             fastcgi_index index.php;
             fastcgi_buffers 8 16k;
             fastcgi_buffer_size 32k;
-            fastcgi_pass unix:/run/php/php-fpm.sock;
+            fastcgi_pass unix:/run/php/php8.2-fpm.sock;
             fastcgi_param DOCUMENT_ROOT $realpath_root;
             fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
         }
