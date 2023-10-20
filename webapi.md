@@ -8,11 +8,11 @@
 
 节点类型 | 下发的数据
 --------|--------
-Shadowsocks | method, node_speedlimit, node_iplimit, port, passwd, ~~node_connector~~, alive_ip
-Vmess/Vless  | node_speedlimit, node_iplimit, ~~node_connector~~, uuid, alive_ip
-Trojan | node_speedlimit, node_iplimit, ~~node_connector~~, uuid, alive_ip
-
-?> `node_connector` 参数已经在 2022.12.1 版本的新商店系统中移除，请使用用户全局连接IP限制 `node_iplimit`，WebAPI 将会在 2023.2 版本中停止下发该参数。
+Shadowsocks | method, node_speedlimit, node_iplimit, port, passwd, alive_ip
+Shadowsocks2022 | method, node_speedlimit, node_iplimit, passwd, alive_ip
+TUIC | node_speedlimit, node_iplimit, passwd, uuid, alive_ip
+Vmess  | node_speedlimit, node_iplimit, uuid, alive_ip
+Trojan | node_speedlimit, node_iplimit, uuid, alive_ip
 
 ---
 路由 | 方式 | 参数 | 描述
@@ -33,7 +33,9 @@ Trojan | node_speedlimit, node_iplimit, ~~node_connector~~, uuid, alive_ip
 
 路由 | 方式 | 参数 | 返回值 |描述
 -----|------|-----|-------|----
-`/nodes/{id}/info` | GET | node_id | node_group, node_class, node_speedlimit, traffic_rate, mu_only, sort, server, custom_config, type, version | 获取当前请求节点的节点设置
+`/nodes/{id}/info` | GET | node_id | node_group, node_class, node_speedlimit, ~~traffic_rate~~, ~~mu_only~~, sort, server, custom_config, type, version | 获取当前请求节点的节点设置
+
+?> `mu_only` 将会在 `2023.6` 版本中被移除，`traffic_rate` 将会在 `2023.7` 版本中被移除
 
 ## Func
 
@@ -45,22 +47,3 @@ Trojan | node_speedlimit, node_iplimit, ~~node_connector~~, uuid, alive_ip
 路由 | 方式 | 参数 | 返回值 |描述
 -----|------|-----|-------|----
 `/func/ping` | GET | N/A | N/A | Ping? Pong!
-
-## Media
-
-路由 | 方式 | 参数 | 返回值 |描述
------|------|-----|-------|----
-`/media/save_report` | POST | node_id, content | N/A | 上报节点流媒体解锁报告
-
-
-## 弃用的功能
-
-以下弃用的功能目前为了保持兼容性而采用 Dummy function 的方式返回空值，将会于 2023.2 版本中移除
-
-路由 | 方式 
------|------
-`/nodes` | GET 
-`/func/block_ip` | POST 
-`/func/block_ip` | GET 
-`/func/unblock_ip` | GET 
-`/nodes/{id}/info` | POST 

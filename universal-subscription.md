@@ -85,3 +85,13 @@
 ```
 /sub/{$UserSubscriptionKey}/singbox
 ```
+
+## SIP008 格式
+
+?> SIP008 订阅仅支持 Shadowsocks 节点类型
+
+请求路径
+
+```
+/sub/{$UserSubscriptionKey}/sip008
+```
