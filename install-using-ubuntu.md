@@ -289,3 +289,16 @@ php xcat Update
 ```bash
 */5 * * * * /usr/bin/php /path/to/your/site/xcat Cron
 ```
+
+最后，你可以通过禁用一些危险的 PHP Function 以提高系统的安全性
+
+```bash
+sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.2/fpm/php.ini
+sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.2/cli/php.ini
+```
+
+重启一下 PHP-FPM 服务
+
+```bash
+systemctl restart php8.2-fpm
+```
