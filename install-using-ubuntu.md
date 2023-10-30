@@ -72,7 +72,7 @@ apt update
 然后安装所需的 PHP 模组
 
 ```bash
-apt install php8.2-fpm php8.2-mysql php8.2-redis php8.2-bcmath php8.2-curl php8.2-gd php8.2-mbstring php8.2-xml php8.2-bz2 php8.2-zip
+apt install php8.2-fpm php8.2-mysql php8.2-redis php8.2-bcmath php8.2-curl php8.2-gd php8.2-mbstring php8.2-xml php8.2-bz2 php8.2-zip php8.2-yaml
 ```
 
 启动 php-fpm 服务并设置开机启动
@@ -290,7 +290,7 @@ php xcat Update
 */5 * * * * /usr/bin/php /path/to/your/site/xcat Cron
 ```
 
-最后，你可以通过禁用一些危险的 PHP Function 以提高系统的安全性
+最后，你可以通过禁用一些危险的 PHP Function 提高系统的安全性
 
 ```bash
 sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.2/fpm/php.ini
