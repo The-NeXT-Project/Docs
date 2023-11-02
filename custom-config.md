@@ -11,13 +11,11 @@
     "plugin_option": "", //插件参数
     //V2Ray
     "tls": "0",
-    "enable_vless": "0",
+    "allow_insecure": "0",
     "network": "",
     "security": "",
     "encryption":"",
     "path": "",
-    "verify_cert": "true",
-    "obfs":"",
     "header": {
         "type": "http",
         "request": {},
@@ -26,11 +24,14 @@
     //Trojan
     "allow_insecure": "0",
     "servicename": "",
-    "flow": "",
     "mux": "0",
     "network": "",
-    "transport_plugin": "",
-    "transport_method": "",
+    "path": "",
+    "header": {
+        "type": "http",
+        "request": {},
+        "response": {}
+    },
     //Clash 相关，仅用于 Clash 通用订阅，不影响节点配置下发
     //参考文档 https://dreamacro.github.io/clash/configuration/configuration-reference.html
     "udp": "1",
@@ -48,11 +49,6 @@
     },
     "grpc-opts": {
         // 对应 Clash yaml 文件中 grpc-opts 的配置
-    },
-    //Clash.Meta 相关
-    //参考文档 https://github.com/MetaCubeX/Clash.Meta/blob/Alpha/docs/config.yaml
-    "reality-opts": {
-        // 对应 Clash.Meta 文件中 reality-opts 的配置
     }
 }
 ```
@@ -202,7 +198,7 @@
 
 ``` json
 {
-    "offset_port_node": 8080,
+    "offset_port_node": "8080",
     "method": "2022-blake3-aes-128-gcm",
     "server_key": "zP6flOl9PSsHr019zGSV6Q=="
 }
@@ -212,8 +208,8 @@
 
 ``` json
 {
-    "offset_port_node": 8443,
+    "offset_port_node": "8443",
     "host": "server_name",
-    "insecure": false,
+    "insecure": "0"
 }
 ```

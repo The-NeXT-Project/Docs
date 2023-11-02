@@ -81,7 +81,6 @@
             plugins: [
                 function (hook, vm) {
                     hook.beforeEach(function (html) {
-                        hljs.highlightAll();
                         if (/githubusercontent\.com/.test(vm.route.file)) {
                             url = vm.route.file
                                 .replace('raw.githubusercontent.com', 'github.com')
