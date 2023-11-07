@@ -84,24 +84,10 @@ systemctl enable php8.2-fpm
 
 ## 安装 MariaDB
 
-MariaDB 官方提供了一个完善的 DEB 源，跟 Nginx 源一样，我们需要安装必要的软件包和导入 GPG Key
+添加MariaDB源
 
 ```bash
-apt install apt-transport-https curl
-mkdir -p /etc/apt/keyrings
-curl -o /etc/apt/keyrings/mariadb-keyring.pgp 'https://mariadb.org/mariadb_release_signing_key.pgp'
-```
-
-编辑 `/etc/apt/sources.list.d/mariadb.sources` 文件，将以下配置写入其中
-
-```
-X-Repolib-Name: MariaDB
-Types: deb
-# deb.mariadb.org is a dynamic mirror if your preferred mirror goes offline. See https://mariadb.org/mirrorbits/ for details.
-URIs: https://deb.mariadb.org/11.1/ubuntu
-Suites: jammy
-Components: main main/debug
-Signed-By: /etc/apt/keyrings/mariadb-keyring.pgp
+curl -LsS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash -s -- --mariadb-server-version=11.1
 ```
 
 更新一下 APT 缓存
