@@ -3,70 +3,26 @@
 请求路径
 
 ```
-/sub/{$UserSubscriptionKey}/json
+/sub/{$userSubscriptionKey}/json
 ```
 
 下发范例
 
 ```json
 {
-    "version": "3",
+    "version": 4,
     "sub_name":"SSPanel",
-    "user_email":"user@sspanel.org",
+    "email":"user@sspanel.org",
     "user_name":"ssp_user",
-    "user_class":"999",
-    "user_class_expire_date":"1989-06-04 04:00:00",
-    "user_total_traffic":"9785653487206",
-    "user_used_traffic":"7036874417766",
-    "nodes":[
-        {
-            "name":"SS_Node_1",
-            "id":"1",
-            "type":"ss",
-            "address":"node1.sspanel.org",
-            "port":"8388",
-            "password":"shadowsocks",
-            "encryption":"aes-128-gcm",
-            "plugin":"",
-            "plugin_option":"",
-            "remark":"This is a shadowsocks node."
-        }
-        {
-            "name":"Vmess_Node_2",
-            "id":"2",
-            "type":"vmess",
-            "address":"node2.sspanel.org",
-            "port":"443",
-            "uuid":"",
-            "alterid":"",
-            "security":"auto",
-            "flow":"",
-            "encryption":"none",
-            "network":"",
-            "header_type":"",
-            "host":"",
-            "path":"",
-            "tls":"",
-            "remark":"This is a vmess node."
-        },
-        {
-            "name":"Trojan_Node_3",
-            "id":"3",
-            "type":"trojan",
-            "address":"node4.sspanel.org",
-            "host":"node4.sspanel.org",
-            "port":"443",
-            "uuid":"",
-            "mux": "0",
-            "transport":"none",
-            "transport_plugin":"",
-            "transport_method":"",
-            "allow_insecure":"0",
-            "servicename":"",
-            "path":"",
-            "remark":"This is a trojan node."
-        }
-    ]
+    "class": 999,
+    "class_expire_date":"1989-06-04 04:00:00",
+    "total_traffic": 9785653487206,
+    "used_upload_traffic": 7036874417766,
+    "used_download_traffic": 7036874417766,
+    "sub_url": {
+        "sing-box": "https://sub.sspanel.org/sub/{$userSubscriptionKey}/singbox",
+        "clash": "https://sub.sspanel.org/sub/{$userSubscriptionKey}/clash"
+    }
 }
 ```
 
@@ -75,7 +31,7 @@
 请求路径
 
 ```
-/sub/{$UserSubscriptionKey}/clash
+/sub/{$userSubscriptionKey}/clash
 ```
 
 ## sing-box 格式
@@ -83,7 +39,7 @@
 请求路径
 
 ```
-/sub/{$UserSubscriptionKey}/singbox
+/sub/{$userSubscriptionKey}/singbox
 ```
 
 ## SIP008 格式
@@ -93,5 +49,5 @@
 请求路径
 
 ```
-/sub/{$UserSubscriptionKey}/sip008
+/sub/{$userSubscriptionKey}/sip008
 ```
