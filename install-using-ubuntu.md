@@ -57,7 +57,7 @@ systemctl enable nginx
 
 ## 安装 PHP
 
-Ubuntu 自带的 PHP 版本较为老旧，因此我们使用 deb.sury.org 的 PPA 源进行安装
+Ubuntu 22.04 自带的 PHP 版本较为老旧，因此我们使用 deb.sury.org 的 PPA 源进行安装
 
 ```bash
 add-apt-repository ppa:ondrej/php
@@ -72,14 +72,14 @@ apt update
 然后安装所需的 PHP 模组
 
 ```bash
-apt install php8.2-fpm php8.2-mysql php8.2-redis php8.2-bcmath php8.2-curl php8.2-gd php8.2-mbstring php8.2-xml php8.2-bz2 php8.2-zip php8.2-yaml
+apt install php8.3-{bcmath,bz2,cli,common,curl,fpm,gd,igbinary,mbstring,mysql,opcache,readline,redis,xml,yaml,zip}
 ```
 
 启动 php-fpm 服务并设置开机启动
 
 ```bash
-systemctl start php8.2-fpm
-systemctl enable php8.2-fpm
+systemctl start php8.3-fpm
+systemctl enable php8.3-fpm
 ```
 
 ## 安装 MariaDB
@@ -98,7 +98,7 @@ curl -o /etc/apt/keyrings/mariadb-keyring.pgp 'https://mariadb.org/mariadb_relea
 X-Repolib-Name: MariaDB
 Types: deb
 # deb.mariadb.org is a dynamic mirror if your preferred mirror goes offline. See https://mariadb.org/mirrorbits/ for details.
-URIs: https://deb.mariadb.org/11.1/ubuntu
+URIs: https://deb.mariadb.org/11.2/ubuntu
 Suites: jammy
 Components: main main/debug
 Signed-By: /etc/apt/keyrings/mariadb-keyring.pgp
@@ -110,7 +110,7 @@ Signed-By: /etc/apt/keyrings/mariadb-keyring.pgp
 apt update
 ```
 
-安装 MariaDB 11.1
+安装 MariaDB 11.2
 
 ```bash
 apt install mariadb-server
@@ -207,7 +207,7 @@ server {
             fastcgi_index index.php;
             fastcgi_buffers 8 16k;
             fastcgi_buffer_size 32k;
-            fastcgi_pass unix:/run/php/php8.2-fpm.sock;
+            fastcgi_pass unix:/run/php/php-fpm.sock;
             fastcgi_param DOCUMENT_ROOT $realpath_root;
             fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
         }
@@ -224,13 +224,13 @@ systemctl restart nginx
 
 ```bash
 apt install git
-git clone -b 2023.5 https://github.com/Anankke/SSPanel-Uim.git .
+git clone -b 2023.6 https://github.com/Anankke/SSPanel-Uim.git .
 wget https://getcomposer.org/installer -O composer.phar
 php composer.phar
 php composer.phar install --no-dev
 ```
 
-?> 这里的 2023.5 代表的是 SSPanel UIM 的版本，你可以在 [Release](https://github.com/Anankke/SSPanel-Uim/releases) 页面中查看当前的最新稳定版本或者是输入 dev 使用开发版。请注意，dev 分支可能在使用过程中出现不可预知的问题。
+?> 这里的 2023.6 代表的是 SSPanel UIM 的版本，你可以在 [Release](https://github.com/Anankke/SSPanel-Uim/releases) 页面中查看当前的最新稳定版本或者是输入 dev 使用开发版。请注意，dev 分支可能在使用过程中出现不可预知的问题。
 
 然后设置网站目录的整体权限
 
@@ -290,15 +290,40 @@ php xcat Update
 */5 * * * * /usr/bin/php /path/to/your/site/xcat Cron
 ```
 
-最后，你可以通过禁用一些危险的 PHP Function 提高系统的安全性
+## 提高系统安全性与性能
+
+禁用一些危险的 PHP Function
 
 ```bash
-sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.2/fpm/php.ini
-sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.2/cli/php.ini
+sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.3/fpm/php.ini
+sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.3/cli/php.ini
 ```
 
-重启一下 PHP-FPM 服务
+修改后需要重启一下 PHP-FPM 服务
 
 ```bash
-systemctl restart php8.2-fpm
+systemctl restart php8.3-fpm
+```
+
+启用 OPcache 与 JIT
+
+在 `/etc/php/8.3/fpm/conf.d/10-opcache.ini` 中添加如下配置
+
+```
+zend_extension=opcache.so
+opcache.file_cache=/tmp
+opcache.interned_strings_buffer=64
+opcache.jit=on
+opcache.jit_buffer_size=256M
+opcache.max_accelerated_files=65535
+opcache.memory_consumption=512
+opcache.revalidate_freq=60
+opcache.validate_permission=on
+opcache.validate_root=on
+```
+
+修改后同样需要重启一下 PHP-FPM 服务
+
+```bash
+systemctl restart php8.3-fpm
 ```
