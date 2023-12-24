@@ -8,12 +8,13 @@
 - **使用**
 - [通用订阅](universal-subscription)
 - [自定义配置](custom-config)
-- [新商店系统](new-shop)
+- [商店系统](shop)
 - **更新**
 - [升级 SSPanel UIM](update)
 - **进阶**
 - [备份你的站点](backup-your-site)
 - [常用审计规则](useful-detect-rules)
+- [UIM 软件源](uim-repo)
 - **设计文档**
 - [DB 化配置](database-setting)
 - [WebAPI](webapi)

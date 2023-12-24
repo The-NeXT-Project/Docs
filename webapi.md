@@ -33,9 +33,9 @@ Trojan | node_speedlimit, node_iplimit, uuid, alive_ip
 
 路由 | 方式 | 参数 | 返回值 |描述
 -----|------|-----|-------|----
-`/nodes/{id}/info` | GET | node_id | node_group, node_class, node_speedlimit, ~~traffic_rate~~, ~~mu_only~~, sort, server, custom_config, type, version | 获取当前请求节点的节点设置
+`/nodes/{id}/info` | GET | node_id | ~~node_group~~, ~~node_class~~, node_speedlimit, ~~traffic_rate~~, sort, server, custom_config, type, version | 获取当前请求节点的节点设置
 
-?> `mu_only` 将会在 `2023.6` 版本中被移除，`traffic_rate` 将会在 `2023.7` 版本中被移除
+?> `traffic_rate`、 `node_group` 和 `node_class` 将会在 `2023.7` 版本中被移除
 
 ## Func
 
