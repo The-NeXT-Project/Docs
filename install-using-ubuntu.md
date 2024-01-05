@@ -273,7 +273,7 @@ nano config/.config.php
 
 ```bash
 php xcat Migration new
-php xcat Tool importAllSettings
+php xcat Tool importSetting
 php xcat Tool createAdmin
 sudo -u www-data /usr/bin/php xcat ClientDownload
 ```
