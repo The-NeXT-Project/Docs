@@ -273,7 +273,7 @@ nano config/.config.php
 
 ```bash
 php xcat Migration new
-php xcat Tool importSetting
+php xcat Tool importAllSettings
 php xcat Tool createAdmin
 sudo -u www-data /usr/bin/php xcat ClientDownload
 ```
@@ -281,7 +281,7 @@ sudo -u www-data /usr/bin/php xcat ClientDownload
 SSPanel-UIM 依赖 Maxmind GeoLite2 数据库来提供 IP 地理位置信息，首先你需要配置 `config/.config.php` 中的 `maxmind_license_key` 选项，然后执行如下命令：
 
 ```bash
-php xcat Update
+sudo -u www-data /usr/bin/php xcat Update
 ```
 
 使用 `crontab -e` 指令设置 SSPanel 的基本 cron 任务：
