@@ -61,7 +61,6 @@
 {
     "offset_port_node": "12345",
     "network": "tcp",
-    "security": "none",
 }
 ```
 
@@ -70,8 +69,7 @@
 ```json
 {
     "offset_port_node": "12345",
-    "network": "tcp",
-    "security": "none",
+    "network": "http",
     "header": {
         "type": "http",
         "request": {
@@ -103,7 +101,6 @@
     "offset_port_node": "80",
     "host": "hk.domain.com",
     "network": "ws",
-    "security": "none",
     "path": "/some_path"
 }
 ```
@@ -141,7 +138,6 @@
     "offset_port_user": "8888",
     "offset_port_node": "12345",
     "network": "tcp",
-    "security": "none",
 }
 ```
 
