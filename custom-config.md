@@ -9,7 +9,10 @@
     //Shadowsocks
     "plugin": "", //SIP002插件
     "plugin_option": "", //插件参数
-    //V2Ray
+    //Shadowsocks 2022
+    "method": "",
+    "server_key": "",
+    //Vmess
     "tls": "0",
     "allow_insecure": "0",
     "network": "",
@@ -33,22 +36,22 @@
         "response": {}
     },
     //Clash 相关，仅用于 Clash 通用订阅，不影响节点配置下发
-    //参考文档 https://dreamacro.github.io/clash/configuration/configuration-reference.html
+    //参考文档 https://github.com/MetaCubeX/mihomo/blob/Alpha/docs/config.yaml
     "udp": "1",
     "plugin-opts": {
-        // 对应 Clash yaml 文件中 plugin-opts 的配置
+        // 对应 Clash Yaml 文件中 plugin-opts 的配置
     },
     "ws-opts": {
-        // 对应 Clash yaml 文件中 ws-opts 的配置
+        // 对应 Clash Yaml 文件中 ws-opts 的配置
     },
     "h2-opts": {
-        // 对应 Clash yaml 文件中 h2-opts 的配置
+        // 对应 Clash Yaml 文件中 h2-opts 的配置
     },
     "http-opts": {
-        // 对应 Clash yaml 文件中 http-opts 的配置
+        // 对应 Clash Yaml 文件中 http-opts 的配置
     },
     "grpc-opts": {
-        // 对应 Clash yaml 文件中 grpc-opts 的配置
+        // 对应 Clash Yaml 文件中 grpc-opts 的配置
     }
 }
 ```
@@ -61,25 +64,6 @@
 {
     "offset_port_node": "12345",
     "network": "tcp",
-}
-```
-
-## tcp+http示例
-
-```json
-{
-    "offset_port_node": "12345",
-    "network": "http",
-    "header": {
-        "type": "http",
-        "request": {
-            "path": ["/"],
-              "headers": {
-                "Host": ["www.baidu.com"]
-            }
-        },
-        "response": {}
-    }
 }
 ```
 
@@ -129,19 +113,7 @@
 }
 ```
 
-## 中转端口示例
 
-在任一配置中设置 `offset_port_user` 为用户连接端口
-
-``` json
-{
-    "offset_port_user": "8888",
-    "offset_port_node": "12345",
-    "network": "tcp",
-}
-```
-
-此时用户连接端口为8888，节点监听端口为12345
 
 # Trojan
 
@@ -176,20 +148,6 @@
 }
 ```
 
-## 中转示例
-
-在任一配置中设置 `offset_port_user` 为用户连接端口
-
-``` json
-{
-    "offset_port_user": "443",
-    "offset_port_node": "12345",
-    "host": "hk.domain.com"
-}
-```
-
-此时用户连接443，节点监听12345
-
 # Shadowsocks 2022
 
 ``` json
@@ -209,3 +167,14 @@
     "insecure": "0"
 }
 ```
+
+# 中转示例
+
+``` json
+{
+    "offset_port_user": "8888",
+    "offset_port_node": "12345"
+}
+```
+
+此时用户连接（订阅下发）端口为8888，节点监听端口为12345
