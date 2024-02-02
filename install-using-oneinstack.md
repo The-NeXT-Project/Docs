@@ -5,7 +5,7 @@
 OneinStack 官方网站：https://oneinstack.com/ 。使用 https://oneinstack.com/auto/ 指定一个客制化的安装方案，以下为推荐使用的软件及其版本：
 
 - Nginx
-- PHP 8.2 with OPcache
+- PHP 8.2 with OPcache，还需要安装redis、yaml、fileinfo扩展
 - MariaDB 10.11
 - Redis 7.0
 - phpMyAdmin
