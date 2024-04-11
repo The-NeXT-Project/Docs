@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="SSPanel UIM Wiki-We install, we update, we develop.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="icon" href="//fastly.jsdelivr.net/gh/sspanel-uim/SSPanel-Uim-Dev@dev/public/images/uim-logo-round_192x192.png">
+    <title>SSPanel UIM Wiki</title>
+    <meta property="og:url" content="//wiki.sspanel.org">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="//fastly.jsdelivr.net/gh/sspanel-uim/SSPanel-Uim-Dev@dev/public/images/uim-logo-round_192x192.png">
+    <meta property="og:title" content="SSPanel UIM Wiki">
+    <meta property="og:description" content="SSPanel UIM Wiki, We install, we update, we develop.">
+    <link rel="stylesheet" href="//fastly.jsdelivr.net/npm/docsify-themeable/dist/css/theme-simple-dark.css"
+    <link rel="stylesheet" href="//fastly.jsdelivr.net/gh/highlightjs/cdn-release@latest/build/styles/dark.min.css">
+    <script src="//fastly.jsdelivr.net/gh/highlightjs/cdn-release@latest/build/highlight.min.js"></script>
+    <script src="//fastly.jsdelivr.net/gh/highlightjs/cdn-release@latest/build/languages/nginx.min.js"></script>
+    <style>
+        :root {
+            --base-font-size: 16px;
+        }
+
+        html,
+        body {
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        window.$docsify = {
+            name: 'SSPanel UIM Wiki',
+            repo: 'https://github.com/SSPanel-UIM/Wiki',
+
+            // Search Support
+            search: {
+                maxAge: 86400,
+                paths: 'auto',
+                placeholder: {
+                    '/': 'Search',
+                },
+                noData: {
+                    '/': 'No Results!',
+                },
+            },
+
+            homepage: 'index.md',
+            loadSidebar: 'sidebar.md',
+            loadNavbar: 'nav.md',
+            subMaxLevel: 2,
+            autoHeader: true,
+            //Auto2Top
+            auto2top: true,
+            executeScript: true,
+
+            themeable: {
+                readyTransition: true,
+                responsiveTables: true
+            },
+
+            basePath: '/',
+
+            themeable: {
+                readyTransition: true, // default
+                responsiveTables: true // default
+            },
+
+            copyCode: {
+                buttonText: 'Copy',
+                errorText: 'Failed',
+                successText: 'Copied'
+            },
+
+            plugins: [
+                function (hook, vm) {
+                    hook.beforeEach(function (html) {
+                        if (/githubusercontent\.com/.test(vm.route.file)) {
+                            url = vm.route.file
+                                .replace('raw.githubusercontent.com', 'github.com')
+                                .replace(/\/master/, '/blob/master')
+                        } else {
+                            url = '//github.com/sspanel-uim/Wiki/blob/master/' + vm.route.file
+                        }
+                        var editHtml = '[:memo: Edit on GitHub](' + url + ')\n'
+                        return `${html} \n----\n ${editHtml}`;
+                    })
+                },
+                function (hook, vm) {
+                    hook.doneEach(function (html) {
+                        hljs.highlightAll();
+                    })
+                }
+            ],
+
+            timeUpdater: {
+                text: "?> Last update: {docsify-updated}",
+                formatUpdated: "{YYYY}/{MM}/{DD}",
+                whereToPlace: "top",
+            },
+        }
+    </script>
+    <script src="//fastly.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+    <script src="//fastly.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+    <script src="//fastly.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+    <script src="//fastly.jsdelivr.net/npm/docsify/lib/plugins/external-script.min.js"></script>
+    <script src="//fastly.jsdelivr.net/npm/docsify-themeable/dist/js/docsify-themeable.min.js"></script>
+    <script src="//fastly.jsdelivr.net/npm/docsify-copy-code"></script>
+    <script src="//fastly.jsdelivr.net/npm/docsify-updated/src/time-updater.min.js"></script>
+</body>
+</html>
