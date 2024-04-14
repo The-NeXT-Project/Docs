@@ -1,6 +1,60 @@
+## 2024.1
+
+Database version ```2024040500```
+
+### What's Changed
+* Fixed issue with traffic multiplier page reporting error when user has no available nodes
+* Fixed issue with jQuery duplicate binding elements in front-end templates.
+* Updated download source for Clash Verge client.
+* Fixed missing type conversions in the Stripe gateway.
+* Added indexes to more tables to improve query performance.
+* Fixed an issue that caused duplicate node communication keys when duplicating nodes.
+* Fixed an issue where the GeoIP2 service would not return the IP city name correctly.
+* Removed MD5 as a way to store user passwords.
+* Use cryptographically secure random strings instead of UUIDv4 for user API Token.
+* Simplified the implementation of the datasheet component, streamlining the front-end code
+* Database query times will now be rounded to two decimal places.
+* Cron will now skip the email queue if the EmailQueue datasheet is empty.
+* Now user email verification code button will be disabled after clicking send.
+* Fixed a problem with the random character generation function not being able to generate odd length random characters @pplulee
+* Added more tests to avoid the random character generation function not generating odd length random characters.
+* EPay will now generate a payment link and jump to it instead of transmitting the order data to the payment gateway through the frontend @pplulee
+* EPay will now correctly return to the user's billing page
+* Fixed an issue where coupon code types were not displayed correctly
+* Simplified the default Clash configuration to reduce the amount of data sent and improve the performance of the subscription interface.
+
+### What's New
+* New installations of SSPanel-UIM will now not perform a migration to an older version of the database.
+* New Gemini LLM backend.
+* New Vertex AI LLM backend.
+* New Anthropic LLM backend.
+* Added support for database read/write separation configurations
+* Refactored Alipay Payment in Person gateway
+* Refactored Stripe gateway
+* WebAPI will now stop sending users who exceed the online IP count limit.
+* New Mailchimp mail service
+* New Alibaba Cloud DM mail service.
+* Added support for dual-stack nodes
+* Refactored Shadowsocks 2022 user key generation now only returns user keys that match the protocol format specification.
+* Added the ability to automatically remove inactive user subscriptions and invite links.
+* Updated Eloquent ORM (Illuminate\Database) to v11
+* A separate MariaDB driver is now used in Eloquent ORM.
+* Updated Datatables to v2
+* Added indication of node dual-stack network connectivity in the user panel.
+* xcat now resets today's used traffic.
+* Added ability to cancel pending orders and refund to user's balance
+* New hCaptcha CAPTCHA service
+* Updated Smarty to v5
+* Refactored email suffix filtering
+* Updated TinyMCE to v7
+* New bill type field
+* Refactored global rate limiting service, now supports independent single IP rate limiting per Endpoint.
+
+**Full Changelog**: https://github.com/Anankke/SSPanel-Uim/compare/2023.7...2024.1
+
 ## 2023.7
 
-Database version ```2024012700```.
+Database version ```2024012700```
 
 ### What's Changed
 * WebAPI now returns the msg field correctly, and the data field no longer contains an error message.
@@ -34,7 +88,7 @@ Database version ```2024012700```.
 
 ## 2023.6
 
-Database version ```2023102200```.
+Database version ```2023102200```
 
 ### What's Changed
 * Nodes in a subscription are now sorted normally in ```node level - node name`` order
@@ -76,7 +130,7 @@ Database version ```2023102200```.
 
 ## 2023.5
 
-Database version ```2023082000```.
+Database version ```2023082000```
 
 ### What's Changed
 * Refactored backend for user profile editing functionality
@@ -112,7 +166,7 @@ Database version ```2023082000```.
 
 ## 2023.4
 
-Database version ```2023071000```.
+Database version ```2023071000```
 
 ### What's Changed
 * Creating an administrator account will set the account port generation based on the site's random port instead of using port 1025
@@ -149,7 +203,7 @@ Database version ```2023071000```.
 
 ## 2023.3
 
-Database version ```2023050800```.
+Database version ```2023050800```
 
 ### What's Changed
 * Replaced last_day_t field with transfer_today in the user data table to more accurately count users' daily usage.
@@ -178,7 +232,7 @@ Meta kernel. * Rewritten the traffic auto-conversion feature so that the panel n
 
 ## 2023.2
 
-Database version ```2023032600```.
+Database version ```2023032600```
 
 ### What's Changed
 * Fixed Trojan node transport configuration downgrade exception in Clash generic subscription @kleinrui
