@@ -71,9 +71,9 @@ apt update
 
 Then install the required PHP modules
 
-``bash
+```bash
 apt install php8.3-{bcmath,bz2,cli,common,curl,fpm,gd,igbinary,mbstring,mysql,opcache,readline,redis,xml,yaml,zip}
-``
+```
 
 Start the php-fpm service and set it to boot
 
