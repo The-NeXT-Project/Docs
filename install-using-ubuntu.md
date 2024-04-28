@@ -71,9 +71,9 @@ apt update
 
 Then install the required PHP modules
 
-``bash
+```bash
 apt install php8.3-{bcmath,bz2,cli,common,curl,fpm,gd,igbinary,mbstring,mysql,opcache,readline,redis,xml,yaml,zip}
-``
+```
 
 Start the php-fpm service and set it to boot
 
@@ -142,7 +142,7 @@ curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyr
 Write the official Redis source configuration to redis.list
 
 ```bash
-echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/ apt/sources.list.d/redis.list
+echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
 ```
 
 Update the APT cache
@@ -190,11 +190,11 @@ Then write the following configuration, taking care to change the path to the we
 
 ```nginx
 server {  
-        listen 80.
+        listen 80;
         listen [::]:80;
 
         root /path/to/your/site/public; # your site file path + /public
-        index index.php; server_name The domain name of the site you set up.
+        index index.php;
         server_name The domain name of the site you're setting up.
 
         location / {
@@ -202,21 +202,21 @@ server {
         }
 
         location ~ \.php$ {
-            try_files $fastcgi_script_name =404; include fastcgi_params;
+            try_files $fastcgi_script_name =404;
             include fastcgi_params;
-            fastcgi_index index.php; fastcgi_buffers 8
-            fastcgi_buffers 8 16k; fastcgi_buffers_include
-            fastcgi_buffers 8 16k; fastcgi_buffer_size 32k; fastcgi_pass unix:unix:unix
-            fastcgi_pass unix:/run/php/php-fpm.sock; fastcgi_param DOCGI_PARAM DOCGI_PARAMETERS
-            fastcgi_param DOCUMENT_ROOT $realpath_root; fastcgi_param SCRIPT_ROOT; fastcgi_param SCRIPT_ROOT
-            fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name; fastcgi_param DOCUMENT_ROOT $realpath_root
+            fastcgi_index index.php;
+            fastcgi_buffers 8 16k;
+            fastcgi_buffer_size 32k;
+            fastcgi_pass unix:/run/php/php-fpm.sock;
+            fastcgi_param DOCUMENT_ROOT $realpath_root;
+            fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
         }
 }
 ```
 
 Restart Nginx
 
-```
+```bash
 systemctl restart nginx
 systemctl restart nginx
 ```
