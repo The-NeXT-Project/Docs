@@ -164,7 +164,7 @@ systemctl start redis-server
 systemctl enable redis-server
 ```
 
-## Deploying the SSPanel UIM
+## Deploying the NeXT Panel
 
 The first thing to do is to change the user that Nginx is running under, the default is nginx, and you need to change it to www-data.
 
@@ -195,7 +195,7 @@ server {
 
         root /path/to/your/site/public; # your site file path + /public
         index index.php;
-        server_name The domain name of the site you're setting up.
+        server_name example.com # The domain name of the site you're setting up.
 
         location / {
             try_files $uri /index.php$is_args$args;
@@ -225,13 +225,13 @@ Once the web hosting setup is complete, go to the root folder of the website you
 
 ```bash
 apt install git
-git clone -b 2023.6 https://github.com/Anankke/SSPanel-Uim.git .
+git clone -b dev https://github.com/SSPanel-NeXT/NeXT-Panel-Dev.git .
 wget https://getcomposer.org/installer -O composer.phar
 php composer.phar
 php composer.phar install --no-dev
 ```
 
-? > The 2023.6 in this case represents the version of the SSPanel UIM, you can check the current stable version on the [Release](https://github.com/Anankke/SSPanel-Uim/releases) page or type dev to use the development version. Please note that the dev branch may have unforeseen problems during use.
+? > The dev in this case represents the dev version of the SSPanel UIM, you can check the current stable version on the [Release](https://docs.sspanel.org/#/release-note) page. Please note that the dev branch may have unforeseen problems during use.
 
 Then set the overall permissions for your web directory
 
@@ -285,7 +285,7 @@ SSPanel-UIM relies on the Maxmind GeoLite2 database to provide IP geolocation in
 php xcat Update
 ```
 
-使用 `crontab -e` 指令设置 SSPanel 的基本 cron 任务：
+Use `crontab -e` command to configure cron job for the panel：
 
 ```bash
 */5 * * * * /usr/bin/php /path/to/your/site/xcat Cron

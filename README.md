@@ -1,6 +1,4 @@
-# SSPanel UIM Wiki
-
-> We install, we update, we develop.
+# NeXT Panel Docs
 
 ## License
 

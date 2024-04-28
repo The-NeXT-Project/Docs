@@ -4,15 +4,15 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="SSPanel UIM Wiki-We install, we update, we develop.">
+    <meta name="description" content="NeXT Panel Docs">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <link rel="icon" href="//fastly.jsdelivr.net/gh/sspanel-uim/SSPanel-Uim-Dev@dev/public/images/uim-logo-round_192x192.png">
-    <title>SSPanel UIM Wiki</title>
-    <meta property="og:url" content="//wiki.sspanel.org">
+    <link rel="icon" href="//fastly.jsdelivr.net/gh/SSPanel-NeXT/NeXT-Panel-Dev@dev/public/images/next-logo_250.png">
+    <title>NeXT Panel Docs</title>
+    <meta property="og:url" content="//docs.sspanel.org">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="//fastly.jsdelivr.net/gh/sspanel-uim/SSPanel-Uim-Dev@dev/public/images/uim-logo-round_192x192.png">
-    <meta property="og:title" content="SSPanel UIM Wiki">
-    <meta property="og:description" content="SSPanel UIM Wiki, We install, we update, we develop.">
+    <meta property="og:image" content="//fastly.jsdelivr.net/gh/SSPanel-NeXT/NeXT-Panel-Dev@dev/public/images/next-logo_250.png">
+    <meta property="og:title" content="NeXT Panel Docs">
+    <meta property="og:description" content="NeXT Panel Docs">
     <link rel="stylesheet" href="//fastly.jsdelivr.net/npm/docsify-themeable/dist/css/theme-simple-dark.css"
     <link rel="stylesheet" href="//fastly.jsdelivr.net/gh/highlightjs/cdn-release@latest/build/styles/dark.min.css">
     <script src="//fastly.jsdelivr.net/gh/highlightjs/cdn-release@latest/build/highlight.min.js"></script>
@@ -35,9 +35,8 @@
     <div id="app"></div>
     <script>
         window.$docsify = {
-            name: 'SSPanel UIM Wiki',
-            repo: 'https://github.com/SSPanel-UIM/Wiki',
-
+            name: 'NeXT Panel Docs',
+            repo: 'https://github.com/SSPanel-NeXT/Docs',
             // Search Support
             search: {
                 maxAge: 86400,
@@ -49,7 +48,6 @@
                     '/': 'No Results!',
                 },
             },
-
             homepage: 'index.md',
             loadSidebar: 'sidebar.md',
             loadNavbar: 'nav.md',
@@ -58,19 +56,11 @@
             //Auto2Top
             auto2top: true,
             executeScript: true,
-
             themeable: {
                 readyTransition: true,
                 responsiveTables: true
             },
-
             basePath: '/',
-
-            themeable: {
-                readyTransition: true, // default
-                responsiveTables: true // default
-            },
-
             copyCode: {
                 buttonText: 'Copy',
                 errorText: 'Failed',
@@ -83,9 +73,9 @@
                         if (/githubusercontent\.com/.test(vm.route.file)) {
                             url = vm.route.file
                                 .replace('raw.githubusercontent.com', 'github.com')
-                                .replace(/\/master/, '/blob/master')
+                                .replace(/\/en/, '/blob/en')
                         } else {
-                            url = '//github.com/sspanel-uim/Wiki/blob/master/' + vm.route.file
+                            url = '//github.com/SSPanel-NeXT/Docs/blob/en/' + vm.route.file
                         }
                         var editHtml = '[:memo: Edit on GitHub](' + url + ')\n'
                         return `${html} \n----\n ${editHtml}`;

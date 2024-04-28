@@ -1,7 +1,5 @@
 ## Version upgrade
 
-? > The following upgrade method is only available for versions 2022.12.1 and later.
-
 In the current directory, run the following command to upgrade config
 
 ### Dev branch

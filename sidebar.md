@@ -1,7 +1,6 @@
 - **Overview**
-- [Panel Component](panel-component)
+- [Component](component)
 - [Release Note](release-note)
-- [Contributors](contributors)
 - [Donations](donation)
 - **Installation**
 - [Ubuntu](install-using-ubuntu)
@@ -9,11 +8,10 @@
 - [Universal Subscription](universal-subscription)
 - [Custom Config](custom-config)
 - [New Shop](shop)
-- **Updates**
-- [Upgrade SSPanel UIM](update)
+- **Maintenance**
+- [Upgrade](upgrade)
 - **Advanced**
 - [Backup Your Site](backup-your-site)
-- [Useful Detect Rules](useful-detect-rules)
 - [UIM Repositories](uim-repo)
 - **Design Documentation**
 - [DB Cconfiguration](database-setting)
