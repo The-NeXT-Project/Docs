@@ -131,7 +131,7 @@ mariadb-secure-installation
 
 ## Installing Redis
 
-SSPanel-UIM relies on Redis for many of its functions, so you need to install redis-server.
+NeXT-Panel relies on Redis for many of its functions, so you need to install redis-server.
 
 Import the GPG Key
 
@@ -225,7 +225,7 @@ Once the web hosting setup is complete, go to the root folder of the website you
 
 ```bash
 apt install git
-git clone -b dev https://github.com/SSPanel-NeXT/NeXT-Panel-Dev.git .
+git clone -b dev https://github.com/SSPanel-NeXT/NeXT-Panel.git .
 wget https://getcomposer.org/installer -O composer.phar
 php composer.phar
 php composer.phar install --no-dev
@@ -279,7 +279,7 @@ php xcat Tool createAdmin
 sudo -u www-data /usr/bin/php xcat ClientDownload
 ```
 
-SSPanel-UIM relies on the Maxmind GeoLite2 database to provide IP geolocation information, first you need to configure the `maxmind_license_key` option in `config/.config.php` and then execute the following command:
+NeXT-Panel relies on the Maxmind GeoLite2 database to provide IP geolocation information, first you need to configure the `maxmind_license_key` option in `config/.config.php` and then execute the following command:
 
 ```bash
 php xcat Update
