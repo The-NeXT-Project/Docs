@@ -1,4 +1,4 @@
-# Database configuration
+# Database Configuration
 
 ## Data table design
 
