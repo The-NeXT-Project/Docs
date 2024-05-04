@@ -1,0 +1,8 @@
+{
+  "label": "Maintenance",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Maintenance and Upgrade instructions for NeXT Panel"
+  }
+}
