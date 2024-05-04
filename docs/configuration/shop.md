@@ -1,18 +1,18 @@
 # Shop
 
-## Comparison table of product types
+## Product type cheat sheet
 
 Product Type | Repeat Purchase | Stack Package Contents | Empty Usage on Activation | Only one activated order per user at the same time
 --------|---------|-------------|---------------|-------------------
-Time & Traffic Pack | ✔ | ✕ | ✔ | ✔
-Traffic Pack | ✔ | ✔ | ✕ | ✕
-Time Pack | ✔ | ✔`*` | ✕ | ✕
+TABP | ✔ | ✕ | ✔ | ✔
+Bandwidth Package | ✔ | ✔ | ✕ | ✕
+Time Package | ✔ | ✔`*` | ✕ | ✕
 
 `*` Usage time are only stacked if the Time Pack level is the same as the paid user's current level, free users are not subject to this restriction
 
 ## Time and Bandwidth Package (TABP)
 
-TABP is the default product mode in SSPanel's old store system, each TABP contains a fixed level + level duration + traffic, users can buy more than one at one time, but only one TABP order can be active at the same time, multiple TABP orders will be activated in turn according to the order of purchasing, meanwhile, the TABP orders that are expired (in terms of ``commodity duration``) will be marked as ``expired``. Expired`.
+TABP is the default product mode in SSPanel's old store system, each TABP contains a fixed level + level duration + traffic, users can buy more than one at one time, but only one TABP order can be active at the same time, multiple TABP orders will be activated in turn according to the order of purchasing, meanwhile, the TABP orders that are expired will be marked as ``expired``.
 
 Each TABP order is activated for a maximum of one Cron cycle (5 minutes), and only one TABP order per user is activated in a Cron cycle.
 
@@ -24,7 +24,7 @@ Each Time Package order will be activated for a maximum of one Cron cycle (5 min
 
 ## Time Package
 
-Time Package is a unique product type added to SSPanel's new store system, which is intended to provide tiers, with a billing model that separates the tier duration from the traffic (pay-per-use).
+Time Package is a unique product type added to SSPanel's new store system, which is intended to provide tiers, with a billing model that separates the tier duration from the traffic (Pay as You Go).
 
 When purchased by a free user, Time Packs behave like TABP, but they do not** reset the purchased user's used or total traffic.
 
