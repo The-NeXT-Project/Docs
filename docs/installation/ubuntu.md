@@ -233,7 +233,7 @@ php composer.phar
 php composer.phar install --no-dev
 ```
 
-> The dev in this case represents the dev version of the SSPanel UIM, you can check the current stable version on the [Release](https://docs.sspanel.org/docs/overview/release-note) page. Please note that the dev branch may have unforeseen problems during use.
+> The dev in this case represents the dev version of the NeXT-Panel, you may encounter unforeseen issues during use.
 
 Then set the overall permissions for your web directory
 
@@ -270,8 +270,6 @@ cp config/appprofile.example.php config/appprofile.php
 nano config/.config.php
 ```
 
-> Press i to enter edit mode, use :x to save and exit vi, and :q! to discard any changes and exit vi.
-
 Next, perform the following site initialization setup
 
 ```bash
@@ -281,10 +279,10 @@ php xcat Tool createAdmin
 sudo -u www-data /usr/bin/php xcat ClientDownload
 ```
 
-NeXT-Panel relies on the Maxmind GeoLite2 database to provide IP geolocation information, first you need to configure the `maxmind_license_key` option in `config/.config.php` and then execute the following command:
+NeXT-Panel relies on the Maxmind GeoLite2 database to provide IP geolocation information, first you need to configure the `maxmind_account_id` and `maxmind_license_key` options in `config/.config.php` and then execute the following command:
 
 ```bash
-php xcat Update
+php xcat Tool updateGeoIP2
 ```
 
 Use `crontab -e` command to configure cron job for the panel：
@@ -298,8 +296,8 @@ Use `crontab -e` command to configure cron job for the panel：
 Disable some dangerous PHP Functions
 
 ```bash
-sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_socket_socket_functions,etc. alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.3/fpm/php.ini
-sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_ alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.3/cli/php.ini
+sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.3/fpm/php.ini
+sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.3/cli/php.ini
 ```
 
 You need to restart the PHP-FPM service after modifying it.

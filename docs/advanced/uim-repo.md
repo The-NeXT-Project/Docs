@@ -4,10 +4,10 @@
 
 ### RPM
 
-- Fedora 38/39 (i.e. the two latest Fedora versions)
-- RHEL/CentOS Stream/Rocky Linux/AlmaLinux 8/9
+- Fedora 39/40 (i.e. the two latest Fedora versions)
+- RHEL/Rocky Linux/AlmaLinux 8/9
 
-Note that Oracle Linux 8/9 can theoretically be installed and used with UIM RPM sources, but the actual compatibility is unknown as it has not been tested.
+Note that Oracle Linux 8/9 can theoretically be supported, but the actual compatibility is unknown as it has not been tested.
 
 ### DEB
 
@@ -20,9 +20,9 @@ Note that Oracle Linux 8/9 can theoretically be installed and used with UIM RPM 
 
 Where packages for the amd64 architecture only support x86 v3 and newer x86 processors, i.e. with avx2 instruction set support (Intel: Haswell and newer, AMD: Excavator and newer).
 
-## Source configuration
+## Install the repository
 
-### RHEL/CentOS Stream/Rocky Linux/AlmaLinux
+### RHEL/Rocky Linux/AlmaLinux
 
 ```bash
 wget -O /etc/yum.repos.d/sspanel.repo https://mirror.sspanel.org/repo/rhel.repo

@@ -58,9 +58,9 @@
 }
 ```
 
-# Vmess
+## Vmess
 
-## tcp
+### tcp
 
 ``` json
 {
@@ -69,7 +69,7 @@
 }
 ```
 
-## tcp+tls
+### tcp+tls
 
 ```json
 {
@@ -80,7 +80,7 @@
 }
 ```
 
-## ws
+### ws
 
 ```json
 {
@@ -91,7 +91,7 @@
 }
 ```
 
-## ws+tls
+### ws+tls
 
 ```json
 {
@@ -103,7 +103,7 @@
 }
 ```
 
-## grpc+tls
+### grpc+tls
 
 ```json
 {
@@ -115,11 +115,9 @@
 }
 ```
 
+## Trojan
 
-
-# Trojan
-
-## tcp
+### tcp
 
 ``` json
 {
@@ -128,7 +126,7 @@
 }
 ```
 
-## ws
+### ws
 
 ``` json
 {
@@ -139,7 +137,7 @@
 }
 ```
 
-## grpc
+### grpc
 
 ``` json
 {
@@ -150,7 +148,7 @@
 }
 ```
 
-# Shadowsocks 2022
+## Shadowsocks 2022
 
 ``` json
 {
@@ -162,7 +160,7 @@
 
 Server key can be generated with `openssl rand -base64 16` command.
 
-# TUIC
+## TUIC
 
 ``` json
 {
@@ -172,13 +170,13 @@ Server key can be generated with `openssl rand -base64 16` command.
 }
 ```
 
-# Port Forward
+## Port Forward
 
 ``` json
 {
-    "offset_port_user": "8888",
-    "offset_port_node": "12345"
+    "offset_port_user": "42069",
+    "offset_port_node": "1919"
 }
 ```
 
-At this point, the user connection (inside the subscription) port is 8888 and the node listening port is 12345
+At this point, the user connection (inside the subscription) port is `42069` and the node listening port is `1919`
