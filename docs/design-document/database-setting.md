@@ -4,14 +4,18 @@
 
 ```sql
 CREATE TABLE `config` (
-  `id` int(11) NOT NULL COMMENT '主键',
-  `item` text NOT NULL COMMENT '项',
-  `value` text NOT NULL COMMENT '值',
-  `class` varchar(16) NOT NULL DEFAULT 'default' COMMENT '配置分类',
-  `is_public` int(11) NOT NULL DEFAULT 0 COMMENT '是否为公共参数',
-  `type` text NOT NULL COMMENT '值类型',
-  `default` text NOT NULL COMMENT '默认值',
-  `mark` text NOT NULL COMMENT '备注'
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `item` varchar(255) NOT NULL DEFAULT '',
+  `value` varchar(2048) NOT NULL DEFAULT '',
+  `class` varchar(16) NOT NULL DEFAULT '',
+  `is_public` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `type` varchar(16) NOT NULL DEFAULT '',
+  `default` varchar(2048) NOT NULL DEFAULT '',
+  `mark` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  KEY `item` (`item`),
+  KEY `class` (`class`),
+  KEY `is_public` (`is_public`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ```
 
@@ -40,41 +44,43 @@ CREATE TABLE `config` (
 ```php
 <?php
 ...
-use App\Models\Setting;
+use App\Models\Config;
 ...
-$recharge_limit = array(
-    'max_recharge_limit' => '1000',
-    'min_recharge_limit' => '10'
-);
+
+$example_config = 'example';
+$example_config_array = [
+    'xxx' => '1000',
+    'yyy' => '10'
+];
 
 // Store
-$config = Setting::where('item', 'recharge_limit')->first();
-$config->value = json_encode($recharge_limit);
-$config->save();
+$is_saved = Config::set('example_config', $example_config);
+$is_saved_array = Config::set('example_config_array', $example_config_array);
 
 // Read
-$config = Setting::contain('recharge_limit');
-$recharge_limit = json_decode($config->value, true); // array
+$config = Config::contain('example_config');
+$config_array = json_decode(Config::get('example_config_array'));
 
 // Business logic
 ...
 
 ?>
 ```
+
 ## Methods
 
 Importing with the ``use`` operator.
 
-``php
-use App\Models\Setting.
+```php
+use App\Models\Config.
 ```
 
 ### obtain
 
 Get the configuration of a single project. Example:
 
-``` php
-Setting::obtain('f2f_pay_app_id');
+```php
+Config::obtain('f2f_pay_app_id');
 ```
 
 ### getClass
@@ -82,13 +88,13 @@ Setting::obtain('f2f_pay_app_id');
 Get all values under a certain category, returning an associative array.
 
 ```php
-Setting::getClass('f2f');
+Config::getClass('billing');
 ```
 
 Call these values.
 
 ```php
-$configs = Config::getClass('f2f');
+$configs = Config::getClass('billing');
 
 $f2f_pay_app_id = $configs['f2f_pay_app_id'];
 $f2f_pay_pid = $configs['f2f_pay_pid'];
