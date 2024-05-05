@@ -4,11 +4,24 @@ sidebar_position: 3
 
 # Release Note
 
+## 24.0
+
+### What's Changed
+
+* TBA
+
+### What's New
+
+* TBA
+
+> Note the following releases are legcy versions of the panel, and they do not exist in the current github repository.
+
 ## 2024.1
 
 Database version ```2024040500```
 
 ### What's Changed
+
 * Fixed issue with traffic multiplier page reporting error when user has no available nodes
 * Fixed issue with jQuery duplicate binding elements in front-end templates.
 * Updated download source for Clash Verge client.
@@ -30,6 +43,7 @@ Database version ```2024040500```
 * Simplified the default Clash configuration to reduce the amount of data sent and improve the performance of the subscription interface.
 
 ### What's New
+
 * New installations of SSPanel-UIM will now not perform a migration to an older version of the database.
 * New Gemini LLM backend.
 * New Vertex AI LLM backend.
@@ -61,6 +75,7 @@ Database version ```2024040500```
 Database version ```2024012700```
 
 ### What's Changed
+
 * WebAPI now returns the msg field correctly, and the data field no longer contains an error message.
 * Removed Cloudflare PHP SDK, which is no longer supported upstream, and removed features related to automated Cloudflare parsing updates; R2 client downloads are unaffected.
 * Refactored the node IP address update function, now the node modification page no longer supports manually entering the node IP.
@@ -77,6 +92,7 @@ Database version ```2024012700```
 * Refactored hourly traffic logging feature, users can now check their daily traffic usage statistics.
 
 ### What's New
+
 * Added Cloudflare Workers AI LLM backend.
 * Added PHP 8.3 unit test, now SSPanel-UIM is fully compatible with PHP 8.3 version.
 * Added Twig template service in preparation for i18n integration.
@@ -93,6 +109,7 @@ Database version ```2024012700```
 Database version ```2023102200```
 
 ### What's Changed
+
 * Nodes in a subscription are now sorted normally in ```node level - node name`` order
 * Simplified the triage settings in the default Clash configuration by removing duplicate items and sorting them.
 * WebAPI added the detection of Hostname, when the Hostname does not match the webAPIUrl configuration, the request will be rejected.
@@ -133,6 +150,7 @@ Database version ```2023102200```
 Database version ```2023082000```
 
 ### What's Changed
+
 * Refactored backend for user profile editing functionality
 * Fixed a possible cache value conflict issue.
 * Refactored the user subscription record function to prepare for later user account risk control related functions.
@@ -150,6 +168,7 @@ Database version ```2023082000```
 * Refactored subscription system, new subscriptions can now be added in a separate Class file, reducing the amount of code changes required to add subscription support.
 
 ### What's New
+
 * Added Google PaLM 2 and Hugging Face Inference API as Large Language Model (LLM) backends.
 * New User Documentation Center
 * Automatic generation of user documentation using LLM.
@@ -167,6 +186,7 @@ Database version ```2023082000```
 Database version ```2023071000```
 
 ### What's Changed
+
 * Creating an administrator account will set the account port generation based on the site's random port instead of using port 1025
 * Fixed an issue where WebAPI's ETag was incorrectly formatted, causing it to be removed by the Cloudflare CDN.
 * Use xxh64 instead of crc32c as the Etag generation algorithm to improve performance in arm64 environments (requires PHP 8.1+).
@@ -202,6 +222,7 @@ Database version ```2023071000```
 Database version ```2023050800```
 
 ### What's Changed
+
 * Replaced last_day_t field with transfer_today in the user data table to more accurately count users' daily usage.
 * Removed Dummy WebAPI
 * Fixed an issue where the CAPTCHA module would still try to load if the user was unable to sign in.
@@ -218,6 +239,7 @@ Meta kernel. * Rewritten the traffic auto-conversion feature so that the panel n
 * Fixed an issue that affects the normal distribution of generic subscription Clash types under certain circumstances.
 
 ### What's New
+
 * Turnstile CAPTCHA theme now follows the user's darker mode setting.
 * New Cron system
 * Databaseization of settings related to daily task execution times and financial statement emails.
@@ -229,6 +251,7 @@ Meta kernel. * Rewritten the traffic auto-conversion feature so that the panel n
 Database version ```2023032600```
 
 ### What's Changed
+
 * Fixed Trojan node transport configuration downgrade exception in Clash generic subscription @kleinrui
 * Fixed missing exception handling and strict data types in legacy subscriptions.
 * Fixed an issue where Sentry error reporting was not enabled properly.
@@ -264,6 +287,7 @@ Meta related configurations * Fixed the problem that Telegram Bot could not be i
 Database version ```2023032600```
 
 ### What's Changed
+
 * Fixed the problem with the display of the cancel button for admin bills
 * Gateway order number (if any) is now displayed on the admin billing details page
 * Reworked revenue statistics feature, now calculated based on Paylist records instead of order records from the old store system
@@ -298,6 +322,7 @@ Database version ```2023032600```
 Database version ```2023030500```
 
 ### What's Changed
+
 * Adjusted the types of some data table values to optimize query performance
 * New Clash type subscription in generic subscription system
 * Added api_token field in user table for future admin/user RESTful API system.
@@ -338,6 +363,7 @@ Database version ```2023030500```
 ## 2022.12
 
 ### What's Changed
+
 * Fixed a node page display issue
 * Added user ban display and set ban reason.
 * Fixed an issue with the header UI of a page.
@@ -358,6 +384,7 @@ Note: The code for the Store Redo section of the development branch has not yet 
 ## 2022.11
 
 ### What's Changed
+
 * Added user hourly traffic logging feature
 * Fixed a binding error when Telegram username is empty.
 * Optimized the display of daily emails.
@@ -383,6 +410,7 @@ Note: The code for the Store Redo section of the development branch has not yet 
 ## 2022.10
 
 ### What's Changed
+
 * Changed qqwry.dat download source, now the innocent IP library can be updated properly
 * Use crc32c to calculate Etag, which reduces API performance consumption.
 * Changed some php function calls to fully-qualified, which can further improve performance with OPcache.
@@ -403,6 +431,7 @@ Note: The code for the Store Redo section of the development branch has not yet 
 ## 2022.9
 
 ### What's Changed
+
 * New one-click install & update scripts
 * Fixed Telegram Bot built into the panel @RoromoriYuzu
 * Removed old Telegram Bot
