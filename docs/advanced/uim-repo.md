@@ -43,15 +43,19 @@ wget -O /etc/apt/sources.list.d/sspanel.list https://mirror.sspanel.org/repo/ssp
 apt update
 ```
 
-## List of provided software
+## List of currently provided software
 
 - netstatus-api-go
 - sing-box
 - spoiler
 - uim-server
-- xrayr
 
 The above is not a complete list of software, and some software may only be available in the RPM repositories, but we will be updating them over time to ensure synchronization with the RPM/DEB repositories.
+
+## List of software we plan to provide
+
+- v2ray-core
+- clash-meta(mihomo)
 
 ## About software in the source
 
