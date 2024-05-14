@@ -1,53 +1,36 @@
-# Ubuntu
+# RHEL
 
-> Environment used for this tutorial: Ubuntu 22.04/x86_64 architecture
+> Environment used for this tutorial: Red Hat Enterprise Linux 9.4 x86_64 architecture, suits AlmaLinux/RockyLinux 9.4 too.
 
-## Disabling UFW
+## Enable CRB, EPEL and Remi repository
+```bash
+subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms
+dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
+```
 
-First disable the ufw firewall
+## Disabling firewalld
+
+First disable the firewalld
 
 ```bash
-ufw disable
+systemctl stop firewalld
 ```
 
 ## Installing Nginx
 
-For Nginx installation, we use the official Nginx DEB source.
+For Nginx installation, we use the Red Hat Nginx DNF source.
 
-Install the necessary software
-
-```bash
-apt install curl gnupg2 ca-certificates lsb-release ubuntu-keyring
-```
-
-Add the official Nginx PGP Key
+Then update the DNF cache
 
 ```bash
-curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
-```
-
-Write the official Nginx source configuration to nginx.list
-
-```bash
-echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/mainline/ubuntu `lsb_release -cs` nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
-```
-
-Set the official Nginx sources to have higher priority than the system built-in sources
-
-```bash
-echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 900\n" | sudo tee /etc/apt/preferences.d/99nginx
-```
-
-Then update the APT cache
-
-```bash
-apt update
+dnf check-update
 ```
 
 Install Nginx
 
 ```bash
-apt install nginx
+dnf install nginx
 ```
 
 Finally, start the Nginx service and set it to boot up.
@@ -59,64 +42,52 @@ systemctl enable nginx
 
 ## Installing PHP
 
-Ubuntu 22.04 comes with an older version of PHP, so we'll install it using the PPA source at deb.sury.org
-
+Red Hat Enterprise Linux 9.4 comes with PHP version of 8.0, now we change it to remi repo php-8.3
 ```bash
-add-apt-repository ppa:ondrej/php
+dnf module switch-to php:remi-8.3
 ```
 
-Similarly, update the APT cache
+Similarly, update the DNF cache
 
 ```bash
-apt update
+dnf check-update
 ```
 
 Then install the required PHP modules
 
 ```bash
-apt install php8.3-{bcmath,bz2,cli,common,curl,fpm,gd,igbinary,mbstring,mysql,opcache,readline,redis,xml,yaml,zip}
+dnf install php-{bcmath,bz2,cli,common,curl,fpm,gd,igbinary,mbstring,mysqlnd,opcache,readline,redis,xml,yaml,zip,posix}
 ```
 
 Start the php-fpm service and set it to boot
 
 ```bash
-systemctl start php8.3-fpm
-systemctl enable php8.3-fpm
+systemctl start php-fpm
+systemctl enable php-fpm
 ```
 
 ## Installing MariaDB
 
-MariaDB comes with a comprehensive DEB repository, just like the Nginx repository, so we need to install the necessary packages and import the GPG key.
+Red Hat Enterprise Linux 9.4 only comes with MariaDB 10 so we install MariaDB 11.3 from official DNF/YUM repository.
 
+Here is a custom MariaDB DNF/YUM repository entry for RedHatEnterpriseLinux. Copy and paste it into a file under /etc/yum.repos.d (we suggest naming the file MariaDB.repo or something similar).
+```
+# MariaDB 11.3 RedHatEnterpriseLinux repository list
+# https://mariadb.org/download/
+[mariadb]
+name = MariaDB
+# rpm.mariadb.org is a dynamic mirror if your preferred mirror goes offline. See https://mariadb.org/mirrorbits/ for details.
+baseurl = https://rpm.mariadb.org/11.3/rhel/$releasever/$basearch
+gpgkey = https://rpm.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgcheck = 1
+```
+EPEL repository may be required to satisfy the pv dependency of galera.
+
+After the file is in place, install and start MariaDB with:
 ```bash
-apt install apt-transport-https curl
-mkdir -p /etc/apt/keyrings
-curl -o /etc/apt/keyrings/mariadb-keyring.pgp 'https://mariadb.org/mariadb_release_signing_key.pgp'
+dnf install MariaDB-server MariaDB-client
 ```
-
-Edit the `/etc/apt/sources.list.d/mariadb.sources` file and write the following configuration to it
-
-```
-X-Repolib-Name: MariaDB
-Types: deb
-# deb.mariadb.org is a dynamic mirror if your preferred mirror goes offline. See https://mariadb.org/mirrorbits/ for details.
-URIs: https://deb.mariadb.org/11.2/ubuntu
-Suites: jammy
-Components: main main/debug
-Signed-By: /etc/apt/keyrings/mariadb-keyring.pgp
-```
-
-Update the APT cache
-
-```bash
-apt update
-```
-
-Install MariaDB 11.2
-
-```bash
-apt install mariadb-server
-```
+If you haven't already accepted the MariaDB GPG key, you will be prompted to do so during the install.
 
 Start the MariaDB service and set it to boot
 
@@ -135,35 +106,23 @@ mariadb-secure-installation
 
 NeXT-Panel relies on Redis for many of its functions, so you need to install redis-server.
 
-Import the GPG Key
+change version from redis 6 to redis 7
 
 ```bash
-curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
-```
-
-Write the official Redis source configuration to redis.list
-
-```bash
-echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
-```
-
-Update the APT cache
-
-```bash
-apt update
+dnf module enable redis:7
 ```
 
 Install redis-server
 
 ```bash
-apt install redis
+dnf install redis
 ```
 
 Start the redis-server service and set it to start at boot time
 
 ```bash
-systemctl start redis-server
-systemctl enable redis-server
+systemctl start redis
+systemctl enable redis
 ```
 
 ## Deploying the NeXT Panel
@@ -180,6 +139,13 @@ to
 
 ```nginx
 user www-data;
+```
+
+if your system didn't have the user `www-data`, add it and modify the ownership by
+```bash
+groupadd www-data
+useradd -g www-data www-data
+chown www-data:www-data -R /path/to/your/project
 ```
 
 Add the Nginx vhost file
@@ -225,7 +191,7 @@ systemctl restart nginx
 Once the web hosting setup is complete, go to the root folder of the website you setup and execute the following command:
 
 ```bash
-apt install git
+dnf install git
 git clone -b dev https://github.com/SSPanel-NeXT/NeXT-Panel.git .
 wget https://getcomposer.org/installer -O composer.phar
 php composer.phar
@@ -295,19 +261,18 @@ Use `crontab -e` command to configure cron job for the panel：
 Disable some dangerous PHP Functions
 
 ```bash
-sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.3/fpm/php.ini
-sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.3/cli/php.ini
+sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php.ini
 ```
 
 You need to restart the PHP-FPM service after modifying it.
 
 ```bash
-systemctl restart php8.3-fpm
+systemctl restart php-fpm
 ```
 
 Enable OPcache and JIT
 
-In `/etc/php/8.3/fpm/conf.d/10-opcache.ini` add the following configuration
+In `/etc/php.d/10-opcache.ini` add the following configuration
 
 ```
 zend_extension=opcache.so
@@ -325,5 +290,5 @@ opcache.validate_root=on
 You also need to restart the PHP-FPM service after modifying it.
 
 ```bash
-systemctl restart php8.3-fpm
+systemctl restart php-fpm
 ```
