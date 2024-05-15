@@ -66,12 +66,12 @@ const config = {
         respectPrefersColorScheme: true,
       },
       // Replace with your project's social card
-      image: 'img/next_1000.png',
+      image: 'img/next.svg',
       navbar: {
         title: 'NeXT-Panel',
         logo: {
           alt: 'NeXT-Panel Logo',
-          src: 'img/next-logo_250.png',
+          src: 'img/next-logo.svg',
         },
         items: [
           {
