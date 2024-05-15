@@ -56,7 +56,7 @@ dnf check-update
 Then install the required PHP modules
 
 ```bash
-dnf install php-{bcmath,bz2,cli,common,curl,fpm,gd,igbinary,mbstring,mysqlnd,opcache,readline,redis,xml,yaml,zip,posix}
+dnf install php-{bcmath,bz2,cli,common,curl,fpm,gd,igbinary,mbstring,mysqlnd,opcache,readline,redis,xml,yaml,zip,posix,sodium}
 ```
 
 Start the php-fpm service and set it to boot
@@ -65,6 +65,27 @@ Start the php-fpm service and set it to boot
 systemctl start php-fpm
 systemctl enable php-fpm
 ```
+
+Now edit php-fpm user in file `/etc/php-fpm.d/www.conf`
+```conf
+user = apache
+group = apache
+```
+to
+```conf
+user = nginx
+group = nginx
+```
+
+And modify the `/etc/php-fpm.d/www.conf`, uncomment all permission lines, change user and group to nginx:
+
+```
+listen.owner = nginx
+listen.group = nginx
+listen.mode = 0660
+listen.acl_users = nginx
+```
+* PS. You can change the nginx user to www-data by yourself, but make sure you set all the permissions correctly, we use nginx here because the nginx package already created the account for us.
 
 ## Installing MariaDB
 
@@ -129,23 +150,10 @@ systemctl enable redis
 
 The first thing to do is to change the user that Nginx is running under, the default is nginx, and you need to change it to www-data.
 
-Change the `user` in the `/etc/nginx/nginx.conf` from
+make sure the `user` in the `/etc/nginx/nginx.conf` is `nginx`
 
 ```nginx
 user nginx;
-```
-
-to
-
-```nginx
-user www-data;
-```
-
-if your system didn't have the user `www-data`, add it and modify the ownership by
-```bash
-groupadd www-data
-useradd -g www-data www-data
-chown www-data:www-data -R /path/to/your/project
 ```
 
 Add the Nginx vhost file
@@ -175,7 +183,7 @@ server {
             fastcgi_index index.php;
             fastcgi_buffers 8 16k;
             fastcgi_buffer_size 32k;
-            fastcgi_pass unix:/run/php/php-fpm.sock;
+            fastcgi_pass unix:/run/php-fpm/www.sock;
             fastcgi_param DOCUMENT_ROOT $realpath_root;
             fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
         }
@@ -204,8 +212,9 @@ Then set the overall permissions for your web directory
 
 ```bash
 chmod -R 755 *
-chown -R www-data:www-data *
+chown -R nginx:nginx *
 ```
+* PS. change the user and group to www-data:www-data if you using www-data account
 
 Then we start the database part of the creation operation by first logging into MariaDB Server
 
@@ -241,7 +250,7 @@ Next, perform the following site initialization setup
 php xcat Migration new
 php xcat Tool importSetting
 php xcat Tool createAdmin
-sudo -u www-data /usr/bin/php xcat ClientDownload
+sudo -u nginx /usr/bin/php xcat ClientDownload
 ```
 
 NeXT-Panel relies on the Maxmind GeoLite2 database to provide IP geolocation information, first you need to configure the `maxmind_account_id` and `maxmind_license_key` options in `config/.config.php` and then execute the following command:
