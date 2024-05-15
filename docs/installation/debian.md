@@ -166,9 +166,7 @@ systemctl enable redis-server
 
 The first thing to do is to change the user that Nginx is running under, the default is nginx, and you need to change it to www-data.
 
-Change the `/etc/nginx/nginx.conf`
-
-from
+Change the `user` in `/etc/nginx/nginx.conf` from
 
 ```nginx
 user nginx;
@@ -217,7 +215,6 @@ server {
 Restart Nginx
 
 ```bash
-systemctl restart nginx
 systemctl restart nginx
 ```
 
