@@ -15,6 +15,10 @@ NeXT Panel is a typical PHP web application that requires the following server p
 
 At the code level, NeXT Panel uses Slim Framework 4.x as the backend framework, Eloquent as the database ORM, Smarty 5.x and Twig 3.x template engines to provide front-end template rendering, and Composer to manage third-party components.
 
-## System Configuration Requirements
+## System Requirements
 
-NeXT Panel can run on relatively low configuration Linux systems, but for performance reasons, we recommend at least 2GB of system memory for OPcache and database to reduce disk IO consumption.
+NeXT Panel can run on relatively low performance Linux systems, but for user experience reasons, we recommend at least 2GB of system memory for OPcache and database to reduce disk IO consumption.
+
+## System Architecture
+
+![System Architecture](/img/system-architecture.svg)
