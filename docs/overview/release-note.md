@@ -4,6 +4,16 @@ sidebar_position: 3
 
 # Release Note
 
+## 24.1
+
+### What's Changed
+
+* TBA
+
+### What's New
+
+* TBA
+
 ## 24.0
 
 ### What's Changed
@@ -18,7 +28,7 @@ sidebar_position: 3
 
 ## 2024.1
 
-Database version ```2024040500```
+Database version `2024040500`
 
 ### What's Changed
 
@@ -72,7 +82,7 @@ Database version ```2024040500```
 
 ## 2023.7
 
-Database version ```2024012700```
+Database version `2024012700`
 
 ### What's Changed
 
@@ -106,11 +116,11 @@ Database version ```2024012700```
 
 ## 2023.6
 
-Database version ```2023102200```
+Database version `2023102200`
 
 ### What's Changed
 
-* Nodes in a subscription are now sorted normally in ```node level - node name`` order
+* Nodes in a subscription are now sorted normally in `node level - node name`` order
 * Simplified the triage settings in the default Clash configuration by removing duplicate items and sorting them.
 * WebAPI added the detection of Hostname, when the Hostname does not match the webAPIUrl configuration, the request will be rejected.
 * Fixed the problem that the administrator's background modification of time/traffic packages reported an error because of the existence of null values.
@@ -124,7 +134,7 @@ Database version ```2023102200```
 * Replaced the native Curl implementation with GuzzleHttp, simplifying the way it is configured and reducing the amount of code needed for the feature.
 * Cookies now use SHA3-256 as the default encryption method, which is much faster than SHA256 on modern hardware with instruction set acceleration support.
 * Replaced jQuery ajax code in most user panels with Htmx to reduce the size of frontend templates.
-* Fixed system page ```check for updates``` button color error caused by upstream front-end library update.
+* Fixed system page `check for updates` button color error caused by upstream front-end library update.
 * PHP yaml extension implemented in C to replace symfony/yaml as the export tool for the Yaml format, improving the performance of the Clash generic subscription interface in case of large data volumes.
 * Fixed an issue that could cause the administrator's backend node management page to report an error under certain circumstances.
 * Added more path legality checks in Slim Router to avoid invalid routing data being sent to the backend.
@@ -147,7 +157,7 @@ Database version ```2023102200```
 
 ## 2023.5
 
-Database version ```2023082000```
+Database version `2023082000`
 
 ### What's Changed
 
@@ -183,7 +193,7 @@ Database version ```2023082000```
 
 ## 2023.4
 
-Database version ```2023071000```
+Database version `2023071000`
 
 ### What's Changed
 
@@ -219,7 +229,7 @@ Database version ```2023071000```
 
 ## 2023.3
 
-Database version ```2023050800```
+Database version `2023050800`
 
 ### What's Changed
 
@@ -248,7 +258,7 @@ Meta kernel. * Rewritten the traffic auto-conversion feature so that the panel n
 
 ## 2023.2
 
-Database version ```2023032600```
+Database version `2023032600`
 
 ### What's Changed
 
@@ -284,7 +294,7 @@ Meta related configurations * Fixed the problem that Telegram Bot could not be i
 
 ## 2023.1
 
-Database version ```2023032600```
+Database version `2023032600`
 
 ### What's Changed
 
@@ -319,7 +329,7 @@ Database version ```2023032600```
 
 ## 2022.12.1
 
-Database version ```2023030500```
+Database version `2023030500`
 
 ### What's Changed
 
