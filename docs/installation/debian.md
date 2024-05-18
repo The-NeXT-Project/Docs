@@ -17,7 +17,7 @@ For Nginx installation, we use the official Nginx DEB source.
 Install the necessary software
 
 ```bash
-apt install curl gnupg2 ca-certificates lsb-release sudo
+apt install curl wget gnupg2 ca-certificates lsb-release sudo
 ```
 
 Add the official Nginx PGP Key
@@ -59,10 +59,21 @@ systemctl enable nginx
 
 ## Installing PHP
 
-Debian 12 (bookworm) comes with PHP version of 8.2
+Debian 12 (bookworm) comes with an older version of PHP, so we'll install it using the PHP repository at packages.sury.org/php
 
-Similarly, update the APT cache
+To add the Debian DPA for packages.sury.org/php, you can follow these steps:
 
+1.Import the repository’s GPG key:
+```bash
+wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+```
+
+2.Add the repository to your system’s software sources:
+```bash
+echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list
+```
+
+3.Update your package lists:
 ```bash
 apt update
 ```
@@ -70,14 +81,14 @@ apt update
 Then install the required PHP modules
 
 ```bash
-apt install php8.2-{bcmath,bz2,cli,common,curl,fpm,gd,igbinary,mbstring,mysql,opcache,readline,redis,xml,yaml,zip}
+apt install php8.3-{bcmath,bz2,cli,common,curl,fpm,gd,igbinary,mbstring,mysql,opcache,readline,redis,xml,yaml,zip}
 ```
 
 Start the php-fpm service and set it to boot
 
 ```bash
-systemctl start php8.2-fpm
-systemctl enable php8.2-fpm
+systemctl start php8.3-fpm
+systemctl enable php8.3-fpm
 ```
 
 ## Installing MariaDB
@@ -291,19 +302,19 @@ Use `crontab -e` command to configure cron job for the panel：
 Disable some dangerous PHP Functions
 
 ```bash
-sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.2/fpm/php.ini
-sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.2/cli/php.ini
+sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.3/fpm/php.ini
+sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.3/cli/php.ini
 ```
 
 You need to restart the PHP-FPM service after modifying it.
 
 ```bash
-systemctl restart php8.2-fpm
+systemctl restart php8.3-fpm
 ```
 
 Enable OPcache and JIT
 
-In `/etc/php/8.2/fpm/conf.d/10-opcache.ini` add the following configuration
+In `/etc/php/8.3/fpm/conf.d/10-opcache.ini` add the following configuration
 
 ```
 zend_extension=opcache.so
@@ -321,5 +332,5 @@ opcache.validate_root=on
 You also need to restart the PHP-FPM service after modifying it.
 
 ```bash
-systemctl restart php8.2-fpm
+systemctl restart php8.3-fpm
 ```
