@@ -19,21 +19,38 @@ systemctl stop firewalld
 
 ## Installing Nginx
 
-For Nginx installation, we use the Red Hat Nginx DNF source.
+For Nginx installation, we use the official Nginx YUM/DNF source.
 
-Then update the DNF cache
+1.Add the Nginx repository to your system’s repository list. You can do this by creating a new repo file in /etc/yum.repos.d/ named nginx.repo and adding the following configuration:
+```
+[nginx-stable]
+name=nginx stable repo
+baseurl=https://nginx.org/packages/rhel/9/$basearch/
+gpgcheck=1
+enabled=1
+gpgkey=https://nginx.org/keys/nginx_signing.key
+module_hotfixes=true
+```
+Remember to replace $basearch with your specific cpu architecture(x86_64/aarch64/s390x), respectively1. This will set up Nginx from the official Nginx repository, which is recommended to get the latest stable version.
+
+2.Update your local package index:
 
 ```bash
 dnf check-update
 ```
 
-Install Nginx
+3.Install Nginx
 
 ```bash
 dnf install nginx
 ```
 
-Finally, start the Nginx service and set it to boot up.
+4.Verify the installation by checking the version of Nginx installed:
+```bash
+nginx -v
+```
+
+5.Finally, start the Nginx service and set it to boot up.
 
 ```bash
 systemctl start nginx
