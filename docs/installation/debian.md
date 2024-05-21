@@ -1,6 +1,6 @@
-# Ubuntu
+# Debian
 
-> Environment used for this tutorial: Ubuntu 22.04/x86_64 architecture
+> Environment used for this tutorial: Debian GNU/Linux 12 (bookworm) x86_64 architecture
 
 ## Disabling UFW
 
@@ -17,7 +17,7 @@ For Nginx installation, we use the official Nginx DEB source.
 Install the necessary software
 
 ```bash
-apt install curl gnupg2 ca-certificates lsb-release ubuntu-keyring
+apt install curl wget gnupg2 ca-certificates lsb-release sudo
 ```
 
 Add the official Nginx PGP Key
@@ -29,7 +29,7 @@ curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor | sudo tee /usr/sh
 Write the official Nginx source configuration to nginx.list
 
 ```bash
-echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/mainline/ubuntu `lsb_release -cs` nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
+echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/mainline/debian `lsb_release -cs` nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
 ```
 
 Set the official Nginx sources to have higher priority than the system built-in sources
@@ -59,14 +59,21 @@ systemctl enable nginx
 
 ## Installing PHP
 
-Ubuntu 22.04 comes with an older version of PHP, so we'll install it using the PPA source at deb.sury.org
+Debian 12 (bookworm) comes with an older version of PHP, so we'll install it using the PHP repository at packages.sury.org/php
 
+To add the Debian DPA for packages.sury.org/php, you can follow these steps:
+
+1.Import the repository’s GPG key:
 ```bash
-add-apt-repository ppa:ondrej/php
+wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 ```
 
-Similarly, update the APT cache
+2.Add the repository to your system’s software sources:
+```bash
+echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list
+```
 
+3.Update your package lists:
 ```bash
 apt update
 ```
@@ -100,9 +107,9 @@ Edit the `/etc/apt/sources.list.d/mariadb.sources` file and write the following 
 X-Repolib-Name: MariaDB
 Types: deb
 # deb.mariadb.org is a dynamic mirror if your preferred mirror goes offline. See https://mariadb.org/mirrorbits/ for details.
-URIs: https://deb.mariadb.org/11.2/ubuntu
-Suites: jammy
-Components: main main/debug
+URIs: https://deb.mariadb.org/11.2/debian
+Suites: bookworm
+Components: main
 Signed-By: /etc/apt/keyrings/mariadb-keyring.pgp
 ```
 
@@ -170,7 +177,7 @@ systemctl enable redis-server
 
 The first thing to do is to change the user that Nginx is running under, the default is nginx, and you need to change it to www-data.
 
-Change the `user` in the `/etc/nginx/nginx.conf` from
+Change the `user` in `/etc/nginx/nginx.conf` from
 
 ```nginx
 user nginx;
