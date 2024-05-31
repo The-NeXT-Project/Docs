@@ -85,6 +85,11 @@ const config = {
             label: 'GitHub',
             position: 'right',
           },
+          {
+            href: 'https://discord.gg/A7uFKCvf8V',
+            label: 'Discord',
+            position: 'right',
+          },
         ],
       },
       prism: {
