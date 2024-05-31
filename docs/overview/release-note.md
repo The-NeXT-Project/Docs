@@ -4,7 +4,9 @@ sidebar_position: 3
 
 # Release Note
 
-## 24.1
+## 24.1.0
+
+This is a upcoming release of NeXT Panel.
 
 ### What's Changed
 
@@ -14,7 +16,9 @@ sidebar_position: 3
 
 * TBA
 
-## 24.0
+## 24.0.0
+
+This is a upcoming release of NeXT Panel.
 
 ### What's Changed
 
