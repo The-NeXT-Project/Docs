@@ -18,15 +18,32 @@ This is a upcoming release of NeXT Panel.
 
 ## 24.0.0
 
-This is a upcoming release of NeXT Panel.
+Database version `2024052400`
 
 ### What's Changed
 
-* TBA
+* Better handling of payment gateway exceptions
+* Fixed an issue that could result in the Username not being properly displayed in the Telegram Bot
+* Bump DiceBear avatar to v8
+* Refactored built-in updateGeoIP2 feature, removed potentially compromised dependency
+* Set Telegram Bot Webhook feature has been moved to `admin/setting/im` and Webhook Token can no longer be manually configured
+* Replace default PNG format NeXT Panel Logos with SVG images to save bandwidth
+* Simplified email templates and improved finance email styling
+* Simplified User interface, remove several unnecessary dedicated info pages from the `/user` route
+* Added spoiler effect on the frontend to hide sensitive user information
+* Updated default LLM model IDs in the `config/.config.example.php`
+* Fixed an issue that could result in the Stipe checkout session not being properly created
 
 ### What's New
 
-* TBA
+* New SysLog service for centralized operation log management
+* Added Clash Desktop client-specific headers to the Clash universal subscription service
+* User balance top-up and partial payment of invoice @pplulee
+* New I18n service for panel localization
+* Now Telegram Bot notification messages are localized based on the site's default language setting
+* New unified User Group notification feature to send group notifications to multiple channels(Telegram/Discord/Slace) at the same time
+* reCAPTCHA Enterprise support has been added to the captcha service
+* Now Site Announcement & Documentation can be configured with custom sort order and hide/pinned for end users
 
 > Note the following releases are legcy versions of the panel, and they do not exist in the current github repository.
 
