@@ -6,15 +6,15 @@ sidebar_position: 3
 
 ## 24.1.0
 
-This is a upcoming release of NeXT Panel.
+Database version `2024052400`
 
 ### What's Changed
 
-* TBA
-
-### What's New
-
-* TBA
+* Fixed an issue that could cause duplicate payments to be made and cause invoices to fail to be marked as paid via the gateway
+* Now overpaid amount via the gateway will be refunded to the user's balance
+* Use the new NeXT Panel OTA API endpoint to check the panel update
+* Adjusted Invoice view page style to avoid user confusion
+* Fixed an issue that prevented user password requests from being sent, thus failing to reset the password
 
 ## 24.0.0
 
