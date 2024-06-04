@@ -10,14 +10,14 @@ Route | Method | Parameters | Return Value | Description
 
 Node Type | Return Data
 --------|--------
-Shadowsocks | method, node_speedlimit, ~~node_iplimit~~, port, passwd, ~~alive_ip~~
-Shadowsocks2022 | method, node_speedlimit, ~~node_iplimit~~, passwd, ~~alive_ip~~
-TUIC | node_speedlimit, ~~node_iplimit~~, passwd, uuid, ~~alive_ip~~
-Vmess  | node_speedlimit, ~~node_iplimit~~, uuid, ~~alive_ip~~
-Trojan | node_speedlimit, ~~node_iplimit~~, uuid, ~~alive_ip~~
+Shadowsocks | method, node_speedlimit, port, passwd
+Shadowsocks2022 | method, node_speedlimit, passwd(base64 encoded)
+TUIC | node_speedlimit, passwd, uuid
+Vmess  | node_speedlimit, uuid
+Trojan | node_speedlimit, uuid
 
-> `node_iplimit` and `alive_ip` will be removed in the `2024.2` release.
- 
+Note that Shadowsocks node type is **Multi Port Mode Only**, and Shadowsocks2022 is **Single Port Multi-User Mode Only**, any MU implementation not using Shadowsocks2022 protocol is **Not standard compliant**, thus we will not support such implementation in any way.
+
 ---
 Route | Mode | Parameters | Description
 -----|------|-----|-------
@@ -37,9 +37,7 @@ Route | Mode | Parameters | Description
 
 Route | Method | Parameters | Return Value | Description
 -----|------|-----|-------|----
-`/nodes/{id}/info` | GET | node_id | ~~node_group~~, ~~node_class~~, node_speedlimit, ~~traffic_rate~~, sort, server, custom_config, type, version | Get the node settings for the current requesting node
-
-> `traffic_rate`, `node_group` and `node_class` will be removed in the `2024.1` release.
+`/nodes/{id}/info` | GET | node_id | node_speedlimit, sort, server, custom_config, type, version | Get the node settings for the current requesting node
 
 ## Func
 

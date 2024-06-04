@@ -1,4 +1,4 @@
-# Q&A
+# Common Questions
 
 ## Subscription links do not update properly after configuring Cloudflare CDN
 

@@ -1,4 +1,4 @@
-# UIM Repositories
+# NeXT Repositories
 
 ## Supported OS
 
@@ -25,30 +25,30 @@ Where packages for the amd64 architecture only support x86 v3 and newer x86 proc
 ### RHEL/Rocky Linux/AlmaLinux
 
 ```bash
-wget -O /etc/yum.repos.d/sspanel.repo https://mirror.sspanel.org/repo/rhel.repo
+wget -O /etc/yum.repos.d/next.repo https://mirrors.nextpanel.dev/repo/rhel.repo
 dnf update
 ```
 
 ### Fedora
 
 ```bash
-wget -O /etc/yum.repos.d/sspanel.repo https://mirror.sspanel.org/repo/fedora.repo
+wget -O /etc/yum.repos.d/next.repo https://mirrors.nextpanel.dev/repo/fedora.repo
 dnf update
 ```
 
 ### DEB
 
 ```bash
-wget -O /etc/apt/sources.list.d/sspanel.list https://mirror.sspanel.org/repo/sspanel.list
+wget -O /etc/apt/sources.list.d/next.list https://mirrors.nextpanel.dev/repo/deb.list
 apt update
 ```
 
-## List of currently provided software
+## List of software currently provided
 
 - netstatus-api-go
+- next-server
 - sing-box
 - spoiler
-- uim-server
 
 The above is not a complete list of software, and some software may only be available in the RPM repositories, but we will be updating them over time to ensure synchronization with the RPM/DEB repositories.
 

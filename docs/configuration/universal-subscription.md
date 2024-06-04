@@ -1,6 +1,6 @@
 # Universal Subscription
 
-## json format
+## Json format
 
 Request Path
 
@@ -13,22 +13,22 @@ Sample Return
 ```json
 {
     "version": 4,
-    "sub_name":"SSPanel",
-    "email":"user@sspanel.org",
-    "user_name":"ssp_user",
-    "class": 999,
+    "sub_name":"NeXT",
+    "email":"user@nextpanel.dev",
+    "user_name":"next_user",
+    "class": 64,
     "class_expire_date":"1989-06-04 04:00:00",
     "total_traffic": 9785653487206,
     "used_upload_traffic": 7036874417766,
     "used_download_traffic": 7036874417766,
     "sub_url": {
-        "sing-box": "https://sub.sspanel.org/sub/{$userSubscriptionKey}/singbox",
-        "clash": "https://sub.sspanel.org/sub/{$userSubscriptionKey}/clash"
+        "sing-box": "https://sub.demo.nextpanel.dev/sub/{$userSubscriptionKey}/singbox",
+        "clash": "https://sub.demo.nextpanel.dev/sub/{$userSubscriptionKey}/clash"
     }
 }
 ```
 
-## clash format
+## Clash format
 
 Request path
 
@@ -36,7 +36,7 @@ Request path
 /sub/{$userSubscriptionKey}/clash
 ```
 
-## sing-box format
+## SingBox format
 
 Request path
 
@@ -52,4 +52,12 @@ Request Path
 
 ```
 /sub/{$userSubscriptionKey}/sip008
+```
+
+## V2Ray Json V5 format
+
+Request Path
+
+```
+/sub/{$userSubscriptionKey}/v2rayjson
 ```
