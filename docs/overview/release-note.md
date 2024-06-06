@@ -4,6 +4,14 @@ sidebar_position: 3
 
 # Release Note
 
+## 24.2.0
+
+This is a upcoming release.
+
+### What's Changed
+
+* TBA
+
 ## 24.1.0
 
 Database version `2024052400`

@@ -16,7 +16,7 @@ TUIC | node_speedlimit, passwd, uuid
 Vmess  | node_speedlimit, uuid
 Trojan | node_speedlimit, uuid
 
-Note that Shadowsocks node type is **Multi Port Mode Only**, and Shadowsocks2022 is **Single Port Multi-User Mode Only**, any MU implementation not using Shadowsocks2022 protocol is **Not standard compliant**, thus we will not support such implementation in any way.
+Note that Shadowsocks node type is **Multi Port Mode Only**, and Shadowsocks2022 node type is **Single Port Multi-User Mode Only**, any MU implementation not using Shadowsocks2022 protocol is **Not standard compliant**, thus we will not support such implementation in any way.
 
 ---
 Route | Mode | Parameters | Description
