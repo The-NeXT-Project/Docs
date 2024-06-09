@@ -1,6 +1,6 @@
 # Debian
 
-> Environment used for this tutorial: Debian GNU/Linux 12 (bookworm) x86_64 architecture
+> Environment used for this tutorial: Debian 12/x86_64
 
 ## Disabling UFW
 

@@ -1,6 +1,6 @@
 # RHEL
 
-> Environment used for this tutorial: Red Hat Enterprise Linux 9.4 x86_64 architecture, suits AlmaLinux/RockyLinux 9.4 too.
+> Environment used for this tutorial: Red Hat Enterprise Linux 9.4/x86_64
 
 ## Enable CRB, EPEL and Remi repository
 ```bash

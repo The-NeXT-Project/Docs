@@ -6,11 +6,21 @@ sidebar_position: 3
 
 ## 24.2.0
 
-This is a upcoming release.
+Database version `2024052400`
 
 ### What's Changed
 
-* TBA
+* Removed deprecated WebAPI value
+* LLM-related configs have been moved to DB
+* Adjusted LLM default request parameters to avoid unwanted behavior
+* Fixed a value error in the admin node page
+* Fixed an issue that prevents the page from refreshing after the invoice is paid by balance(partial or full)
+
+### What's New
+
+* Custom status code has been supported in ResponseHelper's error function
+* New /dc command in Telegram Bot to detect user telegram account datacenter
+* More user jQurey Ajax requests have been replaced with Htmx and the related endpoints have been updated
 
 ## 24.1.0
 

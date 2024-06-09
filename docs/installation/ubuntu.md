@@ -1,6 +1,6 @@
 # Ubuntu
 
-> Environment used for this tutorial: Ubuntu 22.04/x86_64 architecture
+> Environment used for this tutorial: Ubuntu 22.04/x86_64
 
 ## Disabling UFW
 
