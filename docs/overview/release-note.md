@@ -4,6 +4,23 @@ sidebar_position: 3
 
 # Release Note
 
+## 24.3.0
+
+Database version `2024052400`
+
+### What's Changed
+* Ticket LLM reply feature now uses whole ticket content(include title) as LLM context input
+* Fixed an issue that prevents Stripe gateway trigger an HX-Redirect event in frontend
+* Now gateway service will use the invoice's price value as paylist amount instead of using value input from the Ajax request
+* Now gateway service will return an error when the invoice ID is invalid(invoice doesn't exist)
+* Fixed an issue that will cause incorrect price data to be used in the Stripe gateway
+* Now when an order price is 0, it will directly enter the activation queue instead of waiting for invoice payment
+
+### What's New
+* LLM service now supports context input
+* New Webhook setup feature for PayPal gateway, and use webhook event to mark invoice's payment
+* Added Hiddify Next to client download service
+
 ## 24.2.0
 
 Database version `2024052400`
