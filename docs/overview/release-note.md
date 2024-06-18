@@ -4,6 +4,23 @@ sidebar_position: 3
 
 # Release Note
 
+## 24.4.0
+
+Database version `2024061600`
+
+### What's Changed
+* Simplified admin db config controller, prepare for future htmx refactor
+* Now all pricing data in the database is using decimal(12,2) as its data type to avoid float number conversion issue
+* More indexes have been added to the user table, improving query performance
+* Speedlimit for user and node now using int as its data type, the minimal speed limit is now 1Mbps
+* Added missing traffic rate checks, the node's maximum traffic rate is capped at 999.99x
+* Now each invoice can only have one paylist record associated with it
+
+### What's New
+* Added Clash Nyanpasu to the client download service
+* New AWS Bedrock LLM backend
+* Added dev mode cookie setting
+
 ## 24.3.0
 
 Database version `2024052400`
