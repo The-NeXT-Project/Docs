@@ -2,4 +2,4 @@
 
 ## License
 
-[MIT License](./LICENSE)
+[GPL-3.0 License](blob/dev/LICENSE)
