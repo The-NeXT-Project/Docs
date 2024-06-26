@@ -4,11 +4,35 @@ sidebar_position: 3
 
 # Release Note
 
+## 24.5.0
+
+Database version `2024061600`
+
+Note since this release, we will only publish new tags/releases on `main` branch, which means NeXT Panel will now have a stable branch and a dev branch.
+On the main branch, there will not be any force-push or commit history-breaking rebase, only those new commits from `dev` branch will be rebased on it every time a new release is dropped.
+
+### What's Changed
+
+* Now the user will able to set frontend theme mode to `auto`, which means the theme will follow whatever preferred theme(dark/light) put in their browser
+* Now locale value will be passed to the template to encode html content correctly
+* Fixed an issue that could prevent the admin billing setting from being saved
+* Refactored database config system, now it can properly support array type data(it will be converted to JSON string when saving to DB)
+* Added I18n-related unit tests
+* Now, the I18n service will dynamically return the locale list from what's available in the system
+* Admin user edit page has been revamped, more useful information has been added, and deprecated value has been removed
+* Now admin can change each user's locale setting individually
+
+### What's New
+
+* Added auto dark mode in the public pages(/auth/login, /password/reset etc.)
+* New Resend email service
+
 ## 24.4.0
 
 Database version `2024061600`
 
 ### What's Changed
+
 * Simplified admin db config controller, prepare for future htmx refactor
 * Now all pricing data in the database is using decimal(12,2) as its data type to avoid float number conversion issue
 * More indexes have been added to the user table, improving query performance
@@ -17,6 +41,7 @@ Database version `2024061600`
 * Now each invoice can only have one paylist record associated with it
 
 ### What's New
+
 * Added Clash Nyanpasu to the client download service
 * New AWS Bedrock LLM backend
 * Added dev mode cookie setting
@@ -26,6 +51,7 @@ Database version `2024061600`
 Database version `2024052400`
 
 ### What's Changed
+
 * Ticket LLM reply feature now uses whole ticket content(include title) as LLM context input
 * Fixed an issue that prevents Stripe gateway trigger an HX-Redirect event in frontend
 * Now gateway service will use the invoice's price value as paylist amount instead of using value input from the Ajax request
@@ -34,6 +60,7 @@ Database version `2024052400`
 * Now when an order price is 0, it will directly enter the activation queue instead of waiting for invoice payment
 
 ### What's New
+
 * LLM service now supports context input
 * New Webhook setup feature for PayPal gateway, and use webhook event to mark invoice's payment
 * Added Hiddify Next to client download service
