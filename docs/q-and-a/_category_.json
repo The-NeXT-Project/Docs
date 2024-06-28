@@ -1,0 +1,8 @@
+{
+  "label": "Q&A",
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "description": "Q&A for NeXT Panel"
+  }
+}
