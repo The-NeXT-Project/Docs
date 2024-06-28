@@ -109,6 +109,7 @@ listen.acl_users = nginx
 Red Hat Enterprise Linux 9.4 only comes with MariaDB 10 so we install MariaDB 11.3 from official DNF/YUM repository.
 
 Here is a custom MariaDB DNF/YUM repository entry for RedHatEnterpriseLinux. Copy and paste it into a file under /etc/yum.repos.d (we suggest naming the file MariaDB.repo or something similar).
+
 ```
 # MariaDB 11.3 RedHatEnterpriseLinux repository list
 # https://mariadb.org/download/
@@ -119,12 +120,15 @@ baseurl = https://rpm.mariadb.org/11.3/rhel/$releasever/$basearch
 gpgkey = https://rpm.mariadb.org/RPM-GPG-KEY-MariaDB
 gpgcheck = 1
 ```
+
 EPEL repository may be required to satisfy the pv dependency of galera.
 
 After the file is in place, install and start MariaDB with:
+
 ```bash
 dnf install MariaDB-server MariaDB-client
 ```
+
 If you haven't already accepted the MariaDB GPG key, you will be prompted to do so during the install.
 
 Start the MariaDB service and set it to boot
@@ -216,14 +220,14 @@ systemctl restart nginx
 Once the web hosting setup is complete, go to the root folder of the website you setup and execute the following command:
 
 ```bash
-dnf install git
-git clone -b dev https://github.com/SSPanel-NeXT/NeXT-Panel.git .
+wget https://github.com/SSPanel-NeXT/NeXT-Panel/releases/download/24.5.0/NeXT-Panel-24.5.0.zip
+unzip NeXT-Panel-24.5.0.zip .
 wget https://getcomposer.org/installer -O composer.phar
 php composer.phar
 php composer.phar install --no-dev
 ```
 
-> The dev in this case represents the dev version of the NeXT-Panel, you may encounter unforeseen issues during use.
+> The `NeXT-Panel-24.5.0.zip` in this case represents the latest released version of the NeXT-Panel, you should replace the version number with the latest one in the [Release](https://github.com/SSPanel-NeXT/NeXT-Panel/releases) page.
 
 Then set the overall permissions for your web directory
 
@@ -231,6 +235,7 @@ Then set the overall permissions for your web directory
 chmod -R 755 *
 chown -R nginx:nginx *
 ```
+
 * PS. change the user and group to www-data:www-data if you using www-data account
 
 Then we start the database part of the creation operation by first logging into MariaDB Server

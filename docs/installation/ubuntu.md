@@ -225,14 +225,14 @@ systemctl restart nginx
 Once the web hosting setup is complete, go to the root folder of the website you setup and execute the following command:
 
 ```bash
-apt install git
-git clone -b dev https://github.com/SSPanel-NeXT/NeXT-Panel.git .
+wget https://github.com/SSPanel-NeXT/NeXT-Panel/releases/download/24.5.0/NeXT-Panel-24.5.0.zip
+unzip NeXT-Panel-24.5.0.zip .
 wget https://getcomposer.org/installer -O composer.phar
 php composer.phar
 php composer.phar install --no-dev
 ```
 
-> The dev in this case represents the dev version of the NeXT-Panel, you may encounter unforeseen issues during use.
+> The `NeXT-Panel-24.5.0.zip` in this case represents the latest released version of the NeXT-Panel, you should replace the version number with the latest one in the [Release](https://github.com/SSPanel-NeXT/NeXT-Panel/releases) page.
 
 Then set the overall permissions for your web directory
 

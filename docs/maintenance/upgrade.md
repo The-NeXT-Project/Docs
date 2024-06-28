@@ -2,18 +2,10 @@
 
 ## Version upgrade
 
-In the current directory, run the following command to upgrade config
+### Release
 
-### Dev branch
-
-```bash
-bash update.sh dev
-```
-
-### Release branching
+First you need to download latest release zip file(NeXT-Panel-*.zip) from release page and overwritten the exsisting files(Remember to do a site file and database before upgrading!), and run the following command to update the local installation of NeXT panel.
 
 ```bash
-bash update.sh release [release version] [database version]
+bash update.sh oss
 ```
-
-You can find the corresponding database version in the Release Note
