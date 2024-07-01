@@ -3,6 +3,7 @@
 > Environment used for this tutorial: Red Hat Enterprise Linux 9.4/x86_64
 
 ## Enable CRB, EPEL and Remi repository
+
 ```bash
 subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms
 dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
@@ -22,6 +23,7 @@ systemctl stop firewalld
 For Nginx installation, we use the official Nginx YUM/DNF source.
 
 1.Add the Nginx repository to your system’s repository list. You can do this by creating a new repo file in /etc/yum.repos.d/ named nginx.repo and adding the following configuration:
+
 ```
 [nginx-stable]
 name=nginx stable repo
@@ -31,6 +33,7 @@ enabled=1
 gpgkey=https://nginx.org/keys/nginx_signing.key
 module_hotfixes=true
 ```
+
 Remember to replace $basearch with your specific cpu architecture(x86_64/aarch64/s390x), respectively1. This will set up Nginx from the official Nginx repository, which is recommended to get the latest stable version.
 
 2.Update your local package index:
@@ -46,6 +49,7 @@ dnf install nginx
 ```
 
 4.Verify the installation by checking the version of Nginx installed:
+
 ```bash
 nginx -v
 ```
@@ -60,6 +64,7 @@ systemctl enable nginx
 ## Installing PHP
 
 Red Hat Enterprise Linux 9.4 comes with PHP version of 8.0, now we change it to remi repo php-8.3
+
 ```bash
 dnf module switch-to php:remi-8.3
 ```
@@ -84,11 +89,14 @@ systemctl enable php-fpm
 ```
 
 Now edit php-fpm user in file `/etc/php-fpm.d/www.conf`
+
 ```conf
 user = apache
 group = apache
 ```
+
 to
+
 ```conf
 user = nginx
 group = nginx
@@ -102,6 +110,7 @@ listen.group = nginx
 listen.mode = 0660
 listen.acl_users = nginx
 ```
+
 * PS. You can change the nginx user to www-data by yourself, but make sure you set all the permissions correctly, we use nginx here because the nginx package already created the account for us.
 
 ## Installing MariaDB

@@ -64,16 +64,19 @@ Debian 12 (bookworm) comes with an older version of PHP, so we'll install it usi
 To add the Debian DPA for packages.sury.org/php, you can follow these steps:
 
 1.Import the repository’s GPG key:
+
 ```bash
 wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 ```
 
 2.Add the repository to your system’s software sources:
+
 ```bash
 echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list
 ```
 
 3.Update your package lists:
+
 ```bash
 apt update
 ```

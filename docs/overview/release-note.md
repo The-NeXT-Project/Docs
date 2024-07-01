@@ -4,12 +4,17 @@ sidebar_position: 4
 
 # Release Note
 
-## 24.5.0
+## 24.5.1
 
 Database version `2024061600`
 
-Note since this release, we will only publish new tags/releases on `main` branch, which means NeXT Panel will now have a stable branch and a dev branch.
-On the main branch, there will not be any force-push or commit history-breaking rebase, only those new commits from `dev` branch will be rebased on it every time a new release is dropped.
+### What's Changed
+
+* Fixed an issue that prevents PayPal gateway popup from being displayed
+
+## 24.5.0
+
+Database version `2024061600`
 
 ### What's Changed
 
