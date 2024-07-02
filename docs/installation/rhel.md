@@ -231,9 +231,6 @@ Once the web hosting setup is complete, go to the root folder of the website you
 ```bash
 wget https://github.com/SSPanel-NeXT/NeXT-Panel/releases/download/24.5.0/NeXT-Panel-24.5.0.zip
 unzip NeXT-Panel-24.5.0.zip .
-wget https://getcomposer.org/installer -O composer.phar
-php composer.phar
-php composer.phar install --no-dev
 ```
 
 > The `NeXT-Panel-24.5.0.zip` in this case represents the latest released version of the NeXT-Panel, you should replace the version number with the latest one in the [Release](https://github.com/SSPanel-NeXT/NeXT-Panel/releases) page.
