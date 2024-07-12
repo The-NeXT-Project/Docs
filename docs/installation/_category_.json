@@ -1,8 +1,4 @@
 {
   "label": "Installation",
-  "position": 2,
-  "link": {
-    "type": "generated-index",
-    "description": "Installation instructions for NeXT Panel"
-  }
+  "position": 2
 }
