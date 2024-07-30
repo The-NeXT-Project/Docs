@@ -44,16 +44,6 @@ Request path
 /sub/{$userSubscriptionKey}/singbox
 ```
 
-## SIP008 format
-
-> SIP008 subscriptions are only supported for Shadowsocks node types
-
-Request Path
-
-```
-/sub/{$userSubscriptionKey}/sip008
-```
-
 ## V2Ray Json V5 format
 
 Request Path

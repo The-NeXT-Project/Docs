@@ -8,9 +8,6 @@
     "offset_port_user": "", //port in subscription
     "offset_port_node": "", //Port in node server
     "host": "", //SNI
-    //Shadowsocks
-    "plugin": "", //SIP002 plugin
-    "plugin_option": "", //plugin parameters
     //Shadowsocks 2022
     "method": "",
     "server_key": "",

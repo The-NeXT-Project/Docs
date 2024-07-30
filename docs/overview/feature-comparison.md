@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Feature Comparison(OSS vs Pro)
+# Feature Comparison (OSS vs Pro)
 
 | Feature                                                                                                                   | OSS Edition | Pro Edition |
 |---------------------------------------------------------------------------------------------------------------------------|-------------|-------------|
