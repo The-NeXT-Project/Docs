@@ -115,17 +115,14 @@ listen.acl_users = nginx
 
 ## Installing MariaDB
 
-Red Hat Enterprise Linux 9.4 only comes with MariaDB 10 so we install MariaDB 11.3 from official DNF/YUM repository.
+Red Hat Enterprise Linux 9.4 only comes with MariaDB 10 so we install MariaDB 11.4 from official DNF/YUM repository.
 
 Here is a custom MariaDB DNF/YUM repository entry for RedHatEnterpriseLinux. Copy and paste it into a file under /etc/yum.repos.d (we suggest naming the file MariaDB.repo or something similar).
 
 ```
-# MariaDB 11.3 RedHatEnterpriseLinux repository list
-# https://mariadb.org/download/
 [mariadb]
 name = MariaDB
-# rpm.mariadb.org is a dynamic mirror if your preferred mirror goes offline. See https://mariadb.org/mirrorbits/ for details.
-baseurl = https://rpm.mariadb.org/11.3/rhel/$releasever/$basearch
+baseurl = https://rpm.mariadb.org/11.4/rhel/$releasever/$basearch
 gpgkey = https://rpm.mariadb.org/RPM-GPG-KEY-MariaDB
 gpgcheck = 1
 ```
@@ -229,11 +226,11 @@ systemctl restart nginx
 Once the web hosting setup is complete, go to the root folder of the website you setup and execute the following command:
 
 ```bash
-wget https://github.com/SSPanel-NeXT/NeXT-Panel/releases/download/24.5.0/NeXT-Panel-24.5.0.zip
-unzip NeXT-Panel-24.5.0.zip .
+wget https://github.com/SSPanel-NeXT/NeXT-Panel/releases/download/24.5.1/NeXT-Panel-24.5.1.zip
+unzip NeXT-Panel-24.5.1.zip .
 ```
 
-> The `NeXT-Panel-24.5.0.zip` in this case represents the latest released version of the NeXT-Panel, you should replace the version number with the latest one in the [Release](https://github.com/SSPanel-NeXT/NeXT-Panel/releases) page.
+> The `NeXT-Panel-24.5.1.zip` in this case represents the latest released version of the NeXT-Panel, you should replace the version number with the latest one in the [Release](https://github.com/SSPanel-NeXT/NeXT-Panel/releases) page.
 
 Then set the overall permissions for your web directory
 

@@ -1,6 +1,6 @@
 # Ubuntu
 
-> Environment used for this tutorial: Ubuntu 22.04/x86_64
+> Environment used for this tutorial: Ubuntu 24.04/x86_64
 
 ## Disabling UFW
 
@@ -59,7 +59,7 @@ systemctl enable nginx
 
 ## Installing PHP
 
-Ubuntu 22.04 comes with an older version of PHP, so we'll install it using the PPA source at deb.sury.org
+We'll install PHP using the PPA source from deb.sury.org
 
 ```bash
 add-apt-repository ppa:ondrej/php
@@ -99,9 +99,8 @@ Edit the `/etc/apt/sources.list.d/mariadb.sources` file and write the following 
 ```
 X-Repolib-Name: MariaDB
 Types: deb
-# deb.mariadb.org is a dynamic mirror if your preferred mirror goes offline. See https://mariadb.org/mirrorbits/ for details.
-URIs: https://deb.mariadb.org/11.2/ubuntu
-Suites: jammy
+URIs: https://deb.mariadb.org/11.4/ubuntu
+Suites: noble
 Components: main main/debug
 Signed-By: /etc/apt/keyrings/mariadb-keyring.pgp
 ```
@@ -112,7 +111,7 @@ Update the APT cache
 apt update
 ```
 
-Install MariaDB 11.2
+Install MariaDB 11.4
 
 ```bash
 apt install mariadb-server
