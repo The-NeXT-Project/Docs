@@ -1,10 +1,10 @@
-# NeXT Repositories
+# NeXT Repository for Linux
 
 ## Supported OS
 
 ### RPM
 
-- Fedora 39/40 (i.e. the two latest Fedora versions)
+- Fedora 40/41 (i.e. the two latest Fedora versions)
 - RHEL/Rocky Linux/AlmaLinux 8/9
 
 Note that Oracle Linux 8/9 can theoretically be supported, but the actual compatibility is unknown as it has not been tested.
@@ -17,10 +17,7 @@ Note that Oracle Linux 8/9 can theoretically be supported, but the actual compat
 
 - arm64 (aarch64)
 - amd64 (x86_64)
-
-## Hardware architectures we plan to support
-
-- riscv64 (Currently DEB mirror only)
+- riscv64 (DEB mirror only)
 
 Packages for amd64 architecture only support x86 v3 and newer x86 processors, i.e. with avx2 instruction set support (Intel: Haswell and newer, AMD: Excavator and newer).
 
