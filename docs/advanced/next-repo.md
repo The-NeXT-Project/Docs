@@ -50,9 +50,6 @@ apt update
 - next-server
 - sing-box
 - spoiler
-
-## List of software we plan to provide
-
 - v2ray-core
 - clash-meta(mihomo)
 
