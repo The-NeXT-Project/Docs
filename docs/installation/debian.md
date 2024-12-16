@@ -84,14 +84,14 @@ apt update
 Then install the required PHP modules
 
 ```bash
-apt install php8.3-{bcmath,bz2,cli,common,curl,fpm,gd,igbinary,mbstring,mysql,opcache,readline,redis,xml,yaml,zip}
+apt install php8.4-{bcmath,bz2,cli,common,curl,fpm,gd,igbinary,mbstring,mysql,opcache,readline,redis,xml,yaml,zip}
 ```
 
 Start the php-fpm service and set it to boot
 
 ```bash
-systemctl start php8.3-fpm
-systemctl enable php8.3-fpm
+systemctl start php8.4-fpm
+systemctl enable php8.4-fpm
 ```
 
 ## Installing MariaDB
@@ -301,19 +301,19 @@ Use `crontab -e` command to configure cron job for the panel：
 Disable some dangerous PHP Functions
 
 ```bash
-sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.3/fpm/php.ini
-sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.3/cli/php.ini
+sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.4/fpm/php.ini
+sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.4/cli/php.ini
 ```
 
 You need to restart the PHP-FPM service after modifying it.
 
 ```bash
-systemctl restart php8.3-fpm
+systemctl restart php8.4-fpm
 ```
 
 Enable OPcache and JIT
 
-In `/etc/php/8.3/fpm/conf.d/10-opcache.ini` add the following configuration
+In `/etc/php/8.4/fpm/conf.d/10-opcache.ini` add the following configuration
 
 ```
 zend_extension=opcache.so
@@ -331,5 +331,5 @@ opcache.validate_root=on
 You also need to restart the PHP-FPM service after modifying it.
 
 ```bash
-systemctl restart php8.3-fpm
+systemctl restart php8.4-fpm
 ```

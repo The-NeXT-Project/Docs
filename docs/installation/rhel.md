@@ -63,10 +63,10 @@ systemctl enable nginx
 
 ## Installing PHP
 
-Red Hat Enterprise Linux 9.4 comes with PHP version of 8.0, now we change it to remi repo php-8.3
+Red Hat Enterprise Linux 9.4 comes with PHP version of 8.0, now we change it to remi repo php-8.4
 
 ```bash
-dnf module switch-to php:remi-8.3
+dnf module switch-to php:remi-8.4
 ```
 
 Similarly, update the DNF cache
