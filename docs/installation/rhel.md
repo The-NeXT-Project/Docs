@@ -63,6 +63,8 @@ systemctl enable nginx
 
 ## Installing PHP
 
+> Note to avoid Redis related issues, you need to make sure phpredis extension is correctly installed and version >= 6.0.2
+
 Red Hat Enterprise Linux 9.4 comes with PHP version of 8.0, now we change it to remi repo php-8.4
 
 ```bash

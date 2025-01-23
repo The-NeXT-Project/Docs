@@ -59,6 +59,8 @@ systemctl enable nginx
 
 ## Installing PHP
 
+> Note to avoid Redis related issues, you need to make sure phpredis extension is correctly installed and version >= 6.0.2
+
 Debian 12 (bookworm) comes with an older version of PHP, so we'll install it using the PHP repository at packages.sury.org/php
 
 To add the Debian DPA for packages.sury.org/php, you can follow these steps:

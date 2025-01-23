@@ -59,6 +59,8 @@ systemctl enable nginx
 
 ## Installing PHP
 
+> Note to avoid Redis related issues, you need to make sure phpredis extension is correctly installed and version >= 6.0.2
+
 We'll install PHP using the PPA source from deb.sury.org
 
 ```bash
