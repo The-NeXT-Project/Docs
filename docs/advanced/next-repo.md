@@ -4,10 +4,10 @@
 
 ### RPM
 
-- Fedora 40/41 (i.e. the two latest Fedora versions)
-- RHEL/Rocky Linux/AlmaLinux 8/9
+- Fedora 41/42 (i.e. the two latest Fedora versions)
+- RHEL/Rocky Linux/AlmaLinux 9/10
 
-Note that Oracle Linux 8/9 can theoretically be supported, but the actual compatibility is unknown as it has not been tested.
+Note that Oracle Linux 9/10 can theoretically be supported, but the actual compatibility is unknown as it has not been tested.
 
 ### DEB
 
