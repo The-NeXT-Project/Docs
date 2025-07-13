@@ -37,7 +37,7 @@ wget -O /etc/yum.repos.d/next.repo https://mirrors.nextpanel.dev/repo/fedora.rep
 dnf update
 ```
 
-### DEB
+### Debian/Ubuntu
 
 ```bash
 wget -O /etc/apt/sources.list.d/next.list https://mirrors.nextpanel.dev/repo/deb.list
