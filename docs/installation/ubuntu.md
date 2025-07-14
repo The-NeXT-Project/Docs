@@ -101,7 +101,7 @@ Edit the `/etc/apt/sources.list.d/mariadb.sources` file and write the following 
 ```
 X-Repolib-Name: MariaDB
 Types: deb
-URIs: https://deb.mariadb.org/11.4/ubuntu
+URIs: https://deb.mariadb.org/11.8/ubuntu
 Suites: noble
 Components: main main/debug
 Signed-By: /etc/apt/keyrings/mariadb-keyring.pgp
@@ -113,7 +113,7 @@ Update the APT cache
 apt update
 ```
 
-Install MariaDB 11.4
+Install MariaDB 11.8
 
 ```bash
 apt install mariadb-server

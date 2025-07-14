@@ -117,14 +117,14 @@ listen.acl_users = nginx
 
 ## Installing MariaDB
 
-Red Hat Enterprise Linux 9.4 only comes with MariaDB 10 so we install MariaDB 11.4 from official DNF/YUM repository.
+Red Hat Enterprise Linux 9 only comes with MariaDB 10 so we install MariaDB 11.8 from official DNF/YUM repository.
 
 Here is a custom MariaDB DNF/YUM repository entry for RedHatEnterpriseLinux. Copy and paste it into a file under /etc/yum.repos.d (we suggest naming the file MariaDB.repo or something similar).
 
 ```
 [mariadb]
 name = MariaDB
-baseurl = https://rpm.mariadb.org/11.4/rhel/$releasever/$basearch
+baseurl = https://rpm.mariadb.org/11.8/rhel/$releasever/$basearch
 gpgkey = https://rpm.mariadb.org/RPM-GPG-KEY-MariaDB
 gpgcheck = 1
 ```
