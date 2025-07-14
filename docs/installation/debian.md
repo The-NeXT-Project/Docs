@@ -111,7 +111,7 @@ Edit the `/etc/apt/sources.list.d/mariadb.sources` file and write the following 
 ```
 X-Repolib-Name: MariaDB
 Types: deb
-URIs: https://deb.mariadb.org/11.4/debian
+URIs: https://deb.mariadb.org/11.8/debian
 Suites: bookworm
 Components: main
 Signed-By: /etc/apt/keyrings/mariadb-keyring.pgp
@@ -123,7 +123,7 @@ Update the APT cache
 apt update
 ```
 
-Install MariaDB 11.4
+Install MariaDB 11.8
 
 ```bash
 apt install mariadb-server
@@ -236,11 +236,11 @@ systemctl restart nginx
 Once the web hosting setup is complete, go to the root folder of the website you setup and execute the following command:
 
 ```bash
-wget https://github.com/SSPanel-NeXT/NeXT-Panel/releases/download/24.5.1/NeXT-Panel-24.5.1.zip
+wget https://github.com/The-NeXT-Project/NeXT-Panel/releases/download/24.5.1/NeXT-Panel-24.5.1.zip
 unzip NeXT-Panel-24.5.1.zip .
 ```
 
-> The `NeXT-Panel-24.5.1.zip` in this case represents the latest released version of the NeXT-Panel, you should replace the version number with the latest one in the [Release](https://github.com/SSPanel-NeXT/NeXT-Panel/releases) page.
+> The `NeXT-Panel-24.5.1.zip` in this case represents the latest released version of the NeXT-Panel, you should replace the version number with the latest one in the [Release](https://github.com/The-NeXT-Project/NeXT-Panel/releases) page.
 
 Then set the overall permissions for your web directory
 

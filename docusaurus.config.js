@@ -5,15 +5,18 @@ const config = {
   title: 'NeXT-Panel',
   tagline: 'Next generation proxy service management system',
   favicon: 'img/favicon.ico',
-  url: 'https://www.nextpanel.dev',
+  url: 'https://nextpanel.dev',
   baseUrl: '/',
-
-  organizationName: 'SSPanel-NeXT',
+  organizationName: 'The-NeXT-Project',
   projectName: 'Docs',
   trailingSlash: false,
+  onBrokenLinks: 'ignore',
 
-  onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'warn',
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'ignore',
+    }
+  },
 
   i18n: {
     defaultLocale: 'en',
@@ -22,13 +25,13 @@ const config = {
 
   presets: [
     [
-      'classic',
+      '@docusaurus/preset-classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
           sidebarPath: './sidebars.js',
           editUrl:
-            'https://github.com/SSPanel-NeXT/Docs',
+            'https://github.com/The-NeXT-Project/Docs',
         },
         blog: {
           showReadingTime: true,
@@ -55,10 +58,10 @@ const config = {
         },
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'docsSidebar',
+            to: '/docs',
             label: 'Docs',
-            position: 'left',
+            activeBasePath: 'docs/',
+            position: 'left'
           },
           {
             to: '/blog',
@@ -66,7 +69,11 @@ const config = {
             position: 'left'
           },
           {
-            href: 'https://github.com/SSPanel-NeXT/NeXT-Panel',
+            type: 'search',
+            position: 'left'
+          },
+          {
+            href: 'https://github.com/The-NeXT-Project/NeXT-Panel',
             label: 'GitHub',
             position: 'right',
           },
@@ -94,6 +101,10 @@ const config = {
         },
       },
     }),
+
+    plugins: [
+      "@orama/plugin-docusaurus-v3"
+    ],
 };
 
 export default config;
