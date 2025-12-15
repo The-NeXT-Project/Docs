@@ -23,14 +23,14 @@ Download the default configuration file
 wget https://raw.githubusercontent.com/AutisticShark/Airport-toolkit/main/b2_backup_config
 ```
 
-Modify the configuration in it, then change the configuration file to an appropriate name, such as sspanel_backup_config, put it in the same directory as the script, and then run the script
+Modify the configuration in it, then change the configuration file to an appropriate name, such as nextpanel_backup_config, put it in the same directory as the script, and then run the script
 
 ```bash
-. /b2_backup.sh backup sspanel_backup_config
+. /b2_backup.sh backup nextpanel_backup_config
 ```
 
 You can also add the backup task to a cron timer
 
 ```
-1 0 * * * /usr/bin/bash /path/to/script/b2_backup.sh backup sspanel_backup_config
+1 0 * * * /usr/bin/bash /path/to/script/b2_backup.sh backup nextpanel_backup_config
 ```

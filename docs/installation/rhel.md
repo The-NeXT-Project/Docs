@@ -1,13 +1,18 @@
+---
+sidebar_position: 99
+sidebar_class_name: hidden
+---
+
 # RHEL
 
-> Environment used for this tutorial: Red Hat Enterprise Linux 9.4/x86_64
+> Environment used for this tutorial: Red Hat Enterprise Linux 10.1/x86_64
 
 ## Enable CRB, EPEL and Remi repository
 
 ```bash
-subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms
-dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
-dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
+subscription-manager repos --enable codeready-builder-for-rhel-10-$(arch)-rpms
+dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm
+dnf install https://rpms.remirepo.net/enterprise/remi-release-10.rpm
 ```
 
 ## Disabling firewalld
@@ -27,7 +32,7 @@ For Nginx installation, we use the official Nginx YUM/DNF source.
 ```
 [nginx-stable]
 name=nginx stable repo
-baseurl=https://nginx.org/packages/rhel/9/$basearch/
+baseurl=https://nginx.org/packages/rhel/10/$basearch/
 gpgcheck=1
 enabled=1
 gpgkey=https://nginx.org/keys/nginx_signing.key
@@ -65,7 +70,7 @@ systemctl enable nginx
 
 > Note to avoid Redis related issues, you need to make sure phpredis extension is correctly installed and version >= 6.0.2
 
-Red Hat Enterprise Linux 9.4 comes with PHP version of 8.0, now we change it to remi repo php-8.4
+Red Hat Enterprise Linux 10.1 comes with PHP version of 8.0, now we change it to remi repo php-8.4
 
 ```bash
 dnf module switch-to php:remi-8.4
@@ -249,17 +254,17 @@ Then we start the database part of the creation operation by first logging into 
 mariadb -u root -p
 ```
 
- Enter the password you just set during installation and create a database with the encoding `utf8mb4_unicode_ci` and any name you want, using sspanel as an example.
+ Enter the password you just set during installation and create a database with the encoding `utf8mb4_unicode_ci` and any name you want, using nextpanel as an example.
 
 ```sql
-MariaDB [(none)]> CREATE DATABASE sspanel CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+MariaDB [(none)]> CREATE DATABASE nextpanel CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-Then create a local database user and restrict the user's privileges to the newly created database, using sspanel as the user name and sspanel-password as the user's password.
+Then create a local database user and restrict the user's privileges to the newly created database, using nextpanel as the user name and nextpanel-password as the user's password.
 
 ```sql
-MariaDB [(none)]> CREATE USER 'sspanel'@'localhost';
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON sspanel.* TO 'sspanel'@'localhost' IDENTIFIED BY 'sspanel-password';
+MariaDB [(none)]> CREATE USER 'nextpanel'@'localhost';
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON nextpanel.* TO 'nextpanel'@'localhost' IDENTIFIED BY 'nextpanel-password';
 MariaDB [(none)]> FLUSH PRIVILEGES;
 ```
 

@@ -1,6 +1,11 @@
+---
+sidebar_position: 99
+sidebar_class_name: hidden
+---
+
 # Debian
 
-> Environment used for this tutorial: Debian 12/x86_64
+> Environment used for this tutorial: Debian 13/x86_64
 
 ## Disabling UFW
 
@@ -61,7 +66,7 @@ systemctl enable nginx
 
 > Note to avoid Redis related issues, you need to make sure phpredis extension is correctly installed and version >= 6.0.2
 
-Debian 12 (bookworm) comes with an older version of PHP, so we'll install it using the PHP repository at packages.sury.org/php
+Debian 13 (bookworm) comes with an older version of PHP, so we'll install it using the PHP repository at packages.sury.org/php
 
 To add the Debian DPA for packages.sury.org/php, you can follow these steps:
 
@@ -86,14 +91,14 @@ apt update
 Then install the required PHP modules
 
 ```bash
-apt install php8.4-{bcmath,bz2,cli,common,curl,fpm,gd,igbinary,mbstring,mysql,opcache,readline,redis,xml,yaml,zip}
+apt install php8.5-{bcmath,bz2,cli,common,curl,fpm,gd,igbinary,mbstring,mysql,readline,redis,xml,yaml,zip}
 ```
 
 Start the php-fpm service and set it to boot
 
 ```bash
-systemctl start php8.4-fpm
-systemctl enable php8.4-fpm
+systemctl start php8.5-fpm
+systemctl enable php8.5-fpm
 ```
 
 ## Installing MariaDB
@@ -255,17 +260,17 @@ Then we start the database part of the creation operation by first logging into 
 mariadb -u root -p
 ```
 
- Enter the password you just set during installation and create a database with the encoding `utf8mb4_unicode_ci` and any name you want, using sspanel as an example.
+ Enter the password you just set during installation and create a database with the encoding `utf8mb4_unicode_ci` and any name you want, using nextpanel as an example.
 
 ```sql
-MariaDB [(none)]> CREATE DATABASE sspanel CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+MariaDB [(none)]> CREATE DATABASE nextpanel CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-Then create a local database user and restrict the user's privileges to the newly created database, using sspanel as the user name and sspanel-password as the user's password.
+Then create a local database user and restrict the user's privileges to the newly created database, using nextpanel as the user name and nextpanel-password as the user's password.
 
 ```sql
-MariaDB [(none)]> CREATE USER 'sspanel'@'localhost';
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON sspanel.* TO 'sspanel'@'localhost' IDENTIFIED BY 'sspanel-password';
+MariaDB [(none)]> CREATE USER 'nextpanel'@'localhost';
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON nextpanel.* TO 'nextpanel'@'localhost' IDENTIFIED BY 'nextpanel-password';
 MariaDB [(none)]> FLUSH PRIVILEGES;
 ```
 

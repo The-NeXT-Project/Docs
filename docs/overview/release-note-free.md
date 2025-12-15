@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# Release Note (OSS Edition)
+# Release Note (Free Edition)
 
 ## 24.5.1
 

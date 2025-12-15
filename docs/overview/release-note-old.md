@@ -35,7 +35,6 @@ Database version `2024040500`
 
 ### What's New
 
-* New installations of SSPanel-UIM will now not perform a migration to an older version of the database.
 * New Gemini LLM backend.
 * New Vertex AI LLM backend.
 * New Anthropic LLM backend.
@@ -85,7 +84,6 @@ Database version `2024012700`
 ### What's New
 
 * Added Cloudflare Workers AI LLM backend.
-* Added PHP 8.3 unit test, now SSPanel-UIM is fully compatible with PHP 8.3 version.
 * Added Twig template service in preparation for i18n integration.
 * Json Universal Subscription v4
 * Added Linear calculation for dynamic multiplicity.
@@ -325,10 +323,8 @@ Database version `2023030500`
 * Fixed issue with Trojan grpc Clash subscription distribution @KorenKrita.
 * Added the ability to get the IPv6 address of a node @KorenKrita
 * Added a new store system switch for users on the admin user settings page
-* Fixed an issue that could cause SSPanel-UIM sites to be batch scanned and recognized.
 * Users' passwords are encrypted with bcrypt by default.
 * New store system, including product/order/billing components.
-* Reset the built-in SSPanel-UIM and payment gateway icons with waifu2x.
 * New SIP002 subscription distribution with Shadowsocks plugin support.
 * New coupon code system, support multiple types of coupon codes, new user only, per user, and more accurate expiration time settings.
 * Updated Slim framework for panels to version 4 @Irohaede.

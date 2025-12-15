@@ -2,9 +2,9 @@
 sidebar_position: 2
 ---
 
-# Feature Comparison (OSS vs Pro)
+# Feature Comparison (Free vs Pro)
 
-| Feature                                                                                                                   | OSS Edition | Pro Edition |
+| Feature                                                                                                                   | Free Edition | Pro Edition |
 |---------------------------------------------------------------------------------------------------------------------------|-------------|-------------|
 | Core PHP Backend & Htmx/jQuery Frontend                                                                                   | ✅           | ✅           |
 | Golang-based high-performance Node/User/Admin API                                                                         | ❌           | ✅(WiP)           |
@@ -16,4 +16,4 @@ sidebar_position: 2
 | Easy to use panel initialization wizard, no CLI operation is needed                                                       | ❌           | ✅           |
 | Integration with other cluster management system(Ansible/SaltStack), automatically manage your proxy servers in one place | ❌           | ✅(WiP)           |
 
-Note some of the features will not be available on the Pro Edition on day 1, we expect those features will be gradually rolled out in the coming months.
+Note some of the features will not be available on the Pro Edition on day one, we expect those features will be gradually rolled out in the coming months.
