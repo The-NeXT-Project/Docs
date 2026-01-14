@@ -4,16 +4,16 @@
 
 ```json
 {
-    //generic
-    "offset_port_user": "", //port in subscription
-    "offset_port_node": "", //Port in node server
-    "host": "", //SNI
-    //Shadowsocks 2022
+    // Generic configuration
+    "offset_port_user": "", // Port used in user subscription.
+    "offset_port_node": "", // Port used in node server.
+    "host": "", // SNI, works on certain Vmess transport protocols involved TLS, Trojan, TUIC and AnyTLS.
+    "allow_insecure": "0", // Skip TLS verification, same as host.
+    // Shadowsocks 2022
     "method": "",
     "server_key": "",
-    //Vmess
+    // Vmess
     "tls": "0",
-    "allow_insecure": "0",
     "network": "",
     "security": "",
     "encryption":"",
@@ -23,8 +23,7 @@
         "request": {},
         "response": {}
     },
-    //Trojan
-    "allow_insecure": "0",
+    // Trojan
     "servicename": "",
     "mux": "0",
     "network": "",
@@ -34,8 +33,24 @@
         "request": {},
         "response": {}
     },
-    //Clash related, only used for Clash Universal Subscription, does not affect node configuration distribution
-    //Refer to the documentation at https://github.com/MetaCubeX/mihomo/blob/Alpha/docs/config.yaml
+    // AnyTLS
+    "padding_scheme": [
+        "stop=8",
+        "0=30-30",
+        "1=100-400",
+        "2=400-500,c,500-1000,c,500-1000,c,500-1000,c,500-1000",
+        "3=9-9,500-1000",
+        "4=500-1000",
+        "5=500-1000",
+        "6=500-1000",
+        "7=500-1000"
+    ], // If padding scheme is empty, the default value will be used.
+    "client-fingerprint": "chrome",
+    "idle-session-check-interval": 30,
+    "idle-session-timeout": 30,
+    "min-idle-session": 0,
+    // Clash related, only used for Clash Universal Subscription, does not affect node configuration distribution.
+    // Refer to the documentation at https://github.com/MetaCubeX/mihomo/blob/Alpha/docs/config.yaml.
     "udp": "1",
     "plugin-opts": {
         // Corresponds to the plugin-opts configuration in the Clash Yaml file.
@@ -163,7 +178,32 @@ Server key can be generated with `openssl rand -base64 16` command.
 {
     "offset_port_node": "8443",
     "host": "server_name",
-    "insecure": "0"
+    "allow_insecure": "0"
+}
+```
+
+## AnyTLS
+
+``` json
+{
+    "offset_port_node": "8443",
+    "host": "server_name",
+    "allow_insecure": "0",
+    "padding_scheme": [
+        "stop=8",
+        "0=30-30",
+        "1=100-400",
+        "2=400-500,c,500-1000,c,500-1000,c,500-1000,c,500-1000",
+        "3=9-9,500-1000",
+        "4=500-1000",
+        "5=500-1000",
+        "6=500-1000",
+        "7=500-1000"
+    ],
+    "client_fingerprint": "chrome",
+    "idle_session_check_interval": "30",
+    "idle_session_timeout": "30",
+    "min_idle_session": "0"
 }
 ```
 
@@ -176,4 +216,11 @@ Server key can be generated with `openssl rand -base64 16` command.
 }
 ```
 
-At this point, the user connection (inside the subscription) port is `42069` and the node listening port is `1919`
+The user connection (inside the subscription) port is `42069` and the node listening port is `1919`.
+
+### Offset Port Selection Priority for the User Subscription
+
+```
+"offset_port_user" ==> "offset_port_node" ==> 443
+// 443 is the default port for all protocols
+```
