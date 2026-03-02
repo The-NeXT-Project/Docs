@@ -76,7 +76,7 @@ apt update
 Then install the required PHP modules
 
 ```bash
-apt install php8.5-{bcmath,bz2,cli,common,curl,fpm,gd,igbinary,mbstring,mysql,readline,redis,xml,yaml,zip}
+apt install php8.5-{bcmath,bz2,cli,common,curl,fpm,gd,gmp,igbinary,mbstring,mysql,readline,redis,xml,yaml,zip}
 ```
 
 Start the php-fpm service and set it to boot
@@ -105,7 +105,7 @@ Edit the `/etc/apt/sources.list.d/mariadb.sources` file and write the following 
 ```
 X-Repolib-Name: MariaDB
 Types: deb
-URIs: https://deb.mariadb.org/12.1/ubuntu
+URIs: https://deb.mariadb.org/12.2/ubuntu
 Suites: noble
 Components: main main/debug
 Signed-By: /etc/apt/keyrings/mariadb-keyring.pgp
@@ -117,7 +117,7 @@ Update the APT cache
 apt update
 ```
 
-Install MariaDB 12.1
+Install MariaDB 12.2
 
 ```bash
 apt install mariadb-server
