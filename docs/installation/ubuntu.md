@@ -117,7 +117,7 @@ Update the APT cache
 apt update
 ```
 
-Install MariaDB 12.2
+Install MariaDB
 
 ```bash
 apt install mariadb-server
