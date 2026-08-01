@@ -1,0 +1,9 @@
+dev:
+  label: 'Dev'
+  description: 'All dev-related posts'
+  permalink: /dev
+
+release:
+  label: 'Release'
+  description: 'All release-related posts'
+  permalink: /release
