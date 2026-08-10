@@ -1,7 +1,3 @@
----
-sidebar_class_name: hidden
----
-
 # Debian
 
 > Environment used for this tutorial: Debian 13/x86_64
@@ -65,23 +61,15 @@ systemctl enable nginx
 
 > Note to avoid Redis related issues, you need to make sure phpredis extension is correctly installed and version >= 6.0.2
 
-Debian 13 (bookworm) comes with an older version of PHP, so we'll install it using the PHP repository at packages.sury.org/php
-
-To add the Debian DPA for packages.sury.org/php, you can follow these steps:
-
-1.Import the repository’s GPG key:
+Debian 13 comes with an older version of PHP, so we'll install PHP using the repository from packages.sury.org
 
 ```bash
-wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+curl -sSLo /tmp/debsuryorg-archive-keyring.deb https://packages.sury.org/debsuryorg-archive-keyring.deb
+dpkg -i /tmp/debsuryorg-archive-keyring.deb
+sh -c 'echo "deb [signed-by=/usr/share/keyrings/debsuryorg-archive-keyring.gpg] https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
 ```
 
-2.Add the repository to your system’s software sources:
-
-```bash
-echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list
-```
-
-3.Update your package lists:
+Similarly, update the APT cache
 
 ```bash
 apt update
@@ -90,7 +78,7 @@ apt update
 Then install the required PHP modules
 
 ```bash
-apt install php8.5-{bcmath,bz2,cli,common,curl,fpm,gd,igbinary,mbstring,mysql,readline,redis,xml,yaml,zip}
+apt install php8.5-{bcmath,bz2,cli,common,curl,fpm,gd,gmp,igbinary,mbstring,mysql,readline,redis,xml,yaml,zip}
 ```
 
 Start the php-fpm service and set it to boot
@@ -99,6 +87,10 @@ Start the php-fpm service and set it to boot
 systemctl start php8.5-fpm
 systemctl enable php8.5-fpm
 ```
+
+## Installing ionCube Loader
+
+Every Free Edition of NeXT Panel starting with version 26 will be encoded with ionCube to protect key features and their implementation; therefore, the ionCube loader must be configured in your PHP environment before you can install NeXT Panel. Please refer to the [official ionCube website](https://www.ioncube.com/loaders.php) for more information.
 
 ## Installing MariaDB
 
@@ -115,9 +107,9 @@ Edit the `/etc/apt/sources.list.d/mariadb.sources` file and write the following 
 ```
 X-Repolib-Name: MariaDB
 Types: deb
-URIs: https://deb.mariadb.org/11.8/debian
-Suites: bookworm
-Components: main
+URIs: https://deb.mariadb.org/12.3/debian
+Suites: trixie
+Components: main main/debug
 Signed-By: /etc/apt/keyrings/mariadb-keyring.pgp
 ```
 
@@ -127,7 +119,7 @@ Update the APT cache
 apt update
 ```
 
-Install MariaDB 11.8
+Install MariaDB
 
 ```bash
 apt install mariadb-server
@@ -185,7 +177,7 @@ systemctl enable redis-server
 
 The first thing to do is to change the user that Nginx is running under, the default is nginx, and you need to change it to www-data.
 
-Change the `user` in `/etc/nginx/nginx.conf` from
+Change the `user` in the `/etc/nginx/nginx.conf` from
 
 ```nginx
 user nginx;
@@ -259,13 +251,13 @@ Then we start the database part of the creation operation by first logging into 
 mariadb -u root -p
 ```
 
- Enter the password you just set during installation and create a database with the encoding `utf8mb4_unicode_ci` and any name you want, using nextpanel as an example.
+ Enter the password you just set during installation and create a database with the encoding `utf8mb4_unicode_ci` and any name you want, using `nextpanel` as an example.
 
 ```sql
 MariaDB [(none)]> CREATE DATABASE nextpanel CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-Then create a local database user and restrict the user's privileges to the newly created database, using nextpanel as the user name and nextpanel-password as the user's password.
+Then create a local database user and restrict the user's privileges to the newly created database, using `nextpanel` as the user name and `nextpanel-password` as the user's password.
 
 ```sql
 MariaDB [(none)]> CREATE USER 'nextpanel'@'localhost';
@@ -284,45 +276,47 @@ nano config/.config.php
 Next, perform the following site initialization setup
 
 ```bash
-php xcat Migration new
-php xcat Tool importSetting
-php xcat Tool createAdmin
-sudo -u www-data /usr/bin/php xcat ClientDownload
+php next-cli Migration new
+php next-cli Tool importSetting
+php next-cli Tool createAdmin
+sudo -u www-data /usr/bin/php next-cli ClientDownload
 ```
 
 NeXT-Panel relies on the Maxmind GeoLite2 database to provide IP geolocation information, first you need to configure the `maxmind_account_id` and `maxmind_license_key` options in `config/.config.php` and then execute the following command:
 
 ```bash
-php xcat Tool updateGeoIP2
+php next-cli Tool updateGeoIP2
 ```
 
 Use `crontab -e` command to configure cron job for the panel：
 
 ```bash
-*/5 * * * * /usr/bin/php /path/to/your/site/xcat Cron
+*/5 * * * * /usr/bin/php /path/to/your/site/next-cli Cron
 ```
 
 ## Improving System Security and Performance
 
-Disable some dangerous PHP Functions
+Disable dangerous PHP Functions
 
 ```bash
-sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.4/fpm/php.ini
-sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.4/cli/php.ini
+sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.5/fpm/php.ini
+sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php/8.5/cli/php.ini
 ```
 
 You need to restart the PHP-FPM service after modifying it.
 
 ```bash
-systemctl restart php8.4-fpm
+systemctl restart php8.5-fpm
 ```
 
 Enable OPcache and JIT
 
-In `/etc/php/8.4/fpm/conf.d/10-opcache.ini` add the following configuration
+Since PHP 8.5, OPcache has been part of the default PHP installation and no longer needs to be installed separately.
+
+In `/etc/php/8.5/fpm/php.ini` add the following configuration after `[opcache]`
 
 ```
-zend_extension=opcache.so
+opcache.enable=1
 opcache.file_cache=/tmp
 opcache.interned_strings_buffer=64
 opcache.jit=on
@@ -337,5 +331,5 @@ opcache.validate_root=on
 You also need to restart the PHP-FPM service after modifying it.
 
 ```bash
-systemctl restart php8.4-fpm
+systemctl restart php8.5-fpm
 ```
