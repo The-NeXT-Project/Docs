@@ -1,7 +1,3 @@
----
-sidebar_class_name: hidden
----
-
 # RHEL
 
 > Environment used for this tutorial: Red Hat Enterprise Linux 10.1/x86_64
@@ -38,7 +34,7 @@ gpgkey=https://nginx.org/keys/nginx_signing.key
 module_hotfixes=true
 ```
 
-Remember to replace $basearch with your specific cpu architecture(x86_64/aarch64/s390x), respectively1. This will set up Nginx from the official Nginx repository, which is recommended to get the latest stable version.
+Remember to replace $basearch with your specific cpu architecture(x86_64/aarch64/s390x), respectively. This will set up Nginx from the official Nginx repository, which is recommended to get the latest stable version.
 
 2.Update your local package index:
 
@@ -69,10 +65,10 @@ systemctl enable nginx
 
 > Note to avoid Redis related issues, you need to make sure phpredis extension is correctly installed and version >= 6.0.2
 
-Red Hat Enterprise Linux 10.1 comes with PHP version of 8.0, now we change it to remi repo php-8.4
+Red Hat Enterprise Linux 10.1 comes with PHP version of 8.0, now we change it to remi repo php-8.5
 
 ```bash
-dnf module switch-to php:remi-8.4
+dnf module switch-to php:remi-8.5
 ```
 
 Similarly, update the DNF cache
@@ -84,7 +80,7 @@ dnf check-update
 Then install the required PHP modules
 
 ```bash
-dnf install php-{bcmath,bz2,cli,common,curl,fpm,gd,igbinary,mbstring,mysqlnd,opcache,readline,redis,xml,yaml,zip,posix,sodium}
+dnf install php-{bcmath,bz2,cli,common,curl,fpm,gd,gmp,igbinary,mbstring,mysqlnd,opcache,readline,redis,xml,yaml,zip,posix,sodium}
 ```
 
 Start the php-fpm service and set it to boot
@@ -119,16 +115,20 @@ listen.acl_users = nginx
 
 * PS. You can change the nginx user to www-data by yourself, but make sure you set all the permissions correctly, we use nginx here because the nginx package already created the account for us.
 
+## Installing ionCube Loader
+
+Every Free Edition of NeXT Panel starting with version 26 will be encoded with ionCube to protect key features and their implementation; therefore, the ionCube loader must be configured in your PHP environment before you can install NeXT Panel. Please refer to the [official ionCube website](https://www.ioncube.com/loaders.php) for more information.
+
 ## Installing MariaDB
 
-Red Hat Enterprise Linux 9 only comes with MariaDB 10 so we install MariaDB 11.8 from official DNF/YUM repository.
+Red Hat Enterprise Linux 10 only comes with an older version of MariaDB so we install MariaDB 12.3 from official DNF/YUM repository.
 
 Here is a custom MariaDB DNF/YUM repository entry for RedHatEnterpriseLinux. Copy and paste it into a file under /etc/yum.repos.d (we suggest naming the file MariaDB.repo or something similar).
 
 ```
 [mariadb]
 name = MariaDB
-baseurl = https://rpm.mariadb.org/11.8/rhel/$releasever/$basearch
+baseurl = https://rpm.mariadb.org/12.3/rhel/$releasever/$basearch
 gpgkey = https://rpm.mariadb.org/RPM-GPG-KEY-MariaDB
 gpgcheck = 1
 ```
@@ -253,13 +253,13 @@ Then we start the database part of the creation operation by first logging into 
 mariadb -u root -p
 ```
 
- Enter the password you just set during installation and create a database with the encoding `utf8mb4_unicode_ci` and any name you want, using nextpanel as an example.
+ Enter the password you just set during installation and create a database with the encoding `utf8mb4_unicode_ci` and any name you want, using `nextpanel` as an example.
 
 ```sql
 MariaDB [(none)]> CREATE DATABASE nextpanel CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-Then create a local database user and restrict the user's privileges to the newly created database, using nextpanel as the user name and nextpanel-password as the user's password.
+Then create a local database user and restrict the user's privileges to the newly created database, using `nextpanel` as the user name and `nextpanel-password` as the user's password.
 
 ```sql
 MariaDB [(none)]> CREATE USER 'nextpanel'@'localhost';
@@ -278,27 +278,27 @@ nano config/.config.php
 Next, perform the following site initialization setup
 
 ```bash
-php xcat Migration new
-php xcat Tool importSetting
-php xcat Tool createAdmin
-sudo -u nginx /usr/bin/php xcat ClientDownload
+php next-cli Migration new
+php next-cli Tool importSetting
+php next-cli Tool createAdmin
+sudo -u nginx /usr/bin/php next-cli ClientDownload
 ```
 
 NeXT-Panel relies on the Maxmind GeoLite2 database to provide IP geolocation information, first you need to configure the `maxmind_account_id` and `maxmind_license_key` options in `config/.config.php` and then execute the following command:
 
 ```bash
-php xcat Tool updateGeoIP2
+php next-cli Tool updateGeoIP2
 ```
 
 Use `crontab -e` command to configure cron job for the panel：
 
 ```bash
-*/5 * * * * /usr/bin/php /path/to/your/site/xcat Cron
+*/5 * * * * /usr/bin/php /path/to/your/site/next-cli Cron
 ```
 
 ## Improving System Security and Performance
 
-Disable some dangerous PHP Functions
+Disable dangerous PHP Functions
 
 ```bash
 sed -i 's@^disable_functions.*@disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_restore,dl,readlink,symlink,popepassthru,stream_socket_server,fsocket,popen@' /etc/php.ini
@@ -315,7 +315,7 @@ Enable OPcache and JIT
 In `/etc/php.d/10-opcache.ini` add the following configuration
 
 ```
-zend_extension=opcache.so
+opcache.enable=1
 opcache.file_cache=/tmp
 opcache.interned_strings_buffer=64
 opcache.jit=on
