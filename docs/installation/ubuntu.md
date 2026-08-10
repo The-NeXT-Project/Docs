@@ -1,6 +1,6 @@
 # Ubuntu
 
-> Environment used for this tutorial: Ubuntu 24.04/x86_64
+> Environment used for this tutorial: Ubuntu 26.04/x86_64
 
 ## Disabling UFW
 
@@ -61,10 +61,12 @@ systemctl enable nginx
 
 > Note to avoid Redis related issues, you need to make sure phpredis extension is correctly installed and version >= 6.0.2
 
-We'll install PHP using the PPA source from deb.sury.org
+We'll install PHP using the PPA source from packages.sury.org
 
 ```bash
-add-apt-repository ppa:ondrej/php
+curl -sSLo /tmp/debsuryorg-archive-keyring.deb https://packages.sury.org/debsuryorg-archive-keyring.deb
+dpkg -i /tmp/debsuryorg-archive-keyring.deb
+sh -c 'echo "deb [signed-by=/usr/share/keyrings/debsuryorg-archive-keyring.gpg] https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
 ```
 
 Similarly, update the APT cache
@@ -105,8 +107,8 @@ Edit the `/etc/apt/sources.list.d/mariadb.sources` file and write the following 
 ```
 X-Repolib-Name: MariaDB
 Types: deb
-URIs: https://deb.mariadb.org/12.2/ubuntu
-Suites: noble
+URIs: https://deb.mariadb.org/12.3/ubuntu
+Suites: resolute
 Components: main main/debug
 Signed-By: /etc/apt/keyrings/mariadb-keyring.pgp
 ```

@@ -47,6 +47,6 @@
     "@orama/core": "^1.2.13"
   },
   "allowScripts": {
-    "core-js@3.49.0": true
+    "core-js@3.50.0": true
   }
 }
