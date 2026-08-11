@@ -2,19 +2,64 @@
 
 ## Product type cheat sheet
 
-Product Type | Repeat Purchase | Stack Package Contents | Empty Usage on Activation | Only one activated order per user at the same time
---------|---------|-------------|---------------|-------------------
-TABP | ✔ | ✕ | ✔ | ✔
-Bandwidth Package | ✔ | ✔ | ✕ | ✕
-Time Package | ✔ | ✔`*` | ✕ | ✕
+Product Type | Repeat Purchase | Stack Package Contents | Empty Usage on Activation | Only one activated order per user at the same time | Upgradable mid-cycle
+--------|---------|-------------|---------------|-------------------|-------------------
+TABP | ✔ | ✕ | ✔ | ✔ | ✔`†`
+Bandwidth Package | ✔ | ✔ | ✕ | ✕ | ✕
+Time Package | ✔ | ✔`*` | ✕ | ✕ | ✕
 
 `*` Usage time are only stacked if the Time Pack level is the same as the paid user's current level, free users are not subject to this restriction
+
+`†` Only to a more expensive TABP, and only while `Enable TABP upgrade` is on — see [Upgrading a TABP](#upgrading-a-tabp)
 
 ## Time and Bandwidth Package (TABP)
 
 TABP is the default product mode in the legacy store system, each TABP contains a fixed level + level duration + traffic, users can buy more than one at one time, but only one TABP order can be active at the same time, multiple TABP orders will be activated in turn according to the order of purchasing, meanwhile, the TABP orders that are expired will be marked as ``expired``.
 
 Each TABP order is activated for a maximum of one Cron cycle (5 minutes), and only one TABP order per user is activated in a Cron cycle.
+
+### Upgrading a TABP
+
+Buying a second TABP queues it behind the running one, which is the wrong shape for a user who wants a bigger package *now* — the remainder they already paid for would go to waste, and `Days within class expire before allowed to purchase TABP` blocks the purchase outright until they are close to expiry. Upgrading is the path for that case: the running package is closed out, the new one activates immediately, and what was left of the old one comes off the price.
+
+`Enable TABP upgrade` (on by default) controls whether the feature is offered at all. With it on, a user with a running TABP sees an **Upgrade** button on every TABP in the shop that costs more than the package they are on, and an **Upgrade package** link on their `Billing` page.
+
+#### What the upgrade is worth
+
+The credit is the price the user actually paid for the running order, scaled by whichever is smaller: the fraction of the order's duration still left, or the fraction of its traffic still unspent.
+
+Taking the lesser of the two is deliberate. Someone who spent 80% of their traffic in the first week still has most of the calendar left, and crediting them on time alone would sell them a near-free upgrade.
+
+Worked example — a 30-day / 100 GB package bought for 30, fifteen days in with 20 GB spent, upgrading to a 100 package:
+
+Input | Value
+--------|---------
+Time left | 15 of 30 days → `0.5`
+Traffic left | 80 of 100 GB → `0.8`
+Ratio used | `min(0.5, 0.8)` = `0.5`
+Credit | `30 × 0.5` = `15.00`
+Payable | `100 − 15` = `85.00`
+
+The credit is capped at the price of the new package, so an upgrade never turns into a cash refund, and `Maximum TABP upgrade credit as percent of the superseded order price` (100 by default, i.e. no cap) trims it further if you want upgrades to keep some margin. Set it to `80` and the example above credits `24.00` at most rather than `30.00`.
+
+The amount is worked out once, when the order is created, and written onto the order and the invoice. It is not recalculated later, for the same reason the list price and coupon discounts are not: the invoice is what the user agreed to and what the gateway charged.
+
+Coupons do not stack with an upgrade credit — the upgrade page has no coupon field, and an upgrade never consumes a coupon's use count.
+
+#### What the user ends up with
+
+An upgrade grants exactly what buying that package outright grants, because it runs through the same activation code: used traffic reset to zero, total traffic replaced by the new package's allowance, and level duration counted from the moment of activation rather than added to what was left. The old order is marked `superseded` — a status of its own, so it is not counted among genuinely expired orders.
+
+#### If the invoice is never paid
+
+Nothing happens to the running package at checkout. It is only retired at the moment the new order activates, which is after the invoice is settled. So an abandoned upgrade leaves the user exactly where they were, and the unpaid order is cancelled by `Auto cancel pending payment orders` like any other.
+
+Two consequences worth knowing for support:
+
+- A user may only have one upgrade order outstanding at a time. Asked for a second, the panel points them at the first one to pay or wait out.
+- If the running package expires on its own before the upgrade invoice is paid, the upgrade simply activates as an ordinary package — at the discounted price. This favours the user, and the window is bounded by the auto-cancel setting.
+
+If the running package was swapped out in the meantime (a gift card, or an admin grant), the upgrade will not retire the replacement it was never priced against. It queues instead and activates once that package expires.
 
 ## Bandwidth Package
 
