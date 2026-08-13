@@ -44,7 +44,8 @@
     "node": ">=22.0"
   },
   "overrides": {
-    "@orama/core": "^1.2.13"
+    "@orama/core": "^1.2.13",
+    "serialize-javascript": "7.0.5"
   },
   "allowScripts": {
     "core-js@3.50.0": true
