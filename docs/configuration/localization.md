@@ -18,7 +18,7 @@ The panel picks the first of these that gives an answer:
 3. The browser's `Accept-Language` header, if auto-detection is on.
 4. The site default, `$_ENV['locale']` in `config/config.php`.
 
-Guests get a language switcher at the bottom of the sign-in, registration and password pages; signed-in users get one in the top-right of the navbar next to their avatar. Picking a language as a signed-in user also saves it to the account, so it follows them to another device.
+Guests get a language switcher at the bottom of the sign-in, registration and password pages; signed-in users get one in the top-right of the navbar next to their avatar. Switching reloads the page you are on — you keep your place instead of being sent back to the dashboard. Picking a language as a signed-in user also saves it to the account, so it follows them to another device.
 
 ```php
 // config/config.php
