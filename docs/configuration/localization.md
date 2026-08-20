@@ -48,6 +48,7 @@ Domain | Covers
 `common` | Buttons, statuses, shared table headers, dialogs, error pages, DataTables
 `auth` | Sign in, registration, password reset, email verification
 `user` | The user panel and the messages its pages return
+`admin` | The admin panel: navigation, every settings page, every list and form
 `bot` | IM bot replies and site notifications
 `email` | Email subjects, bodies and the shared template chrome
 
@@ -83,6 +84,18 @@ php next-cli I18n scan   # Keys the code asks for but no catalogue defines
 Translations are read from disk on each request and are not cached separately, so an edit takes effect immediately — no cache to clear.
 :::
 
-:::caution
-The admin panel is not translated yet and renders in Chinese regardless of the selected language. Everything a regular user can reach is translated.
+:::note
+Some strings cannot come from a catalogue directly. A PHP `const` array cannot call a function, so a display label that lives in one — the trend metric names, the language list, the gift card lengths — keeps only its keys and units in the constant and gains a sibling method that layers the translated names on top.
 :::
+
+## Where a string belongs
+
+The first segment of a message ID is always its domain, so choosing the domain is choosing the file.
+
+`admin` covers everything under `/admin`. Within it, `nav` is the shell, `ui` and `msg` are strings several admin pages share, `setting_*` and `log_*` follow the routes, and the rest are named after the resource they belong to.
+
+A value that **both** panels render — an invoice status, a product type, a balance-history remark — belongs in `common` instead, because the model helper that returns it is called from both.
+
+## Translating text that gets stored
+
+A string written into the database is never re-rendered, so it is translated once, at write time, in the language of whoever will read it later — not the language of whoever triggered it. A balance-history note or an invoice line is written in the account holder's language, because the administrator who caused it may not share it.
