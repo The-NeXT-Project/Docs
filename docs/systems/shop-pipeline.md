@@ -81,10 +81,20 @@ One subtlety worth knowing for support: an upgrade order can sit behind an ordin
 Job | Default | Effect
 -----|---------|-------
 Cancel unpaid orders | On, after 6 hours | Cancels the order and its invoice. Skips orders whose invoice is partially paid
-Cancel partially paid orders | Off, after 48 hours | Separate switch, because real money is involved
+Cancel partially paid orders | Off, after 48 hours | Separate switch, because real money is involved. Refunds what was collected to the balance. Timed from the partial payment, not from the order — the user is waiting on money that already left their account
 Clean up cancelled orders | Off, after 720 hours | Deletes cancelled orders and their invoices outright
 
-An administrator cancelling an order whose invoice was already paid refunds the amount to the account's balance as part of the cancellation. An order that has reached `activated`, `expired`, `superseded` or `cancelled` cannot be cancelled — it has already been delivered or is already closed — and a partially paid one is refused outright, because unwinding a split payment needs a human.
+An administrator cancelling an order refunds whatever its invoice collected to the account's balance as part of the cancellation. A partially paid order cancels the same way as a fully paid one. An order that has reached `activated`, `expired`, `superseded` or `cancelled` cannot be cancelled — it has already been delivered or is already closed.
+
+### What "collected" means on a partially paid invoice
+
+Paying an invoice from an insufficient balance deducts the paid part from the invoice's `price`, so `price` afterwards is the *outstanding* amount, not the original one. The invoice never records what it took. The collected amount is therefore derived as the order's price minus whatever is still outstanding.
+
+The same derivation covers an invoice paid part from balance and then settled through a gateway: nothing is outstanding, so the whole order price was collected. Refunding the invoice's `price` there would have quietly dropped the part paid from balance.
+
+### Refunds only ever go to balance
+
+There is no gateway refund path, by design. Money returns to the account's balance whether it arrived from a balance payment, a gateway, or an administrator marking the invoice paid. A gateway refund would move money without a corresponding entry in the panel's ledger, and the balance history would stop reconciling.
 
 ## Purchase eligibility
 
