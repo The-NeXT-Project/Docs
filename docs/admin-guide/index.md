@@ -78,7 +78,9 @@ Your choice of range and metrics is remembered in the URL, so a trend view is a 
 
 ## A note on the tables
 
-Nearly every list page is a DataTable fed by an `ajax` endpoint, which means sorting and paging happen server-side against the live table. Two consequences worth knowing:
+Every list page is a DataTable fed by an `ajax` endpoint, and all of the work happens server-side: the page you are looking at is fetched one page at a time, so paging, sorting and searching all run against the live table rather than against rows already in your browser. A list stays as quick on a million-row log as on an empty one. Four consequences worth knowing:
 
 - Searching searches the database, not the page you are looking at.
+- Searching matches what is stored, not what is drawn. A status column shows a translated label but stores a short code, so an invoice search matches `paid` rather than the words in the cell. IDs, names, addresses and remarks all match as you would expect.
+- Only columns the database can order by offer a sortable header. A column assembled per row — the buttons, an IP's location, a name looked up from an ID — has no header to click, because there is nothing in the table to sort on. Sizes sort by their real byte count, not by the text they are rendered as.
 - A column that has nothing meaningful to show renders a dash, not a zero. A gift card that has never been redeemed has no redeemer, not user #0.

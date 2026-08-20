@@ -55,6 +55,7 @@ Read these before upgrading a live site.
 - Node display tags, drawn from a shared tag list so a set stays consistent.
 - Announcements gained a title field and a user-facing detail page.
 - DataTables rebuilt on the 3.0 core with the Bootstrap 5 layer, fixing header drift and rows escaping their card.
+- **Every list is now processed entirely on the server.** Lists used to be fetched whole and paged in the browser, so a large log took as long to open as it took to download. All of them now fetch one page at a time and page, sort and search in the database, which also means searching matches what is stored rather than the text drawn in the cell, and only columns the database can order by offer a sortable header. Sizes sort by their real byte count instead of alphabetically.
 
 ### Localization
 
