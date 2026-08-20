@@ -26,6 +26,7 @@ Read these before upgrading a live site.
 - Sessions are signed JWTs in a `__Host-`-prefixed cookie, replacing the legacy cookie bundle. Tokens are bound to the account's credentials, so changing a password or email address invalidates every outstanding session; IP and device are stored as keyed hashes rather than in the clear; sign-out denylists the token in Redis for exactly its remaining lifetime. See [Authentication](../systems/authentication.md).
 - Hashing, refund handling, check-in and theme resolution hardened.
 - Rate limiting extended to the authentication and password routes, and to the new Server API.
+- **List endpoints return only the columns their page displays.** They used to hand back whole rows, so the admin user list shipped every account's password hash, node password, API token and 2FA secret to the browser alongside the fifteen columns it actually draws. Their search and sort parameters are validated rather than trusted as well.
 - IM account IDs are treated as opaque strings, fixing precision loss on large Discord and Slack IDs.
 
 ### Node API
