@@ -22,3 +22,13 @@ NeXT Panel can run on relatively low-performance Linux systems, but for user exp
 ## Architecture
 
 ![Architecture](/img/system-architecture.svg)
+
+## Where to go next
+
+You are | Start at
+---------|----------
+Setting up a new site | [Installation](installation/docker.md), then [Configuration](systems/configuration.md)
+Running a site | [Admin Guide](admin-guide/index.md)
+Using a site someone else runs | [User Guide](user-guide/index.md)
+Trying to understand why something behaves the way it does | [How It Works](systems/index.md)
+Writing a node backend | [Server API V1](design-document/server-api.md)
