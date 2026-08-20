@@ -83,12 +83,12 @@ Two independent checks decide whether a node is shown as down.
 
 **GFW detection** (`Settings` → `Scheduled tasks` → `Detect nodes blocked by the GFW`) runs hourly and asks an external [NetStatus API](../server/netstatus-api.md) instance to TCP-ping the node from inside the censored network. `detect_gfw_port` and `detect_gfw_url` in `config.php` configure it. A node that answers the panel but not the prober is reachable but blocked, which is a different problem from being down and gets its own notification.
 
-Both feed the IM notifications configured under `Settings` → `IM settings` → `Notifications`.
+Both feed the IM notifications configured under `Settings` → `IM` → `Notifications`.
 
 ## Node traffic history
 
 `Admin` → `Logs` → `Node traffic` shows how much each node moved per day, with a stacked chart over the period and a table underneath.
 
-Recording is off by default. Turn on **Record daily node traffic** under `Settings` → `Other settings` → `Logs` and set how many days to keep; the daily job clears anything older. Records already collected stay visible after you turn it off again.
+Recording is off by default. Turn on **Record daily node traffic** under `Settings` → `Logs` → `Node logs` and set how many days to keep; the daily job clears anything older. Records already collected stay visible after you turn it off again.
 
 The chart plots the busiest nodes individually and folds the rest into *Other nodes*, so a site with sixty nodes still produces a readable chart.

@@ -93,7 +93,7 @@ Replies are in the user's own language, resolved from the linked account.
 
 ### Group and channel notices
 
-Site events can be pushed to a group or channel: nodes added, updated or deleted, nodes going offline or coming back, nodes becoming blocked or recovering, the daily job completing, the system diary, and announcements. Each is a separate switch under `Settings` → `IM settings` → `Notifications`.
+Site events can be pushed to a group or channel: nodes added, updated or deleted, nodes going offline or coming back, nodes becoming blocked or recovering, the daily job completing, the system diary, and announcements. Each is a separate switch under `Settings` → `IM` → `Notifications`.
 
 These have no single recipient, so they render in the site's default language rather than anyone's preference.
 

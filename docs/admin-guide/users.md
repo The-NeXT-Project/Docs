@@ -79,6 +79,6 @@ Sign-in password | The user's `Settings`, the password-reset email, or the admin
 Connection password / UUID | The user's `Settings`, or `Tool resetPasswd` | Existing node configurations stop working; the subscription must be fetched again
 Subscription token | The user's `Settings`, or `Tool clearSubToken` | The old subscription URL stops returning anything; configurations already downloaded keep working
 
-When **Notify the user when their credentials are reset** is on (`Settings` → `Other settings`), the user is told which one changed and what they need to do about it.
+When **Notify the user when their credentials are reset** is on (`Settings` → `Notifications` → `Account activity`), the user is told which one changed and what they need to do about it.
 
 Site-wide equivalents exist on the CLI for an incident — see the [CLI reference](../maintenance/cli.md).

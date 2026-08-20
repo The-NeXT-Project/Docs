@@ -19,7 +19,7 @@ Field | Notes
 **Regular expression** | What the audited content is matched against
 **Description** | A short explanation. This is what a user reads when they want to know why they were flagged
 
-Whether users can see the rules and their own matches is controlled by **Show the audit rules** and **Show the audit log** under `Settings` → `Other settings` → `Feature visibility`. Showing the rules is generally the right call: a user who can read the rule can stop tripping it.
+Whether users can see the rules and their own matches is controlled by **Show the audit rules** and **Show the audit log** under `Settings` → `Other settings` → `Audit`. Showing the rules is generally the right call: a user who can read the rule can stop tripping it.
 
 ### Matches and bans
 
@@ -56,7 +56,7 @@ Log | Records | Controlled by
 **Payment gateway** | Every callback a gateway made, with its transaction ID | Always on
 **System log** | Application-level events and errors | Always on
 
-The switches and their retention periods live under `Settings` → `Other settings` → `Logs`. Each logged table has its own **Days to keep**, and the daily job deletes anything older. Logging everything forever is not free: the subscription log in particular grows by one row per client refresh per user.
+The switches and their retention periods live under `Settings` → `Logs`. Each logged table has its own **Days to keep**, and the daily job deletes anything older. Logging everything forever is not free: the subscription log in particular grows by one row per client refresh per user.
 
 ### Which log answers which question
 

@@ -103,7 +103,7 @@ Gateway callbacks are idempotent: a gateway that delivers the same notification 
 
 ### Automatic tidying
 
-`Admin` → `Settings` → `Scheduled tasks` → `Shop`:
+`Admin` → `Settings` → `Shop` → `Order cleanup`:
 
 Setting | Default | Effect
 --------|---------|-------

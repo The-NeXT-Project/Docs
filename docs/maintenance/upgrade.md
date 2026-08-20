@@ -52,7 +52,7 @@ Nothing new is broken | `Admin` → `System log`
 
 Two upgrade-specific steps, when the release notes mention them:
 
-- **Discord commands changed** — re-run **Initialise the bot** on `Settings` → `IM settings`, or the new commands never register.
+- **Discord commands changed** — re-run **Initialise the bot** on `Settings` → `IM`, or the new commands never register.
 - **The sing-box profile changed** — tell users to re-fetch their subscription, or their client keeps the old schema.
 
 ## Troubleshooting
