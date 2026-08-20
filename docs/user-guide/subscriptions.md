@@ -42,6 +42,8 @@ The dashboard lists the clients the operator recommends for your platform. Each 
 
 If the deep link does nothing, the app is not installed or does not have the URL scheme registered. Copy the link with the copy button next to it and paste it into the app's own "add subscription" or "add profile" box instead.
 
+Every copy button has a QR-code button beside it. Press it and the link is drawn as a code you can scan from another device — the usual way to move a subscription from the browser you signed in with to the phone you actually run the client on, without emailing the link to yourself.
+
 ### Refreshing
 
 Clients refresh on their own schedule; the Clash subscription tells them to check every six hours. Every client also has a manual "update profile" action, which is what to use when the operator has just told you a node changed.

@@ -92,6 +92,7 @@ Read these before upgrading a live site.
 
 - Pluggable object storage backed by DB config: Cloudflare R2, Alibaba Cloud OSS, Tencent Cloud COS and any S3-compatible service. Client downloads are served as short-lived presigned URLs from a private bucket.
 - The client catalogue is a single source of truth for the downloader, the download allow-list and the dashboard UI.
+- Every subscription link on the dashboard can be shown as a QR code, so it can be scanned onto a phone instead of copied.
 - sing-box macOS (SFM) alongside SFA; store-only entries for Shadowrocket and F-Droid Basic; Clash Mi removed.
 
 ### Web assets
