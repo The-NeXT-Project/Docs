@@ -89,9 +89,13 @@ State | Meaning
 
 **Mark an invoice paid.** `Admin` → `Invoices` → *view* → **Mark as paid** settles it without money moving — for a bank transfer you received out of band, or as a goodwill grant. It runs the same activation path a gateway payment does, so the order activates normally.
 
-**Cancel an order.** `Admin` → `Orders` → *view* → **Cancel the order** closes the order and its invoice. If the invoice was already paid — a `pending_activation` order waiting its turn — the amount is refunded to the account's balance as part of the cancellation, so the user is not left having paid for something that will never activate.
+**Cancel an order.** `Admin` → `Orders` → *view* → **Cancel the order** closes the order and its invoice. Whatever the invoice actually collected comes back to the account's balance as part of the cancellation, so the user is not left having paid for something that will never activate.
 
-Two orders cannot be cancelled from here. An order that has reached `activated`, `expired`, `superseded` or `cancelled` is past the point of cancelling — it has been delivered or is already closed. And an order whose invoice is *partially* paid is refused outright, because part of the money came from a gateway and part from balance; unwind that one by hand.
+That includes a *partially* paid invoice. Applying balance to an invoice deducts the paid part from the invoice's own amount, so the figure shown as the invoice price is only what is still owed. The order page therefore shows an **Already collected** row alongside it — that is the amount the cancellation will refund.
+
+Refunds always go to the account's balance, never back through a payment gateway, whichever way the money originally arrived. A gateway refund would bypass the panel's own ledger, and the balance is the only exit that leaves a matching entry in the user's balance history.
+
+One order cannot be cancelled from here: one that has reached `activated`, `expired`, `superseded` or `cancelled` is past the point of cancelling — it has been delivered or is already closed.
 
 **Find out what a user paid with.** `Admin` → `Logs` → `Payment gateway` records every callback a gateway made, with its transaction ID. When a user says they paid and the panel disagrees, this is the log that settles it — the callback either arrived or it did not.
 
@@ -104,7 +108,7 @@ Gateway callbacks are idempotent: a gateway that delivers the same notification 
 Setting | Default | Effect
 --------|---------|-------
 Cancel unpaid orders automatically | On, after 6 hours | Releases the stock and clears the user's unpaid-order count
-Cancel partially paid orders automatically | Off, after 48 hours | Kept separate because a partial payment means real money is involved
+Cancel partially paid orders automatically | Off, after 48 hours | Kept separate because a partial payment means real money is involved. Refunds what was collected to the account's balance, timed from the partial payment rather than from the order
 Clean up cancelled orders automatically | Off, after 720 hours | Deletes cancelled orders and their invoices outright
 
 ## Coupons
