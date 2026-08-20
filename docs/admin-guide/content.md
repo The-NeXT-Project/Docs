@@ -29,13 +29,13 @@ Ticking **Send an email notification** when you publish queues the announcement 
 
 The mail goes through the [message queue](../systems/notifications.md), so a large site does not block the request while thousands of messages are sent; Cron drains the queue. Each message is rendered in its recipient's own language.
 
-Publishing also pings the IM group when **Announcement created** is on under `Settings` → `IM settings` → `Notifications`, with **Announcement updated** as a separate switch — most sites want the first and not the second.
+Publishing also pings the IM group when **Announcement created** is on under `Settings` → `IM` → `Notifications`, with **Announcement updated** as a separate switch — most sites want the first and not the second.
 
 ## Documentation
 
 `Admin` → `Documentation` is the site's own help pages: how to import a subscription, which client to use, what to do when a node is slow. Same shape as announcements — title, Markdown body, published or not, sort order.
 
-Two settings under `Settings` → `Other settings` → `Feature visibility` control the section: **Show the documentation** turns it on at all, and **Show the documentation to paying users only** restricts it.
+Two settings under `Settings` → `Other settings` → `Documentation` control the section: **Show the documentation** turns it on at all, and **Show the documentation to paying users only** restricts it.
 
 ### Writing one with an LLM
 

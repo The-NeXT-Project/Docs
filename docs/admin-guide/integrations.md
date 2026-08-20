@@ -92,7 +92,7 @@ Registration and check-in are the two that actually need protecting — one crea
 
 ## IM
 
-`Settings` → `IM settings` covers three bots and the notifications they carry. See [Notifications](../systems/notifications.md#im-bots) for what the bots do once linked.
+`Settings` → `IM` covers three bots and the notifications they carry. See [Notifications](../systems/notifications.md#im-bots) for what the bots do once linked.
 
 ### Telegram
 

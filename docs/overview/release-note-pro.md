@@ -16,7 +16,7 @@ Read these before upgrading a live site.
 
 - **Sessions are now JWTs.** The old cookie bundle is cleared on first sign-in after the upgrade. Nobody is signed out by the upgrade itself, but `$_ENV['key']` must be a long random string — it is now the signing key, and changing it invalidates every session at once.
 - **`paylist` was renamed to `payment_gateway_log`.** Handled by migration; anything reading that table directly needs updating.
-- **The Discord bot must be re-initialised** after upgrading, or its new slash commands never register. `Settings` → `IM settings` → **Initialise the bot**.
+- **The Discord bot must be re-initialised** after upgrading, or its new slash commands never register. `Settings` → `IM` → **Initialise the bot**.
 - **The sing-box profile follows the 1.13 schema.** Users should re-fetch their subscription.
 - **Shadowsocks support is 2022-only.** Non-2022 single-port multi-user implementations are not standards-compliant and are no longer carried.
 - **DB config defaults now sync on `Config import`** rather than through migrations. `update.sh` runs it; a manual upgrade must.

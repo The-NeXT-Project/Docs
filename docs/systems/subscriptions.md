@@ -92,7 +92,7 @@ Both must pass. The per-token limit is the one that matters here: a leaked URL p
 
 ## Logging
 
-**Record subscription fetches** (`Admin` → `Settings` → `Other settings` → `Logs`) records each fetch with its client user agent, kept for a configurable number of days. It is off by default because it grows by one row per client per refresh interval — on a site with a thousand users on six-hourly refresh, four thousand rows a day.
+**Record subscription fetches** (`Admin` → `Settings` → `Logs` → `User logs`) records each fetch with its client user agent, kept for a configurable number of days. It is off by default because it grows by one row per client per refresh interval — on a site with a thousand users on six-hourly refresh, four thousand rows a day.
 
 It is worth turning on temporarily when diagnosing "my subscription stopped updating": the log answers whether the request arrived at all, and from which client.
 
