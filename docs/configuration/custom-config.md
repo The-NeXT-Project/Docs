@@ -7,7 +7,7 @@
     // Generic configuration
     "offset_port_user": "", // Port used in user subscription.
     "offset_port_node": "", // Port used in node server.
-    "host": "", // SNI, works on certain Vmess transport protocols involved TLS, Trojan, TUIC, AnyTLS and NaïveProxy.
+    "host": "", // SNI, works on certain Vmess transport protocols involved TLS, Trojan, TUIC, Hysteria2, AnyTLS and NaïveProxy.
     "allow_insecure": "0", // Skip TLS verification, same as host.
     // Shadowsocks 2022
     "method": "",
@@ -33,6 +33,11 @@
         "request": {},
         "response": {}
     },
+    // Hysteria2
+    "obfs": "salamander", // Obfuscation type. Only read when "obfs_password" is set.
+    "obfs_password": "", // Empty leaves obfuscation off.
+    "up_mbps": 0, // Upload bandwidth. 0 leaves the client on BBR.
+    "down_mbps": 0, // Download bandwidth. 0 leaves the client on BBR.
     // AnyTLS
     "padding_scheme": [
         "stop=8",
@@ -185,6 +190,22 @@ Server key can be generated with `openssl rand -base64 16` command.
     "allow_insecure": "0"
 }
 ```
+
+## Hysteria2
+
+``` json
+{
+    "offset_port_node": "8443",
+    "host": "server_name",
+    "allow_insecure": "0",
+    "obfs": "salamander",
+    "obfs_password": "obfs_secret",
+    "up_mbps": 0,
+    "down_mbps": 0
+}
+```
+
+The account's connection password is the authentication secret, so a node needs neither it nor the UUID in its custom config. Obfuscation stays off until `obfs_password` is set — `obfs` then names the type (`salamander` or `gecko`) for both sing-box and mihomo. Leaving `up_mbps` and `down_mbps` at zero omits them, which is how both clients are told to negotiate the rate with BBR instead of being pinned to a number the node never measured.
 
 ## AnyTLS
 

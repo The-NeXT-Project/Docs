@@ -32,9 +32,9 @@ Value | Protocol | Notes
 11 | Vmess |
 14 | Trojan |
 
-The form offers the six types a subscription can describe today — Shadowsocks 2022, TUIC, AnyTLS, NaïveProxy, Trojan and Vmess. The rest exist in the data model for backends that fetch their own configuration.
+The form offers the seven types a subscription can describe today — Shadowsocks 2022, TUIC, Hysteria2, AnyTLS, NaïveProxy, Trojan and Vmess. The rest exist in the data model for backends that fetch their own configuration.
 
-Not every type reaches every format. A NaïveProxy node appears in the sing-box profile and on the `/naive` link, but not in the Clash profile — mihomo has no NaïveProxy outbound, and a node no format can express is simply left out of that format rather than emitted as something the client would reject.
+Not every type reaches every format. A NaïveProxy node appears in the sing-box profile and on the `/naive` link, but not in the Clash profile — mihomo has no NaïveProxy outbound, and a node no format can express is simply left out of that format rather than emitted as something the client would reject. A Hysteria2 node is the other way round: both universal profiles carry it, but there is no single-protocol link for it, so users take it through `/singbox` or `/clash`.
 
 Everything protocol-specific — ports, TLS, transport, SNI, obfuscation — lives in **Custom config**, a JSON blob passed through to the backend and to the subscription. See [Custom Config](../configuration/custom-config.md) for the full field list and worked examples per protocol.
 

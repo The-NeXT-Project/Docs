@@ -114,6 +114,7 @@ Node Type | Fields per user
 ----------|----------------
 Shadowsocks2022 (1) | `id`, `node_speedlimit`, `passwd` (derived user PK, base64)
 TUIC (2) | `id`, `node_speedlimit`, `passwd`, `uuid`
+Hysteria2 (4) | `id`, `node_speedlimit`, `passwd` — the `passwd` is the authentication secret
 NaïveProxy (6) | `id`, `node_speedlimit`, `passwd`, `uuid` — the `uuid` is the user name, the `passwd` the secret
 Vmess (11), Trojan (14) | `id`, `node_speedlimit`, `uuid`
 Others | `id`, `node_speedlimit`, `passwd`

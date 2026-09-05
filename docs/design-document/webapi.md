@@ -19,6 +19,7 @@ Node Type | Return Data
 Shadowsocks | method, node_speedlimit, port, passwd
 Shadowsocks2022 | method, node_speedlimit, passwd(base64 encoded)
 TUIC | node_speedlimit, passwd, uuid
+Hysteria2 | node_speedlimit, passwd
 NaïveProxy | node_speedlimit, passwd, uuid
 Vmess  | node_speedlimit, uuid
 Trojan | node_speedlimit, uuid
