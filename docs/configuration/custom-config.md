@@ -33,6 +33,13 @@
         "request": {},
         "response": {}
     },
+    // Snell
+    "version": 4, // Snell protocol version.
+    "psk": "", // Server pre-shared key. Empty makes the account's connection password the key itself.
+    "obfs": "", // Obfuscation mode: "http", "tls" (mihomo only) or empty for none.
+    "obfs_host": "", // Host header sent when "obfs" is set.
+    "reuse": false, // Connection reuse, from version 4.
+    "mode": "", // sing-box traffic shaping, version 6 only.
     // Hysteria2
     "obfs": "salamander", // Obfuscation type. Only read when "obfs_password" is set.
     "obfs_password": "", // Empty leaves obfuscation off.
@@ -190,6 +197,26 @@ Server key can be generated with `openssl rand -base64 16` command.
     "allow_insecure": "0"
 }
 ```
+
+## Snell
+
+``` json
+{
+    "offset_port_node": "8443",
+    "version": 4,
+    "psk": "server_pre_shared_key",
+    "obfs": "http",
+    "obfs_host": "bing.com",
+    "udp": true,
+    "reuse": false
+}
+```
+
+Snell keys its users in two layers, the way Shadowsocks 2022 does. `psk` is the server's own pre-shared key, and the account's connection password is then its user key; leaving `psk` empty means the connection password *is* the pre-shared key, for a node that gives every user their own.
+
+Only sing-box can express the two-layer form — mihomo has a single `psk` field and no per-user key — so a node that sets `psk` reaches `/singbox` alone, while one that leaves it empty reaches `/clash` as well. Versions divide the same way: mihomo speaks 1 through 5, sing-box only 4 and 6, so version 4 is the one both draw and a node on any other version is left out of the profile that cannot express it.
+
+`obfs` is the obfuscation mode rather than a type — `http` for either client, `tls` for mihomo alone, and empty for none. mihomo's credential-carrying modes (`shadow-tls`, `restls`, `jls`) are not offered, since they need secrets of their own. `obfs_host` is the `Host` header sent with them. `udp` is honoured from version 3 and `reuse` from version 4, and both are dropped for older versions that have no such option. Version 6 also reads `mode`, sing-box's traffic shaping (`default`, `unshaped` or `unsafe-raw`).
 
 ## Hysteria2
 
