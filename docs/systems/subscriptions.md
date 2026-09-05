@@ -29,8 +29,11 @@ V2Ray Json | `/v2rayjson` | `application/json`
 V2Ray | `/v2ray` | `text/plain`
 Trojan | `/trojan` | `text/plain`
 AnyTLS | `/anytls` | `text/plain`
+NaïveProxy | `/naive` | `text/plain`
 
-The first four are *universal*: one link, every node the account can use, in a format a multi-protocol client understands. The last three carry only nodes of that protocol, for clients that speak one. Those three can be turned off individually under `Admin` → `Settings` → `Subscription`.
+The first four are *universal*: one link, every node the account can use, in a format a multi-protocol client understands. The last four carry only nodes of that protocol, for clients that speak one. Those four can be turned off individually under `Admin` → `Settings` → `Subscription`.
+
+A node whose protocol a format cannot express is left out of that format: NaïveProxy nodes, for instance, appear in the sing-box profile and on `/naive` but not in the Clash profile, because mihomo has no outbound for them.
 
 The Json format is not a client format at all — it is a small document describing the account (level, expiry, traffic used and remaining) and listing the universal URLs. It exists for tooling.
 

@@ -17,6 +17,7 @@ Link | For
 **V2Ray** | Vmess clients
 **Trojan** | Trojan clients
 **AnyTLS** | AnyTLS clients
+**NaïveProxy** | NaïveProxy clients, and the GUIs that wrap it
 
 Each link carries only the nodes of that type. Which of these are offered depends on the site.
 

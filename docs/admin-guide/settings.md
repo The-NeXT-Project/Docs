@@ -86,8 +86,9 @@ Reset the subscription link when the account password changes | Enabled | The sa
 Enable the Vmess subscription | Enabled |
 Enable the Trojan subscription | Enabled |
 Enable the AnyTLS subscription | Enabled |
+Enable the NaïveProxy subscription | Enabled |
 
-The universal formats — Json, Clash, sing-box, V2Ray Json — are always available; these three switches only cover the single-protocol links. The subscription feature as a whole, and the hostnames it answers on, are set in `config.php` (`enable_sub`, `sub_urls`, `sub_token_len`).
+The universal formats — Json, Clash, sing-box, V2Ray Json — are always available; these four switches only cover the single-protocol links. The subscription feature as a whole, and the hostnames it answers on, are set in `config.php` (`enable_sub`, `sub_urls`, `sub_token_len`).
 
 ## Support
 

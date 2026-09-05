@@ -7,7 +7,7 @@
     // Generic configuration
     "offset_port_user": "", // Port used in user subscription.
     "offset_port_node": "", // Port used in node server.
-    "host": "", // SNI, works on certain Vmess transport protocols involved TLS, Trojan, TUIC and AnyTLS.
+    "host": "", // SNI, works on certain Vmess transport protocols involved TLS, Trojan, TUIC, AnyTLS and NaïveProxy.
     "allow_insecure": "0", // Skip TLS verification, same as host.
     // Shadowsocks 2022
     "method": "",
@@ -49,6 +49,10 @@
     "idle-session-check-interval": 30,
     "idle-session-timeout": 30,
     "min-idle-session": 0,
+    // NaïveProxy
+    "quic": false, // Dial over HTTP/3 instead of HTTP/2.
+    "congestion_control": "", // QUIC congestion control, only read when "quic" is on. Empty leaves the client default.
+    "insecure_concurrency": 0, // Concurrent connections. 0 leaves the client default.
     // Clash related, only used for Clash Universal Subscription, does not affect node configuration distribution.
     // Refer to the documentation at https://github.com/MetaCubeX/mihomo/blob/Alpha/docs/config.yaml.
     "udp": "1",
@@ -206,6 +210,21 @@ Server key can be generated with `openssl rand -base64 16` command.
     "min_idle_session": "0"
 }
 ```
+
+## NaïveProxy
+
+``` json
+{
+    "offset_port_node": "8443",
+    "host": "server_name",
+    "allow_insecure": "0",
+    "quic": false,
+    "congestion_control": "bbr",
+    "insecure_concurrency": 0
+}
+```
+
+The account's UUID is the user name and its connection password the secret, so a node needs neither in its custom config. `"quic": true` switches both the sing-box outbound and the `/naive` link to HTTP/3 (`naive+quic://`).
 
 ## Port Forward
 
