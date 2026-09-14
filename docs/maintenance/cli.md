@@ -123,6 +123,33 @@ Command | Effect
 `Tool updateGeoIP2` | Refresh the MaxMind GeoIP2 database. Needs `maxmind_account_id` and `maxmind_license_key`
 `Tool updateAbuseIPDB` | Refresh the AbuseIPDB data. Needs `enable_abuseipdb` and a key
 
+## Perf
+
+```bash
+php next-cli Perf check                  # Is MariaDB recording per-table statistics?
+php next-cli Perf snapshot <label>       # Save a counter snapshot
+php next-cli Perf diff <before> <after>  # Compare two snapshots
+php next-cli Perf list                   # List saved snapshots
+```
+
+Measures what a change did to database load, on the machine that has the traffic. It takes two snapshots of MariaDB's counters and subtracts them, so it flushes nothing, needs no `RELOAD` privilege, and does not disturb other monitoring. The only thing it writes is the snapshot JSON under `cache/perf/`.
+
+Per-table figures come from MariaDB's `userstat`, which is off by default. `Perf check` reports whether it is on and how to enable it; without it a snapshot carries only the global counters.
+
+The usual shape:
+
+```bash
+php next-cli Perf check
+php next-cli Perf snapshot before
+# ... deploy, then wait the same length of time ...
+php next-cli Perf snapshot after
+php next-cli Perf diff before after
+```
+
+**The two windows have to match.** Compare an hour against an hour, at a similar time of day, or you are measuring the difference in traffic rather than the difference in code. `diff` prints the window length first for that reason, and warns if the server restarted in between — a restart zeroes every counter and makes the subtraction meaningless.
+
+Read rows-read next to the size of the table it came from: the report annotates each line with that ratio. Millions of rows read from a table holding a few thousand means the same rows over and over, which is what a query inside a loop looks like from the database's side.
+
 ## Test
 
 ```bash
