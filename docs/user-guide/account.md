@@ -30,7 +30,7 @@ Changing your sign-in password does not change how your client connects — exce
 
 **Change sign-in password.** Needs your current one. Every session on the account is signed out afterwards, including on your other devices — that is deliberate, since the usual reason to change a password is that something is wrong.
 
-**Multi-factor authentication.** Scan the QR code with any TOTP app, then use **Test** to confirm the code matches before turning it on. With it enabled, signing in asks for the six-digit code as well as the password.
+**Multi-factor authentication.** Scan the QR code with any TOTP app, then use **Test** to confirm the code matches before turning it on. With it enabled, signing in takes you to a second page after your password, where you enter the six-digit code. You have five minutes to enter it before you need to start again.
 
 :::caution
 Save the secret somewhere safe, or keep the app's own backup working. If you lose your authenticator, only the site operator can turn two-factor off for you.

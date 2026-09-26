@@ -67,6 +67,8 @@ Earlier versions stored a bundle of cookies carrying the user's ID, email and a 
 
 Standard TOTP, compatible with any authenticator app. The user scans a QR code containing an `otpauth://` URL, confirms with a test code before it is armed, and is then asked for the code at each sign-in.
 
+Sign-in is two steps. The first page takes only the email and password; an account without two-factor is signed in right there. An account with it is sent to a separate code page instead, carrying a short-lived challenge in its own `__Host-np_mfa` cookie. That token is signed with a key derived for this purpose alone, so it can never pass as a session and a session can never pass as it. It lasts five minutes, is bound to the browser's user agent, and — like a session — to the password hash and email it was issued against, so changing the password voids it. No session exists until the code is accepted. Wrong codes count toward the same per-account limit as the settings page (ten failures in five minutes), and each one is written to the login log.
+
 The secret is generated when the account is created, whether or not two-factor is ever turned on, so enabling it is a single step. An administrator can turn it off from the user edit page — the only recovery path when someone loses their authenticator.
 
 ## CAPTCHA
