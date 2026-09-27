@@ -51,6 +51,7 @@ Provider | Notes
 **AWS SES** | Access key, secret, region
 **AlibabaCloud DM** | Access key, secret, endpoint, account name
 **OCI Email Delivery** | Oracle Cloud. Needs the tenancy, user and compartment OCIDs, the API key fingerprint and its private key, plus the HTTPS sending endpoint from the console
+**Cloudflare Email Sending** | Account ID plus an API token with the `Email Sending: Edit` permission. The sending domain must be onboarded under `Compute` → `Email Service` → `Email Sending` first, so Cloudflare can add its MX, SPF, DKIM and DMARC records — the domain has to be on Cloudflare DNS
 **None** | No mail is sent at all
 
 With the driver set to **None**, anything that depends on email quietly stops working: verification, password reset, announcement mailings, the daily traffic report. Registration with **Email verification** on becomes impossible to complete. Set a provider before turning verification on.

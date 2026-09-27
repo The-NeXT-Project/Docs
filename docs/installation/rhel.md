@@ -284,7 +284,7 @@ php next-cli Tool createAdmin
 sudo -u nginx /usr/bin/php next-cli ClientDownload
 ```
 
-NeXT-Panel relies on the Maxmind GeoLite2 database to provide IP geolocation information, first you need to configure the `maxmind_account_id` and `maxmind_license_key` options in `config/.config.php` and then execute the following command:
+NeXT-Panel relies on the Maxmind GeoLite2 database to provide IP geolocation information, first sign in with the administrator account you just created, enter your MaxMind account ID and license key under `Settings` → `Other settings` → `IP geolocation`, and then execute the following command:
 
 ```bash
 php next-cli Tool updateGeoIP2

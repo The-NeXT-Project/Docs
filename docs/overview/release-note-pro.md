@@ -73,7 +73,7 @@ Read these before upgrading a live site.
 - Users are told when any of their three credentials is reset, and which one.
 - Node offline and online notifications are batched into one message.
 - Mail templates restyled to match the Tabler web theme.
-- **OCI Email Delivery** added as a mail driver.
+- **OCI Email Delivery** and **Cloudflare Email Sending** added as mail drivers.
 
 ### LLM
 

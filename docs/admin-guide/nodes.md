@@ -81,9 +81,9 @@ The minimum hour must not be later than the maximum hour, and rates must be betw
 
 Two independent checks decide whether a node is shown as down.
 
-**Offline detection** (`enable_detect_offline` in `config.php`) compares the node's last heartbeat against the clock on every Cron run. A backend that has stopped reporting is marked offline. Notifications are batched — a rack of ten nodes dropping at once produces one message listing all ten, not ten messages.
+**Offline detection** (`Settings` → `Scheduled tasks` → `Detect offline nodes`, on by default) compares the node's last heartbeat against the clock on every Cron run. A backend that has stopped reporting is marked offline. Notifications are batched — a rack of ten nodes dropping at once produces one message listing all ten, not ten messages.
 
-**GFW detection** (`Settings` → `Scheduled tasks` → `Detect nodes blocked by the GFW`) runs hourly and asks an external [NetStatus API](../server/netstatus-api.md) instance to TCP-ping the node from inside the censored network. `detect_gfw_port` and `detect_gfw_url` in `config.php` configure it. A node that answers the panel but not the prober is reachable but blocked, which is a different problem from being down and gets its own notification.
+**GFW detection** (`Settings` → `Scheduled tasks` → `Detect nodes blocked by the GFW`) runs hourly and asks an external [NetStatus API](../server/netstatus-api.md) instance to TCP-ping the node from inside the censored network. The **GFW detection API URL** and **GFW detection port** on the same tab configure it; `{ip}` and `{port}` in the URL are filled in for each node. A node that answers the panel but not the prober is reachable but blocked, which is a different problem from being down and gets its own notification.
 
 Both feed the IM notifications configured under `Settings` → `IM` → `Notifications`.
 
