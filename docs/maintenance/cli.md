@@ -120,7 +120,7 @@ Both overwrite choices users made for themselves. Reasonable right after adding 
 Command | Effect
 ---------|--------
 `Tool sendVerifyEmail` | Send a verification link to every unverified address
-`Tool updateGeoIP2` | Refresh the MaxMind GeoIP2 database. Needs `maxmind_account_id` and `maxmind_license_key`
+`Tool updateGeoIP2` | Refresh the MaxMind GeoIP2 database. Needs the MaxMind account ID and license key from `Settings` → `Other settings` → `IP geolocation`
 `Tool updateAbuseIPDB` | Refresh the AbuseIPDB data. Needs `enable_abuseipdb` and a key
 
 ## Perf

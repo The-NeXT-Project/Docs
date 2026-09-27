@@ -55,9 +55,9 @@ The reasoning is worth stating: if the user did it, the message is noise they wi
 
 ## Email drivers
 
-Ten drivers behind one interface, chosen under `Admin` → `Settings` → `Email`:
+Eleven drivers behind one interface, chosen under `Admin` → `Settings` → `Email`:
 
-SMTP, Mailgun, Sendgrid, Mailchimp, Resend, Postal, AWS SES, AlibabaCloud DM, OCI Email Delivery, and `None`.
+SMTP, Mailgun, Sendgrid, Mailchimp, Resend, Postal, AWS SES, AlibabaCloud DM, OCI Email Delivery, Cloudflare Email Sending, and `None`.
 
 With `None` selected the mailer accepts messages and discards them. Verification, password reset, announcement mailings and the daily traffic report all stop working — silently, from the user's point of view. Set a provider before turning email verification on.
 

@@ -25,10 +25,8 @@ Database | `db_host`, `db_database`, credentials, read/write split
 Redis | `redis_host`, `redis_port`, TLS options
 Subscriptions | `enable_sub`, `sub_urls`, `sub_token_len`
 Rate limits | Every `rate_limit_*` value
-Node detection | `detect_gfw_url`, `enable_detect_offline`
-Audit banning | `auto_detect_ban_number`, `auto_detect_ban_time`
 Assets | `assets_cdn`, `jsdelivr_url`, `custom_assets_cdn_url`
-Third parties | `sentry_dsn`, `maxmind_*`, `abuseipdb_*`, `github_access_token`
+Third parties | `sentry_dsn`, `abuseipdb_*`, `github_access_token`
 
 `config/appprofile.php` is loaded by the web entry point only, not by the CLI.
 
@@ -83,7 +81,7 @@ Is it needed before the database connection exists? | File
 Does changing it require a deploy anyway? | File
 Otherwise | Database
 
-The `TODO: move these settings to DB` comments in `config.example.php` mark settings that are on the wrong side of this line and are expected to move — mail filtering, audit ban thresholds, node detection, MaxMind credentials.
+Mail filtering, the audit ban thresholds, node detection and the MaxMind credentials used to live in `config.php` and have since moved to the database by this rule. When `Config import` first creates one of those items on an upgrade, it takes the value you had in `config.php` instead of the default — from the live file, or from the `config.php.bak` that `migrateFile` leaves behind — so an upgrade does not quietly reset them. Once the row exists, the admin panel is the only place to change it.
 
 ## The schema and the code
 

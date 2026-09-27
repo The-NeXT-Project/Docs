@@ -25,14 +25,14 @@ Whether users can see the rules and their own matches is controlled by **Show th
 
 `Admin` → `Audit` → `Match log` lists every report a node has made — which user, which node, which rule, when.
 
-Automatic banning is off by default. Turn on **Ban accounts that trip the audit rules** under `Settings` → `Scheduled tasks` → `Detection jobs` and it runs hourly. The thresholds live in `config.php`, not in the database:
+Automatic banning is off by default. Turn on **Ban accounts that trip the audit rules** under `Settings` → `Scheduled tasks` → `Detection jobs` and it runs hourly. Its thresholds sit right below the switch on the same tab:
 
-```php
-$_ENV['auto_detect_ban_allow_admin'] = true; // Administrators are never auto-banned
-$_ENV['auto_detect_ban_allow_users'] = [];   // User IDs exempt from auto-banning
-$_ENV['auto_detect_ban_number'] = 30;        // Matches since the last ban that trigger the next
-$_ENV['auto_detect_ban_time'] = 60;          // Ban length, in minutes
-```
+Setting | Default | Meaning
+---------|---------|--------
+**Audit hits before a ban** | 30 | Matches since the last ban that trigger the next
+**Ban duration (minutes)** | 60 | How long each ban lasts
+**Exempt administrators from audit bans** | On | Administrators are never auto-banned
+**User IDs exempt from audit bans** | `[]` | A JSON list of user IDs that are never auto-banned
 
 The count is *since that user's last ban*, not since forever, so a user who serves a ban starts again from zero rather than being re-banned on their next match. The ban lifts automatically once its length has elapsed — the same hourly run that bans also unbans.
 
