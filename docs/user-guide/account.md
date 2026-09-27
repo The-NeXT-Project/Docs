@@ -32,8 +32,12 @@ Changing your sign-in password does not change how your client connects — exce
 
 **Multi-factor authentication.** Scan the QR code with any TOTP app, then use **Test** to confirm the code matches before turning it on. With it enabled, signing in takes you to a second page after your password, where you enter the six-digit code. You have five minutes to enter it before you need to start again.
 
+**Security keys and passkeys.** Enter your current password, optionally a name, and choose **Add passkey** or **Add security key**; your browser then walks you through it. Adding either one turns on two-factor: after your password you can touch the key instead of typing a code. A passkey can also sign you in without a password — use **Sign in with a passkey** on the login page. Remove one with **Delete** and your current password.
+
+**Backup codes.** Once two-factor is on, generate a set of ten codes and store them somewhere safe. They are shown only once. On the second sign-in page, **Use a backup code** accepts one of them in place of your code or key; each works once, and generating a new set cancels the old one.
+
 :::caution
-Save the secret somewhere safe, or keep the app's own backup working. If you lose your authenticator, only the site operator can turn two-factor off for you.
+Keep your backup codes somewhere other than the device you use to sign in. If you lose your authenticator, your keys and your codes, only the site operator can turn two-factor off for you.
 :::
 
 ## Usage

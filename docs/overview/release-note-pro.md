@@ -27,6 +27,7 @@ Read these before upgrading a live site.
 - Hashing, refund handling, check-in and theme resolution hardened.
 - Rate limiting extended to the authentication and password routes, and to the new Server API.
 - **List endpoints return only the columns their page displays.** They used to hand back whole rows, so the admin user list shipped every account's password hash, node password, API token and 2FA secret to the browser alongside the fifteen columns it actually draws. Their search and sort parameters are validated rather than trusted as well.
+- **Security keys, passkeys and backup codes.** Alongside the authenticator app, users can register FIDO2 security keys and passkeys as a second factor, sign in with a passkey alone, and generate single-use backup codes. Existing two-factor users are unaffected. Needs `Migration latest`, which `update.sh` runs. See [Authentication](../systems/authentication.md#two-factor-authentication).
 - IM account IDs are treated as opaque strings, fixing precision loss on large Discord and Slack IDs.
 
 ### Node API
