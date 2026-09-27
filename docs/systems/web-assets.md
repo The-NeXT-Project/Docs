@@ -14,10 +14,7 @@ It feeds both consumers: the `assets` array handed to templates, and the `Assets
 
 The in-site path doubles as the custom-CDN path, minus the `/assets` prefix, so each file is declared once and works in all three delivery modes.
 
-Two entry kinds are special:
-
-- **`vendored`** packages (TinyMCE) ship as a whole directory. Their local copy is maintained in git rather than downloaded file by file.
-- **`extra`** files (the Tabler icon webfonts) are downloaded alongside their package but never exposed to templates. They exist because a stylesheet references them, not because a template does.
+**`extra`** files are downloaded alongside their package but never exposed to templates. They exist because something else loads them, not because a template does: the Tabler icon webfonts are referenced by the icon stylesheet, and TinyMCE fetches its theme, model, icons, enabled plugins and light/dark skins from its base URL at runtime. Only the `.min` files the editor actually requests are listed, so the local TinyMCE folder holds 24 files rather than the whole npm package. Enabling another editor plugin means adding its `plugin.min.js` to the catalogue as well.
 
 Adding or moving a library means editing the catalogue and nothing else.
 
@@ -73,7 +70,7 @@ Its rewrite is anchored on both the catalogue key and the npm package name and m
 
 ## `public/assets` is tracked by git
 
-The vendored copies are committed, which has one practical consequence: `Assets download` leaves you with a dirty working tree, and `./update.sh dev` does a hard reset. Commit or stash before upgrading, or the downloaded files are discarded.
+The local copies are committed, which has one practical consequence: `Assets download` leaves you with a dirty working tree, and `./update.sh dev` does a hard reset. Commit or stash before upgrading, or the downloaded files are discarded.
 
 Upgrades of these libraries produce very large diffs. That is expected — treat `public/assets` as third-party code.
 
