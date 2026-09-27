@@ -31,7 +31,7 @@ Field | Notes
 **Account password** | Fill this in *only* to reset it. Left blank, the existing password is untouched. Setting one also invalidates the account's sessions
 **Display name** | The username the user picked
 **Administrator** | Grants the whole of `/admin`
-**Two-factor authentication** | Read-write: switching it off is how you rescue a user who lost their authenticator
+**Two-factor authentication** | On when the user has an authenticator app or any security key or passkey. Switching it off rescues a user who lost them: it removes all of those and their backup codes at once
 **Email verified** | Mark an address verified without sending a mail
 **Display language** | Overrides what the user chose. Affects the panel, their emails and their bot replies
 
