@@ -107,7 +107,7 @@ Gateway callbacks are idempotent: a gateway that delivers the same notification 
 
 Setting | Default | Effect
 --------|---------|-------
-Cancel unpaid orders automatically | On, after 6 hours | Releases the stock and clears the user's unpaid-order count
+Cancel unpaid orders automatically | On, after 6 hours | Clears the user's unpaid-order count. The unit of stock the order took is not returned, so a limited-stock product loses one for every abandoned order
 Cancel partially paid orders automatically | Off, after 48 hours | Kept separate because a partial payment means real money is involved. Refunds what was collected to the account's balance, timed from the partial payment rather than from the order
 Clean up cancelled orders automatically | Off, after 720 hours | Deletes cancelled orders and their invoices outright
 
