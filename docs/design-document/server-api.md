@@ -140,6 +140,8 @@ Traffic rates (static or dynamic) are applied panel-side. Entries referencing un
 { "data": { "accepted": 41, "skipped": 1 } }
 ```
 
+A skipped entry for an unknown user still counts towards the node's own bandwidth usage and daily traffic, because the node really did carry those bytes. Only an entry that fails validation is ignored entirely.
+
 Do **not** send the legacy aggregate pseudo-entry (the `user_id`-less row): every entry must name a user, and the online-user count now travels via `PUT /heartbeat`.
 
 ### `POST /users/online`

@@ -4,6 +4,8 @@
 
 This is the legacy node interface. It has been superseded by [Server API V1](server-api.md), which authenticates with the per-node communication key in the `Authorization` header instead of the shared `muKey`. `/mod_mu` keeps working for existing backends but receives no new features; new backend integrations should target Server API V1.
 
+Because every node shares the one `muKey` and names itself with the `node_id` parameter, anyone holding the key can report traffic as any node and read any node's user list, including connection passwords. Server API V1 ties each request to the node whose key signed it.
+
 :::
 
 Routes are prefixed with `/mod_mu/`, all requests must have a key parameter (i.e. muKey in config) and have WebAPI functionality enabled in the panel. All return values are json encoded unless otherwise noted.
