@@ -56,7 +56,9 @@ Log | Records | Controlled by
 **Payment gateway** | Every callback a gateway made, with its transaction ID | Always on
 **System log** | Application-level events and errors | Always on
 
-The switches and their retention periods live under `Settings` → `Logs`. Each logged table has its own **Days to keep**, and the daily job deletes anything older. Logging everything forever is not free: the subscription log in particular grows by one row per client refresh per user.
+The switches and their retention periods live under `Settings` → `Logs`. The sign-in, subscription, hourly traffic, node traffic and system logs each have their own **Days to keep**, and the daily job deletes anything older. Sign-ins default to 180 days and the system log to 90; for those two, 0 keeps them forever. Logging everything forever is not free: the subscription log in particular grows by one row per client refresh per user.
+
+The balance, traffic allocation, rebate, payment gateway and ban logs are never trimmed. They are the record of money and traffic moving, and the ban log is what audit banning counts new matches against.
 
 ### Which log answers which question
 
