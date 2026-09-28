@@ -45,7 +45,7 @@ Field | Notes
 **Node group** | Restricts the account to nodes in the same group. `0` means no group restriction
 **Concurrent IP limit** | How many addresses may be online at once. `0` is unlimited
 **Speed limit (Mbps)** | Per-account cap, `0` for none. The effective limit is the lower of the account's and the node's
-**Account balance** | Site currency the user can spend on invoices
+**Account balance** | Site currency the user can spend on invoices. Saving applies the difference between the value you entered and the one the form opened with, so a payment the user makes while you have the form open is kept rather than overwritten
 **Free traffic granted on reset / Traffic reset day** | Per-account override of the free-user monthly traffic reset
 
 Changing **Traffic limit** by hand is recorded in the traffic history the user can see (`Admin` → `Logs` → `Traffic`), with the administrator as the source. Every allocation is logged this way — check-in rewards, order activations, resets and manual edits alike — so a user asking "where did my traffic go" can be answered from the record.
