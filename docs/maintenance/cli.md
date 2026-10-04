@@ -29,13 +29,13 @@ Migrations are dated files in `db/migrations/`. The current version is stored as
 
 ```bash
 php next-cli Config import       # Sync the config table from config/db.json
-php next-cli Config migrateFile  # Merge new keys into config/config.php
+php next-cli Config migrateFile  # Add new keys to config/config.php, drop retired ones
 php next-cli Config reset        # Restore every DB config item to its default
 ```
 
 `import` adds items new in this release and syncs changed defaults onto items you never customised; your own values are untouched. Run it after every upgrade — `update.sh` does.
 
-`migrateFile` merges keys added to `config.example.php` into your `config.php`, keeping your values, and reports keys you have that the example no longer does.
+`migrateFile` merges keys added to `config.example.php` into your `config.php`, keeping your values, and removes keys the example no longer has. The previous file is kept as `config/config.php.bak`. A key whose setting moved to the database stays until `import` has copied its value across.
 
 `reset` discards every customisation. It is a recovery tool.
 

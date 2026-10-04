@@ -32,7 +32,7 @@ Third parties | `sentry_dsn`, `abuseipdb_*`, `github_access_token`
 
 ### Keeping it current across upgrades
 
-New releases add keys. `php next-cli Config migrateFile` merges anything new from `config.example.php` into your `config.php`, keeping your values, and reports keys you have that the example no longer does — those are candidates for deletion. `update.sh` runs it for you.
+New releases add and retire keys. `php next-cli Config migrateFile` merges anything new from `config.example.php` into your `config.php`, keeping your values, and removes keys the example no longer has; the file as it was before is saved as `config/config.php.bak`, so a key you added yourself can be recovered from there. A key whose setting has moved to the database is only removed once `Config import` has created its row from your value. `update.sh` runs both for you.
 
 ## Database config
 
