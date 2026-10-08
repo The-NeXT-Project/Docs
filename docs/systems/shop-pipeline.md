@@ -80,11 +80,11 @@ One subtlety worth knowing for support: an upgrade order can sit behind an ordin
 
 Job | Default | Effect
 -----|---------|-------
-Cancel unpaid orders | On, after 6 hours | Cancels the order and its invoice. Skips orders whose invoice is partially paid
-Cancel partially paid orders | Off, after 48 hours | Separate switch, because real money is involved. Refunds what was collected to the balance. Timed from the partial payment, not from the order — the user is waiting on money that already left their account
+Cancel unpaid orders | On, after 6 hours | Cancels the order and its invoice, and returns its unit of stock and coupon use. Skips orders whose invoice is partially paid
+Cancel partially paid orders | Off, after 48 hours | Separate switch, because real money is involved. Refunds what was collected to the balance and returns the stock and coupon use. Timed from the partial payment, not from the order — the user is waiting on money that already left their account
 Clean up cancelled orders | Off, after 720 hours | Deletes cancelled orders and their invoices outright
 
-An administrator cancelling an order refunds whatever its invoice collected to the account's balance as part of the cancellation. A partially paid order cancels the same way as a fully paid one. An order that has reached `activated`, `expired`, `superseded` or `cancelled` cannot be cancelled — it has already been delivered or is already closed.
+An administrator cancelling an order refunds whatever its invoice collected to the account's balance as part of the cancellation. A partially paid order cancels the same way as a fully paid one. Stock and coupon uses are taken when the order is created, so an order cancelled while its invoice is still unpaid or partially paid gives them back, in the same transaction that cancels it. A fully paid order does not: a gift-card order is created already paid and never took stock, so returning a unit for every paid order would inflate it. The cancellation itself is one conditional update, so a payment landing at the same moment either wins outright or loses outright, and the stock comes back exactly once. An order that has reached `activated`, `expired`, `superseded` or `cancelled` cannot be cancelled — it has already been delivered or is already closed.
 
 ### What "collected" means on a partially paid invoice
 

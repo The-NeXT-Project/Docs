@@ -18,7 +18,7 @@ Field | Notes
 **Type** | Traffic and time package (TABP), Traffic package, or Time package
 **Price** | In site currency
 **Status** | *On sale* or *Delisted*. Delisting hides it from the shop; orders already placed are unaffected
-**Stock** | Units left. A negative number means unlimited. Each sale decrements it
+**Stock** | Units left. A negative number means unlimited. Each order takes one when it is created, and gets it back if the order is cancelled before it is paid in full
 
 What the product grants:
 
@@ -89,7 +89,7 @@ State | Meaning
 
 **Mark an invoice paid.** `Admin` → `Invoices` → *view* → **Mark as paid** settles it without money moving — for a bank transfer you received out of band, or as a goodwill grant. It runs the same activation path a gateway payment does, so the order activates normally.
 
-**Cancel an order.** `Admin` → `Orders` → *view* → **Cancel the order** closes the order and its invoice. Whatever the invoice actually collected comes back to the account's balance as part of the cancellation, so the user is not left having paid for something that will never activate.
+**Cancel an order.** `Admin` → `Orders` → *view* → **Cancel the order** closes the order and its invoice. Whatever the invoice actually collected comes back to the account's balance as part of the cancellation, so the user is not left having paid for something that will never activate. An order cancelled before it was paid in full also gives back the unit of stock and the coupon use it took. One whose invoice was already paid in full does not, even though its money is refunded: gift-card orders arrive already paid without ever having taken stock, so the panel cannot tell which paid orders hold a unit. Adjust **Stock** by hand if it matters.
 
 That includes a *partially* paid invoice. Applying balance to an invoice deducts the paid part from the invoice's own amount, so the figure shown as the invoice price is only what is still owed. The order page therefore shows an **Already collected** row alongside it — that is the amount the cancellation will refund.
 
@@ -107,8 +107,8 @@ Gateway callbacks are idempotent: a gateway that delivers the same notification 
 
 Setting | Default | Effect
 --------|---------|-------
-Cancel unpaid orders automatically | On, after 6 hours | Clears the user's unpaid-order count. The unit of stock the order took is not returned, so a limited-stock product loses one for every abandoned order
-Cancel partially paid orders automatically | Off, after 48 hours | Kept separate because a partial payment means real money is involved. Refunds what was collected to the account's balance, timed from the partial payment rather than from the order
+Cancel unpaid orders automatically | On, after 6 hours | Clears the user's unpaid-order count, and returns the unit of stock and the coupon use the order took
+Cancel partially paid orders automatically | Off, after 48 hours | Kept separate because a partial payment means real money is involved. Refunds what was collected to the account's balance and returns the stock and coupon use, timed from the partial payment rather than from the order
 Clean up cancelled orders automatically | Off, after 720 hours | Deletes cancelled orders and their invoices outright
 
 ## Coupons
@@ -122,7 +122,7 @@ Field | Notes
 **Value** | The amount or the percentage
 **Eligible product IDs** | Comma separated. Leave blank for any product
 **Uses allowed in total** | Negative for unlimited
-**Uses allowed per user** | Negative for unlimited
+**Uses allowed per user** | Negative for unlimited. Cancelled orders do not count
 **New users only** | Restricts it to accounts that have never bought anything
 **Expiry** | Blank never expires
 
