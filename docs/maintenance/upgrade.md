@@ -30,11 +30,12 @@ bash update.sh dev
 
 ## What update.sh does
 
-Both modes run the same four steps; `dev` adds fetching the code and updating Composer dependencies first.
+Both modes run the same five steps; `dev` adds fetching the code and updating Composer dependencies first.
 
 Step | Command | Why
 ------|---------|-----
 Clear the template cache | `rm -r cache/smarty/compile/*` | Compiled templates from the old version would otherwise be reused
+Clear the translation cache | `rm -f cache/translation/*` | Compiled catalogues from the old version would otherwise be reused, so new strings show as their raw keys
 Migrate the config file | `php next-cli Config migrateFile` | Merges keys new in this release into your `config/config.php`
 Import the DB config | `php next-cli Config import` | Adds settings new in this release and syncs changed defaults
 Migrate the database | `php next-cli Migration latest` | Applies every new migration
@@ -61,5 +62,6 @@ Symptom | Cause
 ---------|-------
 A config item is reported missing | `Config import` did not run. Run it
 Pages render with the old layout | The Smarty compile cache was not cleared
+New text shows as raw keys such as `user.setting.title` | The translation cache was not cleared. Run `rm -f cache/translation/*`
 Styling is broken in `local` asset mode | `public/assets` was reset by `git reset --hard`. Re-run `next-cli Assets download`
 The panel is up but nothing activates | Cron is not running, or is running as the wrong user

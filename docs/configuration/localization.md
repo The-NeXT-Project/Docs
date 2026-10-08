@@ -80,8 +80,14 @@ php next-cli I18n scan   # Keys the code asks for but no catalogue defines
 
 `check` and `scan` exit non-zero when they find a problem, so they drop straight into a deployment script.
 
-:::note
-Translations are read from disk on each request and are not cached separately, so an edit takes effect immediately — no cache to clear.
+:::caution
+The panel compiles each language's catalogues into one PHP file under `cache/translation/`, and with `debug` off a web request never checks whether `locale/` has changed since. An edit made by hand on a live site therefore does not show until you clear that directory:
+
+```bash
+rm -f cache/translation/*
+```
+
+`update.sh` does this on every upgrade. With `debug` on, and always on the command line (Cron, `next-cli`), the files are compared on each load and edits show at once. The directory must be writable by the web server; if it is not, the cache is simply skipped and every request reads the catalogues from disk.
 :::
 
 :::note
