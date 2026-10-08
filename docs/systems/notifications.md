@@ -20,7 +20,7 @@ This is what makes a single announcement arrive in four languages, each recipien
 
 ### Draining
 
-Each Cron run works the queue until it is empty or five minutes have passed, whichever comes first — the next run is due at that point, and overrunning would stack Cron processes on top of each other.
+Each Cron run works the queue until it is empty or 270 seconds have passed since the run started, whichever comes first, so the run finishes and frees the Cron lock before the next five-minute tick.
 
 Rows are claimed one at a time with `FOR UPDATE SKIP LOCKED` and deleted inside the same transaction that sends them. Two consequences:
 

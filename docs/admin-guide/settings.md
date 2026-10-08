@@ -166,7 +166,7 @@ Setting | Default | Notes
 Hour the daily job runs | 0 | 0–23
 Minute the daily job runs | 0 | 0–59
 
-The daily block — database cleanup, node bandwidth resets, free-user traffic resets, the daily traffic report — runs on the first Cron tick that matches this time, and is guarded so it cannot run twice within a day. `Admin` → `System` shows when it last completed.
+The daily block — database cleanup, node bandwidth resets, free-user traffic resets, the daily traffic report — runs on the first Cron tick at or after this time, once per day. A tick that is late or missed is caught up on the next one, so any minute works, not just multiples of five; see [Scheduled tasks](../systems/scheduled-tasks.md#missed-ticks-catch-up). `Admin` → `System` shows when it last completed.
 
 ### Detection jobs
 
