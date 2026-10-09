@@ -1,8 +1,8 @@
 # Server API V1
 
-Server API V1 is the interface node backends use to talk to the panel. It replaces the legacy [WebAPI](webapi.md) (`/mod_mu`), which remains available for backends that have not migrated yet.
+Server API V1 is the interface node backends use to talk to the panel. It replaced the legacy WebAPI (`/mod_mu`), which has since been removed; see [Migrating from the legacy WebAPI](#migrating-from-the-legacy-webapi) for backends still written against it.
 
-All routes are prefixed with `/api/server/v1`. Requests and responses are JSON, and the WebAPI switch (`webAPI` in `config.php`) must be enabled in the panel.
+All routes are prefixed with `/api/server/v1`. Requests and responses are JSON, and the API switch (`webAPI` in `config.php`) must be enabled in the panel.
 
 ## Authentication
 
@@ -14,9 +14,8 @@ Authorization: Bearer <node communication key>
 
 The key is generated per node when the node is created and can be regenerated from the admin panel (Node → Reset communication key). **The key identifies the node**: the panel resolves the requesting node from the key alone, so there is no `node_id` parameter anywhere in this API, and a node can only ever read or report data as itself.
 
-Differences from the legacy WebAPI:
+Two further rules:
 
-- The shared site-wide `muKey` is not accepted.
 - Keys are never passed in the query string.
 - With `checkNodeIp` enabled, the request IP must match the authenticated node's own `ipv4`/`ipv6` address (or loopback), not merely any node's address.
 
@@ -71,7 +70,7 @@ When `enable_rate_limit` is on, requests are limited per IP (`rate_limit_server_
 
 ### `PUT /heartbeat`
 
-Reports that the node is alive. Replaces the implicit heartbeat the legacy WebAPI performed as a side effect of fetching the user list. The body is optional:
+Reports that the node is alive. Fetching the user list does not count as a heartbeat. The body is optional:
 
 ```json
 { "online_user": 42 }
@@ -166,7 +165,9 @@ Batch report of detect rule hits:
 
 ## Migrating from the legacy WebAPI
 
-Legacy (`/mod_mu`) | Server API V1
+The panel no longer serves `/mod_mu`, and the shared `muKey` is gone from `config.php`. A backend still written against it gets `404` on every call until it is ported. The endpoints map as follows:
+
+Legacy (`/mod_mu`, removed) | Server API V1
 -------------------|---------------
 `GET /users?node_id=N` (implicit heartbeat) | `PUT /heartbeat`
 `GET /nodes/{id}/info` | `GET /info`

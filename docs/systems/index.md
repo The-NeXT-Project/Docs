@@ -34,7 +34,6 @@ Prefix | Middleware | Who
 `/user` | `User` | A signed-in account
 `/admin` | `Admin` | A signed-in account with the admin flag
 `/auth`, `/password` | `Guest` | Not signed in
-`/mod_mu` | `NodeToken` | A node, using the legacy shared key
 `/api/server/v1` | `ServerApiV1` | A node, using its own bearer key
 `/payment/notify` | none | A payment gateway, authenticated by signature instead
 

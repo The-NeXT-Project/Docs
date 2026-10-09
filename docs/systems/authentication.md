@@ -101,8 +101,6 @@ $_ENV['rate_limit_auth_ip'] = 60;       // Auth requests per IP per 10 minutes
 $_ENV['rate_limit_password_ip'] = 60;   // Password requests per IP per 10 minutes
 $_ENV['rate_limit_sub_ip'] = 10;        // Subscription fetches per IP per minute
 $_ENV['rate_limit_sub'] = 10;           // Subscription fetches per user per minute
-$_ENV['rate_limit_webapi_ip'] = 120;    // Legacy WebAPI per IP per minute
-$_ENV['rate_limit_webapi'] = 1200;      // Legacy WebAPI, site-wide, per minute
 $_ENV['rate_limit_server_api_ip'] = 60; // Server API per IP per minute
 $_ENV['rate_limit_server_api'] = 60;    // Server API per node per minute
 ```

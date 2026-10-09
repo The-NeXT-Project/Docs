@@ -24,7 +24,7 @@ The container's startup script performs the whole installation, in order:
 
 1. Copies `config.example.php` and `appprofile.example.php` into place, if they are not already there.
 2. Injects the database and Redis connection settings, and the site URL, from the environment.
-3. Generates `key` and `muKey` if they were not supplied, and persists them.
+3. Generates `key` if it was not supplied, and persists it.
 4. Fixes ownership on the writable directories.
 5. Waits for MariaDB to accept connections — up to a minute.
 6. Runs `Migration new` and then `Migration latest`, seeding the schema and applying anything pending.
@@ -44,24 +44,23 @@ Variable | Default | Notes
 `ADMIN_EMAIL`, `ADMIN_PASSWORD` | — | The initial administrator. Only used when the user table is empty
 `DOWNLOAD_CLIENTS` | `false` | `true` fetches client binaries on boot. Adds several minutes and a lot of bandwidth
 `APP_KEY` | generated | The session signing key
-`APP_MUKEY` | generated | The legacy node communication key
 
-### About the generated secrets
+### About the generated secret
 
-Left blank, `APP_KEY` and `APP_MUKEY` are generated once on first boot and persisted in the `config_data` volume. They are never rotated automatically, and that is deliberate: rotating `key` signs every user out, and rotating `muKey` breaks every node still on the legacy API.
+Left blank, `APP_KEY` is generated once on first boot and persisted in the `config_data` volume. It is never rotated automatically, and that is deliberate: rotating `key` signs every user out.
 
-For production, set both explicitly so they live in your own configuration management rather than only in a Docker volume.
+For production, set it explicitly so it lives in your own configuration management rather than only in a Docker volume. Nodes do not depend on it: each authenticates with its own communication key, which is stored in the database.
 
 ## Volumes
 
 Volume | Holds
 --------|-------
-`config_data` | The generated `config/` directory — including the secrets
+`config_data` | The generated `config/` directory — including the session signing key
 `clients_data` | Downloaded client binaries
 `db_data` | MariaDB
 `redis_data` | Redis
 
-Losing `config_data` means losing `key` and `muKey`, which signs everyone out and breaks node authentication. Back it up with the database.
+Losing `config_data` means losing `key`, which signs everyone out. Back it up with the database.
 
 ## Cron
 
@@ -72,7 +71,7 @@ Cron runs inside the app container, every five minutes, as `www-data`. Nothing t
 The shipped compose file is a demonstration. Before real users touch it:
 
 - **Change every password.** `MYSQL_ROOT_PASSWORD`, `MYSQL_PASSWORD`, `ADMIN_PASSWORD` and the matching `DB_PASSWORD` are all published defaults.
-- **Set `APP_KEY` and `APP_MUKEY` explicitly.**
+- **Set `APP_KEY` explicitly.**
 - **Put TLS in front of it.** The container serves plain HTTP on port 80, mapped to 8080. The session cookie is `Secure` and `__Host-`-prefixed, so a browser will refuse to store it over plain HTTP — sign-in cannot work without HTTPS. Terminate TLS at a reverse proxy and set `APP_URL` to the `https://` address.
 - **Do not expose the database or Redis ports.** The compose file does not; keep it that way.
 - **Pin the image versions** rather than tracking a moving tag.

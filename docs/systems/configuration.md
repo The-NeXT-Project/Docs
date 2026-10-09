@@ -20,7 +20,7 @@ This is where infrastructure and secrets live — things that are fixed when you
 Group | Examples
 -------|----------
 Identity | `appName`, `baseUrl`, `logoUrl`
-Secrets | `key` (the session signing key), `muKey`, `pwdMethod`
+Secrets | `key` (the session signing key), `pwdMethod`
 Database | `db_host`, `db_database`, credentials, read/write split
 Redis | `redis_host`, `redis_port`, TLS options
 Subscriptions | `enable_sub`, `sub_urls`, `sub_token_len`
