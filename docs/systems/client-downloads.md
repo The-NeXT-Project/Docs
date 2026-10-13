@@ -29,7 +29,7 @@ Adding, removing or renaming a client means editing the catalogue and nothing el
         'repo' => 'LibNyanpasu/clash-nyanpasu',
         'files' => [
             ['platform' => 'windows', 'remote' => 'Clash.Nyanpasu_%tagName1%_x64-setup.exe', 'local' => 'Clash.Nyanpasu.exe'],
-            ['platform' => 'linux',   'remote' => 'clash-nyanpasu_%tagName1%_amd64.AppImage', 'local' => 'Clash.Nyanpasu.AppImage'],
+            ['platform' => 'linux',   'remote' => 'Clash.Nyanpasu_%tagName1%_amd64.AppImage', 'local' => 'Clash.Nyanpasu.AppImage'],
             ['platform' => 'macos',   'remote' => 'Clash.Nyanpasu_%tagName1%_aarch64.dmg',    'local' => 'Clash.Nyanpasu_aarch64.dmg'],
         ],
     ],

@@ -28,7 +28,7 @@ One link carrying every node your account can use, in a format a modern multi-pr
 Format | Client
 --------|--------
 **Clash** | Clash, Clash.Meta, ClashX.Meta, Clash Nyanpasu, Stash, Shadowrocket
-**SingBox** | sing-box and its GUIs (SFA, SFI, SFM)
+**SingBox** | sing-box and its GUIs (SFA, SFI, SFM, SFW, SFL)
 **V2Ray Json** | V2Ray core, V5 configuration
 **Json** | Not a client format. A small JSON document describing your account — level, expiry, traffic used and remaining, and the URLs above
 
