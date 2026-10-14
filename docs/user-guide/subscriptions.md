@@ -30,7 +30,7 @@ Format | Client
 **Clash** | Clash, Clash.Meta, ClashX.Meta, Clash Nyanpasu, Stash, Shadowrocket
 **SingBox** | sing-box and its GUIs (SFA, SFI, SFM, SFW, SFL)
 **V2Ray Json** | V2Ray core, V5 configuration
-**Json** | Not a client format. A small JSON document describing your account — level, expiry, traffic used and remaining, and the URLs above
+**Json** | A small JSON document describing your account — level, expiry, traffic used and remaining — and listing the URLs above. [NeXT Desktop](next-desktop.md) reads it; other clients cannot
 
 Use a universal link where you can. It is one link instead of three, and it keeps working when the operator adds a node of a protocol you were not using before.
 

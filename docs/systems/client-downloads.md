@@ -32,6 +32,7 @@ Clash Nyanpasu | Clash | Yes | Hosted: Windows x64 installer, macOS Apple-silico
 ClashX.Meta | Clash | Yes | Hosted: macOS zip
 Clash Meta for Android | Clash | Yes | Hosted: universal APK
 sing-box | SingBox | Yes | Hosted: SFW (Windows x64), SFM (macOS universal pkg), SFL (Linux amd64 `.deb`), SFA (Android universal APK)
+NeXT Desktop | Json | Yes, from releases after 1.0.0 | Hosted, from a private repository: Windows x64 installer, macOS Apple-silicon DMG, Linux x86_64 AppImage
 Stash | Clash | Yes | App Store, paid
 Shadowrocket | Clash | Yes | App Store, paid
 F-Droid Basic | — | — | F-Droid, for installing other open-source Android apps
@@ -40,13 +41,13 @@ The platform tabs list them in this order:
 
 Tab | Clients
 ----|--------
-Windows | Clash Nyanpasu, sing-box
-macOS | Clash Nyanpasu, ClashX.Meta, sing-box
-Linux | Clash Nyanpasu, sing-box
+Windows | Clash Nyanpasu, sing-box, NeXT Desktop
+macOS | Clash Nyanpasu, ClashX.Meta, sing-box, NeXT Desktop
+Linux | Clash Nyanpasu, sing-box, NeXT Desktop
 Android | Clash Meta for Android, sing-box, F-Droid Basic
 iOS | Stash, Shadowrocket
 
-Every hosted file comes from the latest GitHub release of the client's own project, so the default catalogue needs nothing from you beyond running `ClientDownload`.
+Every hosted file comes from the latest GitHub release of the client's own project, so the default catalogue needs nothing from you beyond running `ClientDownload`. NeXT Desktop is the exception: its repository is private, so it also needs a token, set up as described [below](#next-desktop). Until it has one, `ClientDownload` skips it and its download button leads to a missing file, so remove `next_desktop` from `client_config` if you will not be offering it.
 
 ### An entry
 
@@ -73,7 +74,7 @@ The key (`clash_nyanpasu`) is the client's id. It is what `client_config` refers
 Field | Meaning
 -------|---------
 `name` | Shown in the UI and in the button labels
-`sub_type` | Which universal subscription the client's copy button, QR code and import link use: `clash` or `singbox`. Each type used on a tab also adds a "Subscription for …" line at the top of that tab. Leave it out for an app that takes no subscription
+`sub_type` | Which universal subscription the client's copy button, QR code and import link use: `clash`, `singbox`, or `json` (the account manifest NeXT Desktop reads). Each type used on a tab also adds a "Subscription for …" line at the top of that tab. Leave it out for an app that takes no subscription
 `import` | Deep-link template for one-tap import. `%sub%` is the user's universal subscription base (`https://…/sub/<token>`, with no suffix), `%sub_b64%` the base64 of the full link for `sub_type` (Shadowrocket's scheme wants that), `%name%` the site name. Leave it out if the client has no import scheme
 `paid` | Whether the client is paid software. Its store button then reads **Buy** instead of **Install**, so users are not surprised
 `download` | Present when the client ships a binary the panel can host
@@ -85,6 +86,8 @@ Field | Meaning
 -------|---------
 `source` | `github_release` takes the latest release. `github_pre_release` takes the newest release of any kind, pre-releases included
 `repo` | The GitHub repository, as `owner/name`
+`private` | `true` for a private repository. See [Private repositories](#private-repositories)
+`token` | Optional. A token for this entry alone, used instead of `github_access_token`
 `files` | One entry per file: `platform` (`windows`, `macos`, `linux`, `android` or `ios`), `remote` (the asset's name on the release) and `local` (the name it is saved and served under)
 
 In `remote`, `%tagName%` expands to the release tag and `%tagName1%` to the tag without its leading `v` (`v1.2.0` → `1.2.0`), which is how most projects name their assets. `local` takes no placeholders. The dashboard links to it exactly as written, so it has to stay the same from one release to the next.
@@ -123,6 +126,64 @@ Two guards worth knowing about:
 ### GitHub token
 
 Each client costs one GitHub API request per run, to look up its latest release. The downloads themselves come from github.com and do not count. Without a token, GitHub allows 60 API requests an hour per IP address, and a shared or busy server address can use them up before the job starts. Set `$_ENV['github_access_token']` in `config.php` to raise the limit to 5,000 an hour. For public repositories, a fine-grained personal access token with **Public repositories (read-only)** access and no permissions is enough, as is a classic token with no scopes.
+
+### Private repositories
+
+A client whose releases live in a private repository is marked `'private' => true` in its `download` block. The public github.com download links answer 404 for a private repository whatever token you send, so for such an entry `ClientDownload` works through the GitHub API instead. It looks the release up with the token and finds each file in the release's asset list. It then requests the file from the API, which redirects to GitHub's file server. The token goes to `api.github.com` only and is not sent on to the file server.
+
+The token is the entry's own `token` if it has one, otherwise `github_access_token`. It needs read access to that repository:
+
+- **Fine-grained token** (recommended): the repository's owner as resource owner, **Only select repositories** with that repository, and **Contents: Read-only** under repository permissions. A fine-grained token can also read every public repository, so the same token can serve as `github_access_token`.
+- **Classic token**: the `repo` scope. That grants access to every private repository your account can reach, so prefer a fine-grained one.
+
+What goes wrong, and what `ClientDownload` says:
+
+- **No token at all**: the entry is skipped with a message naming the two places a token can go. No request is made.
+- **A token that cannot read the repository, or has expired**: GitHub answers 404 or 401 to the release lookup, the entry is skipped, and its old files stay in place.
+- **A `remote` name the release does not have**: that file is reported as missing from the release, and the client's version is not recorded, so the next run tries again.
+
+`config/client.php` now holds a secret. Keep it out of anything you share, as you would `config.php`.
+
+## NeXT Desktop
+
+NeXT Desktop is the panel's own desktop client, for Windows, macOS and Linux. A user pastes their universal subscription link once, and it shows their traffic, class and expiry beside the connect button. It runs either sing-box or mihomo, both bundled, with the profiles the panel generates. The [user guide](../user-guide/next-desktop.md) covers using it.
+
+The example catalogue ships it as `next_desktop`, last on the three desktop tabs:
+
+```php
+'next_desktop' => [
+    'name' => 'NeXT Desktop',
+    'sub_type' => 'json',
+    'import' => 'next-desktop://install-config?url=%sub%&name=%name%',
+    'paid' => false,
+    'download' => [
+        'source' => 'github_release',
+        'repo' => 'The-NeXT-Project/NeXT-Desktop',
+        'private' => true,
+        'token' => '',
+        'files' => [
+            ['platform' => 'windows', 'remote' => 'NeXT-Desktop-%tagName1%-windows-x64-setup.exe', 'local' => 'NeXT-Desktop-setup.exe'],
+            ['platform' => 'macos',   'remote' => 'NeXT-Desktop-%tagName1%-macos-arm64.dmg',        'local' => 'NeXT-Desktop.dmg'],
+            ['platform' => 'linux',   'remote' => 'NeXT-Desktop-%tagName1%-linux-x86_64.AppImage', 'local' => 'NeXT-Desktop.AppImage'],
+        ],
+    ],
+],
+```
+
+To offer it:
+
+1. **Get a token.** Your GitHub account needs read access to `The-NeXT-Project/NeXT-Desktop`. Create a fine-grained token with `The-NeXT-Project` as resource owner, **Only select repositories** → `NeXT-Desktop`, and **Contents: Read-only**. If the organisation requires approval for fine-grained tokens, the token works once it is approved.
+2. **Put it in the entry**, as `'token' => 'github_pat_…'` in `config/client.php`, or set it as `github_access_token` in `config.php` so every client uses it.
+3. **Fix the sing-box profile on an older install.** NeXT Desktop bundles sing-box 1.14, which refuses the `'detour' => 'direct'` that older copies of `config/appprofile.php` set on the `http_clients` entry, so the profile cannot download its rule sets and will not start. `appprofile.example.php` no longer sets it. Delete that line from your own `config/appprofile.php`; upgrades never update the file.
+4. **Run `php next-cli ClientDownload`** and check that it reports all three NeXT Desktop files as saved.
+
+On an install that predates the entry, also copy the `next_desktop` block into `config/client.php` and add `'next_desktop'` to the `windows`, `macos` and `linux` lists in `client_config`.
+
+**Import into NeXT Desktop** opens a `next-desktop://` link carrying the bare universal link, which the app turns into the Json manifest itself. The app asks before adding a new subscription, and only updates one it already has. The installer registers the scheme on Windows (the portable zip does not), the app bundle on macOS, and the app itself on its first start on Linux. Only releases after 1.0.0 handle it: on 1.0.0 the button does nothing, and users copy the Json link from the button beside it and paste it in instead. The `json` type also adds a "Subscription for Json" line to each desktop tab.
+
+The release also has Windows arm64, Intel Mac and Linux arm64 builds, a portable Windows zip and a Linux tarball. To host one of them, add a file entry with its asset name and a fixed `local` name. Only the first file for each platform gets a button, as with every client, so users need the direct link to anything else.
+
+Without object storage, the hosted installers are public: anyone with the `/clients/…` URL can download them. Configure a backend if downloads should be limited to signed-in users.
 
 ## Serving them
 
