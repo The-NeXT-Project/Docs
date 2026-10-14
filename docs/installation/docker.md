@@ -42,7 +42,7 @@ Variable | Default | Notes
 `REDIS_HOST`, `REDIS_PORT` | the bundled `redis` service | —
 `APP_URL` | `http://localhost:8080` | Becomes `baseUrl`. Must match how users actually reach the site
 `ADMIN_EMAIL`, `ADMIN_PASSWORD` | — | The initial administrator. Only used when the user table is empty
-`DOWNLOAD_CLIENTS` | `false` | `true` fetches client binaries on boot. Adds several minutes and a lot of bandwidth
+`DOWNLOAD_CLIENTS` | `false` | `true` fetches client binaries on boot. Adds several minutes and a lot of bandwidth. It needs `config/client.php`, which the container does not create: copy `client.example.php` to `client.php` in the `config_data` volume first, or the step prints "No clients configured" and boot carries on without it
 `APP_KEY` | generated | The session signing key
 
 ### About the generated secret

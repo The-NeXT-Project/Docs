@@ -73,7 +73,7 @@ Front-end library versions. See [Web assets](../systems/web-assets.md).
 php next-cli ClientDownload
 ```
 
-Fetches client binaries from GitHub releases per `config/client.php`, and uploads them to object storage if a backend is configured. Weekly from cron is a reasonable cadence. See [Client downloads](../systems/client-downloads.md).
+Fetches client binaries from GitHub releases per `config/client.php`, and uploads them to object storage if a backend is configured. Only clients with a new release are downloaded, and a client's new version is recorded only once all its files have arrived, so a failed run is retried on the next one. Weekly from cron is a reasonable cadence. Run it as the user that owns the panel files, since it refuses to run as anyone else. See [Client downloads](../systems/client-downloads.md).
 
 ## Tool
 

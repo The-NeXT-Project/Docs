@@ -270,16 +270,17 @@ MariaDB [(none)]> FLUSH PRIVILEGES;
 Next, edit the site configuration file to include the database connection information you just set up, and then read the rest of the configuration instructions to customize the site.
 
 ```bash
-cp config/.config.example.php config/.config.php
+cp config/config.example.php config/config.php
 cp config/appprofile.example.php config/appprofile.php
-nano config/.config.php
+cp config/client.example.php config/client.php
+nano config/config.php
 ```
 
 Next, perform the following site initialization setup
 
 ```bash
 php next-cli Migration new
-php next-cli Tool importSetting
+php next-cli Config import
 php next-cli Tool createAdmin
 sudo -u nginx /usr/bin/php next-cli ClientDownload
 ```
