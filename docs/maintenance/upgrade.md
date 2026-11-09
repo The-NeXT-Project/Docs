@@ -25,7 +25,7 @@ bash update.sh dev
 ```
 
 :::caution
-`update.sh dev` runs `git reset --hard origin/dev`. Any local modification to a tracked file is discarded — including files written by `next-cli Assets download`, since `public/assets` is tracked. Commit or stash first.
+`update.sh dev` runs `git reset --hard origin/dev`. Any local modification to a tracked file is discarded, including anything changed under `public/assets`. Commit or stash first.
 :::
 
 ## What update.sh does
@@ -63,5 +63,5 @@ Symptom | Cause
 A config item is reported missing | `Config import` did not run. Run it
 Pages render with the old layout | The Smarty compile cache was not cleared
 New text shows as raw keys such as `user.setting.title` | The translation cache was not cleared. Run `rm -f cache/translation/*`
-Styling is broken in `local` asset mode | `public/assets` was reset by `git reset --hard`. Re-run `next-cli Assets download`
+Styling is broken | The web server is not serving `public/assets`, or a file there was changed or deleted. Restore it with `git checkout -- public/assets`
 The panel is up but nothing activates | Cron is not running, or is running as the wrong user

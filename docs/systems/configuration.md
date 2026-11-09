@@ -25,7 +25,7 @@ Database | `db_host`, `db_database`, credentials, read/write split
 Redis | `redis_host`, `redis_port`, TLS options
 Subscriptions | `enable_sub`, `sub_urls`, `sub_token_len`
 Rate limits | Every `rate_limit_*` value
-Assets | `assets_cdn`, `jsdelivr_url`, `custom_assets_cdn_url`
+sing-box rule sets | `jsdelivr_url`
 Third parties | `sentry_dsn`, `abuseipdb_*`, `github_access_token`
 
 `config/appprofile.php` is loaded by the web entry point only, not by the CLI.

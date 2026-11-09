@@ -62,10 +62,10 @@ php next-cli I18n scan   # Keys used in code but undefined, and the reverse
 ## Assets
 
 ```bash
-php next-cli Assets list | check | update [name|all] | pin <name> <version> | download [name|all] | reset [name|all]
+php next-cli Assets list | check
 ```
 
-Front-end library versions. See [Web assets](../systems/web-assets.md).
+Shows the front-end library versions shipped with this release and compares them with npm. They change only with a panel release. See [Web assets](../systems/web-assets.md).
 
 ## ClientDownload
 

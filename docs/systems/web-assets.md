@@ -4,15 +4,13 @@ sidebar_position: 9
 
 # Web Assets
 
-The front-end libraries the panel ships — Tabler, DataTables, htmx, ApexCharts, TinyMCE and the rest — are described in one catalogue and can be served from three different places.
+The front-end libraries the panel ships - Tabler, DataTables, htmx, ApexCharts, TinyMCE and the rest - are described in one catalogue, and pages load them only from the copies shipped with the release.
 
 ## The catalogue
 
 `App\Services\Assets::PACKAGES` is the single source of truth: for each library, its npm package name, the version shipped with the release, the files it contributes, and the path each file lives at on the site.
 
-It feeds both consumers: the `assets` array handed to templates, and the `Assets` CLI (which packages to query on npm, which files to download).
-
-The in-site path doubles as the custom-CDN path, minus the `/assets` prefix, so each file is declared once and works in all three delivery modes.
+It feeds the `assets` array handed to templates, the `Assets` CLI (which packages to look up on npm) and the dev script that bumps versions (which files to download).
 
 **`extra`** files are downloaded alongside their package but never exposed to templates. They exist because something else loads them, not because a template does: the Tabler icon webfonts are referenced by the icon stylesheet, and TinyMCE fetches its theme, model, icons, enabled plugins and light/dark skins from its base URL at runtime. Only the `.min` files the editor actually requests are listed, so the local TinyMCE folder holds 24 files rather than the whole npm package. Enabling another editor plugin means adding its `plugin.min.js` to the catalogue as well.
 
@@ -20,47 +18,29 @@ Adding or moving a library means editing the catalogue and nothing else.
 
 ## Where assets are served from
 
-`$_ENV['assets_cdn']` in `config.php`:
+Always `public/assets/` on your own server. Every asset URL is a local path with the shipped version appended (`/assets/css/tabler.min.css?v=<version>`), so browsers fetch the new files after an upgrade instead of mixing cached old CSS with new JavaScript.
 
-Mode | Serves from | Needs
-------|-------------|-------
-`local` | `public/assets/` on your own server | The files on disk
-`jsdelivr` | jsDelivr, addressed by npm package and version | Nothing
-`custom` | Your own CDN at `custom_assets_cdn_url` | The files uploaded there
+There is no CDN mode and no way to change a version on a single install. Older releases had `assets_cdn`, `custom_assets_cdn_url` and per-install pins in `cache/assets.json`; these are ignored now, and `update.sh` removes the two settings from `config.php`. A leftover `cache/assets.json` can be deleted.
 
-`jsdelivr_url` picks which jsDelivr hostname to use — `fastly.jsdelivr.net`, `cdn.jsdelivr.net` or `testingcf.jsdelivr.net`.
+`jsdelivr_url` is still in `config.php`, but only for the sing-box rule-set URLs in subscriptions. Pages never load from it.
 
-In `jsdelivr` mode a version change takes effect on the next page load, because the version is part of the URL. In `local` and `custom` mode the files must actually be present at the new version first.
-
-## Changing versions
-
-Two tools do this, and the difference matters.
-
-### Per-install: the CLI
+## Checking versions
 
 ```bash
-php next-cli Assets list                  # Current version of each package
-php next-cli Assets check                 # Compare against the latest on npm
-php next-cli Assets update [name|all]     # Pin to the latest on npm
-php next-cli Assets pin <name> <version>  # Pin one package to a version
-php next-cli Assets download [name|all]   # Download local copies at current versions
-php next-cli Assets reset [name|all]      # Drop pins, back to the shipped defaults
+php next-cli Assets list    # Version of each package shipped with this release
+php next-cli Assets check   # Compare against the latest on npm
 ```
 
-Pins are written to `cache/assets.json`, which is gitignored. The catalogue defaults are layered under them, so a corrupt or missing pin file simply falls back to the shipped versions rather than breaking the site.
+Both are read-only. A newer release on npm reaches your install with a panel upgrade.
 
-This is the administrator's tool. It never touches the source.
-
-In `local` or `custom` mode, a pin is only half the job — run `Assets download` afterwards, or the site will reference a version that is not there.
-
-### Shipped defaults: the dev script
+## Changing versions: the dev script
 
 ```bash
 composer update-assets
 composer update-assets -- --dry-run
 ```
 
-[`dev/update-assets.php`](https://github.com/The-NeXT-Project/NeXT-Panel/blob/dev/dev/update-assets.php) rewrites the `version` values in the catalogue itself and refreshes `public/assets`, so the bump reaches every install on their next upgrade.
+[`dev/update-assets.php`](https://github.com/The-NeXT-Project/NeXT-Panel/blob/dev/dev/update-assets.php) rewrites the `version` values in the catalogue itself and refreshes `public/assets`, so the bump reaches every install on their next upgrade. It is the only way to change a version.
 
 It is a dev-machine tool: it needs neither `config.php` nor a database, and it is excluded from the Docker image.
 
@@ -68,12 +48,14 @@ Before bumping anything it issues a `HEAD` for every path the package declares a
 
 Its rewrite is anchored on both the catalogue key and the npm package name and must match exactly once. If it cannot, it bails out and asks for a hand edit rather than guessing.
 
+Commit the catalogue and `public/assets` together. The test suite fails if a file the catalogue names is missing.
+
 ## `public/assets` is tracked by git
 
-The local copies are committed, which has one practical consequence: `Assets download` leaves you with a dirty working tree, and `./update.sh dev` does a hard reset. Commit or stash before upgrading, or the downloaded files are discarded.
+The local copies are committed, so `./update.sh dev`, which does a hard reset, restores them to the shipped state. Don't edit them on a server; local changes are discarded on the next upgrade.
 
-Upgrades of these libraries produce very large diffs. That is expected — treat `public/assets` as third-party code.
+Upgrades of these libraries produce very large diffs. That is expected - treat `public/assets` as third-party code.
 
 ## Certificates
 
-The CLI verifies TLS against the CA bundle shipped with Composer when PHP's `curl.cainfo` is unset, which it often is on minimal container images. Without that fallback, `Assets check` and `Assets download` fail on a correctly configured server for reasons that have nothing to do with the panel.
+The CLI and the dev script verify TLS against the CA bundle shipped with Composer when PHP's `curl.cainfo` is unset, which it often is on minimal container images. Without that fallback, `Assets check` fails on a correctly configured server for reasons that have nothing to do with the panel.
