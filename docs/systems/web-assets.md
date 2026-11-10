@@ -12,7 +12,9 @@ The front-end libraries the panel ships - Tabler, DataTables, htmx, ApexCharts, 
 
 It feeds the `assets` array handed to templates, the `Assets` CLI (which packages to look up on npm) and the dev script that bumps versions (which files to download).
 
-**`extra`** files are downloaded alongside their package but never exposed to templates. They exist because something else loads them, not because a template does: the Tabler icon webfonts are referenced by the icon stylesheet, and TinyMCE fetches its theme, model, icons, enabled plugins and light/dark skins from its base URL at runtime. Only the `.min` files the editor actually requests are listed, so the local TinyMCE folder holds 24 files rather than the whole npm package. Enabling another editor plugin means adding its `plugin.min.js` to the catalogue as well.
+**`extra`** files are downloaded alongside their package but never exposed to templates. They exist because something else loads them, not because a template does: TinyMCE fetches its theme, model, icons, enabled plugins and light/dark skins from its base URL at runtime. Only the `.min` files the editor actually requests are listed, so the local TinyMCE folder holds 24 files rather than the whole npm package. Enabling another editor plugin means adding its `plugin.min.js` to the catalogue as well.
+
+**Fonts and images a stylesheet references** with a relative `url()` - the Tabler icon font subsets, the flag and payment SVGs, the JSON editor icons - are not listed in the catalogue at all. They are read out of the shipped stylesheet and downloaded next to it, because upstream changes them without notice: Tabler Icons 3.51 split its single font into about fifty subset files, and while the catalogue still listed the old font, every icon on the site failed to load.
 
 Adding or moving a library means editing the catalogue and nothing else.
 
@@ -38,6 +40,7 @@ Both are read-only. A newer release on npm reaches your install with a panel upg
 ```bash
 composer update-assets
 composer update-assets -- --dry-run
+composer update-assets -- --refresh    # Re-download the current versions, no bump
 ```
 
 [`dev/update-assets.php`](https://github.com/The-NeXT-Project/NeXT-Panel/blob/dev/dev/update-assets.php) rewrites the `version` values in the catalogue itself and refreshes `public/assets`, so the bump reaches every install on their next upgrade. It is the only way to change a version.
@@ -48,7 +51,9 @@ Before bumping anything it issues a `HEAD` for every path the package declares a
 
 Its rewrite is anchored on both the catalogue key and the npm package name and must match exactly once. If it cannot, it bails out and asks for a hand edit rather than guessing.
 
-Commit the catalogue and `public/assets` together. The test suite fails if a file the catalogue names is missing.
+After writing a new stylesheet it downloads every font and image that stylesheet references. `--refresh` does the same at the versions already in the catalogue, to fill in files that are missing. Neither deletes files a new stylesheet no longer references; remove those by hand before committing.
+
+Commit the catalogue and `public/assets` together. The test suite fails if a file the catalogue names, or a file a shipped stylesheet references, is missing.
 
 ## `public/assets` is tracked by git
 
