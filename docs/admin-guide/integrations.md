@@ -19,7 +19,9 @@ Gateway | Suits
 
 ### Webhooks
 
-Stripe and PayPal both confirm payment by calling back to the panel, and both need to be told where. **Set the webhook** on their tab registers the panel's callback URL with the gateway using the credentials you just saved, so you do not have to copy URLs into their dashboards by hand.
+Stripe and PayPal both confirm payment by calling back to the panel, and both need to be told where. **Set the webhook** on their tab registers the panel's callback URL with the gateway using the credentials in the form, saved or not, so you do not have to copy URLs into their dashboards by hand.
+
+For Stripe the button also fills in **Endpoint Secret** for you. Stripe shows an endpoint's signing secret only once, when the endpoint is created, so each click creates a fresh endpoint, stores its secret, and then removes the endpoints it created earlier for the same address. Endpoints for other addresses are left alone. If Stripe refuses, nothing changes on either side.
 
 Callbacks land on `/payment/notify/{type}`, which is deliberately outside the authenticated route groups — the gateway is not signed in. Authenticity comes from the signature or endpoint secret instead, which is why `Endpoint Secret` (Stripe) and the client secret (PayPal) matter as much as the API key.
 
