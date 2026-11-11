@@ -71,6 +71,7 @@ Symptom | Cause
 ---------|-------
 A config item is reported missing | `Config import` did not run. Run it
 New text shows as raw keys such as `user.setting.title` | The translation cache was not cleared. Run `rm -f cache/translation/*`
+The update stops with "Composer could not install the dependencies", or every page and every `next-cli` command fails on a missing file under `vendor/` | Composer did not finish. Run `php -d disable_functions= composer.phar install --no-dev --no-interaction`, then `bash update.sh dev` again. The `-d` flag matters on a server hardened as the install guide describes: Composer needs `chown`, which that hardening disables for the command line
 Every page shows an error right after an upgrade | The page bundle is missing or was built from older code. `php next-cli Frontend check` says which; run `bash update.sh dev` again, or `npm ci --omit=dev && npm run build`
 Styling is broken | The web server is not serving `public/assets`, or a file there was changed or deleted. Restore it with `git checkout -- public/assets`
 The panel is up but nothing activates | Cron is not running, or is running as the wrong user
