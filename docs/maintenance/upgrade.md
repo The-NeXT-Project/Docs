@@ -40,7 +40,7 @@ Both modes run the same five steps and finish by checking the page bundle. `dev`
 
 Step | Command | Why
 ------|---------|-----
-Clear the template cache | `rm -r cache/smarty/compile/*` | Compiled templates from the old version would otherwise be reused
+Remove the old template cache | `rm -rf cache/smarty` | Left behind by releases that rendered pages with Smarty; nothing reads it any more
 Clear the translation cache | `rm -f cache/translation/*` | Compiled catalogues from the old version would otherwise be reused, so new strings show as their raw keys
 Migrate the config file | `php next-cli Config migrateFile` | Merges keys new in this release into your `config/config.php`
 Import the DB config | `php next-cli Config import` | Adds settings new in this release and syncs changed defaults
@@ -70,7 +70,6 @@ Two upgrade-specific steps, when the release notes mention them:
 Symptom | Cause
 ---------|-------
 A config item is reported missing | `Config import` did not run. Run it
-Pages render with the old layout | The Smarty compile cache was not cleared
 New text shows as raw keys such as `user.setting.title` | The translation cache was not cleared. Run `rm -f cache/translation/*`
 Every page shows an error right after an upgrade | The page bundle is missing or was built from older code. `php next-cli Frontend check` says which; run `bash update.sh dev` again, or `npm ci --omit=dev && npm run build`
 Styling is broken | The web server is not serving `public/assets`, or a file there was changed or deleted. Restore it with `git checkout -- public/assets`

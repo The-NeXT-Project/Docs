@@ -111,9 +111,8 @@ Command | Effect
 Command | Effect
 ---------|--------
 `Tool setLocale` | Set every user's language
-`Tool setTheme` | Set every user's theme
 
-Both overwrite choices users made for themselves. Reasonable right after adding a language or replacing a theme; rude otherwise.
+It overwrites the choice users made for themselves. Reasonable right after adding a language; rude otherwise.
 
 ### Data and mail
 

@@ -4,15 +4,15 @@ sidebar_position: 9
 
 # Web Assets
 
-The front-end libraries the panel ships - Tabler, DataTables, htmx, ApexCharts, TinyMCE and the rest - are described in one catalogue, and pages load them only from the copies shipped with the release.
+The front-end libraries the panel ships - Tabler, DataTables, ApexCharts, TinyMCE and the rest - are described in one catalogue, and pages load them only from the copies shipped with the release.
 
 ## The catalogue
 
 `App\Services\Assets::PACKAGES` is the single source of truth: for each library, its npm package name, the version shipped with the release, the files it contributes, and the path each file lives at on the site.
 
-It feeds the `assets` array handed to templates, the `Assets` CLI (which packages to look up on npm) and the dev script that bumps versions (which files to download).
+It feeds the `assets` list handed to the pages, the `Assets` CLI (which packages to look up on npm) and the dev script that bumps versions (which files to download).
 
-**`extra`** files are downloaded alongside their package but never exposed to templates. They exist because something else loads them, not because a template does: TinyMCE fetches its theme, model, icons, enabled plugins and light/dark skins from its base URL at runtime. Only the `.min` files the editor actually requests are listed, so the local TinyMCE folder holds 24 files rather than the whole npm package. Enabling another editor plugin means adding its `plugin.min.js` to the catalogue as well.
+**`extra`** files are downloaded alongside their package but never exposed to pages. They exist because something else loads them, not because a page does: TinyMCE fetches its theme, model, icons, enabled plugins and light/dark skins from its base URL at runtime. Only the `.min` files the editor actually requests are listed, so the local TinyMCE folder holds 24 files rather than the whole npm package. Enabling another editor plugin means adding its `plugin.min.js` to the catalogue as well.
 
 **Fonts and images a stylesheet references** with a relative `url()` - the Tabler icon font subsets, the flag and payment SVGs, the JSON editor icons - are not listed in the catalogue at all. They are read out of the shipped stylesheet and downloaded next to it, because upstream changes them without notice: Tabler Icons 3.51 split its single font into about fifty subset files, and while the catalogue still listed the old font, every icon on the site failed to load.
 

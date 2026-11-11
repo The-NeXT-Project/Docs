@@ -13,7 +13,7 @@ NeXT Panel is a typical PHP web application that requires the following server p
 * MySQL-like database. We recommend using the latest LTS version of MariaDB. The current version of NeXT Panel is developed and tested on MariaDB version 12.1.
 * Redis key-value pair database, mainly used for storing non-persistent data to reduce IOPS on the main Database. The current version of NeXT Panel was developed and tested based on Redis version 8.0(Valkey, an open-source Redis fork should work as well).
 
-At the code level, NeXT Panel uses Slim Framework 4.x as the backend framework, Eloquent as the database ORM, Smarty 5.x and Twig 3.x template engines to provide html template rendering, and Composer to manage third-party libraries and dependencies.
+At the code level, NeXT Panel uses Slim Framework 4.x as the backend framework, Eloquent as the database ORM, Svelte 5 components (built with Vite and served over the Inertia protocol) for the pages, and Composer to manage third-party libraries and dependencies.
 
 ## Performance
 

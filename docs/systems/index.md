@@ -25,7 +25,7 @@ Subsystem | What it owns | Page
 
 ## The shape of the application
 
-NeXT Panel is a PHP application on [Slim 4](https://www.slimframework.com/), with Eloquent as the ORM and Smarty as the template engine. MariaDB holds the durable state; Redis holds everything that can be lost without consequence — rate-limit counters, OAuth state, revoked session IDs.
+NeXT Panel is a PHP application on [Slim 4](https://www.slimframework.com/), with Eloquent as the ORM. Pages are Svelte components served over the Inertia protocol; mails and the error pages are plain PHP templates. MariaDB holds the durable state; Redis holds everything that can be lost without consequence — rate-limit counters, OAuth state, revoked session IDs.
 
 A request goes: `public/index.php` loads the config files and the global constants, boots the database and error handling, builds the Slim app, and applies the routes. Routes are grouped by the middleware that guards them:
 

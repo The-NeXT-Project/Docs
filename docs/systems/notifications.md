@@ -65,7 +65,7 @@ With `None` selected the mailer accepts messages and discards them. Verification
 
 ### Templates
 
-Mail templates live under `template/email/<theme>/` and are styled to match the panel's web theme, so a message looks like it came from the site the user signed up to. Every message is rendered in the recipient's locale, using the same translation catalogues the web pages use.
+Mail templates are plain PHP files under `resources/views/email/<email_theme>/` (`email_theme` in `config.php`, `next` by default) and are styled to match the panel, so a message looks like it came from the site the user signed up to. Every message is rendered in the recipient's locale, using the same translation catalogues the web pages use.
 
 ### Sending limits
 
