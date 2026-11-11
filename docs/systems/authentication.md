@@ -82,7 +82,7 @@ The secret is generated when the account is created, whether or not two-factor i
 
 ## CAPTCHA
 
-Six providers, one interface: Turnstile, hCaptcha, reCAPTCHA Enterprise, Geetest, Alibaba Cloud Captcha 2.0 and Tencent Cloud Captcha. The provider is chosen once and applies to every form.
+Four providers, one interface: Turnstile, hCaptcha, reCAPTCHA Enterprise and Alibaba Cloud Captcha 2.0. The provider is chosen once and applies to every form.
 
 Each is enabled per form — registration, sign-in, password reset, check-in — because the forms have different risk profiles. Registration and check-in create accounts and hand out traffic; sign-in is already covered by rate limiting.
 

@@ -83,11 +83,9 @@ Provider | Credentials
 **Turnstile** | Cloudflare. Site Key, Secret
 **hCaptcha** | Site Key, Secret
 **reCAPTCHA Enterprise** | Google Cloud. Key, Project ID, API Key
-**Geetest** | ID, Key
 **Alibaba Cloud Captcha 2.0** | Scene ID, Instance Prefix, Region, Access Key ID and Secret
-**Tencent Cloud Captcha** | CaptchaAppId, App Secret Key, plus a Cloud API Secret ID and Key
 
-Turnstile is the least intrusive default. The Chinese providers are worth the extra fields when your users are inside mainland China, where the Google- and Cloudflare-hosted widgets are unreliable; Alibaba Cloud Captcha additionally asks which region its instance lives in, mainland or Singapore.
+Turnstile is the least intrusive default. Alibaba Cloud Captcha is worth the extra fields when your users are inside mainland China, where the Google- and Cloudflare-hosted widgets are unreliable; it additionally asks which region its instance lives in, mainland or Singapore.
 
 Registration and check-in are the two that actually need protecting — one creates accounts, the other hands out traffic. Turning CAPTCHA on for sign-in mostly annoys legitimate users, since [rate limiting](../systems/authentication.md#rate-limiting) already covers credential stuffing.
 
