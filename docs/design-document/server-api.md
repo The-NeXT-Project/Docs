@@ -66,6 +66,27 @@ All `GET` endpoints return a weak `ETag` header. Send it back via `If-None-Match
 
 When `enable_rate_limit` is on, requests are limited per IP (`rate_limit_server_api_ip`) and per node (`rate_limit_server_api`), both defaulting to 60 per minute.
 
+### Report IDs and resending
+
+`POST /users/traffic` and `POST /users/detect_logs` accept an optional `report_id`: 1 to 64 characters of `A-Z`, `a-z`, `0-9`, `_` and `-`, compared case-sensitively. Anything else (an empty string, a number, a longer value) is refused with `400 invalid_body` before anything is recorded. Sending `null` or leaving it out is the same as having no ID.
+
+The panel records a batch once per node, endpoint and `report_id`. A request whose ID the panel has already recorded writes nothing and still answers `200`, with `"duplicate": true`:
+
+```json
+{ "data": { "accepted": 0, "skipped": 0, "duplicate": true } }
+```
+
+`accepted` and `skipped` are 0 because this request recorded nothing; the counts of the first delivery are not kept, so they are not repeated. A resend that arrives while the first attempt is still being written waits for it, and then gets either the duplicate answer (the first attempt was recorded) or is recorded itself (it was not), never both.
+
+This is what makes a timeout safe. A node that got no answer cannot tell whether the panel recorded the batch, so a backend should:
+
+- give every batch a fresh random ID (NeXT-Server uses 32 hex digits);
+- after a timeout, a dropped connection or a `5xx`, send the **same batch again unchanged, with the same ID**, and not merge it into newer counts, because a merged batch is a new batch and would be counted again;
+- keep counting new traffic meanwhile, and send it in a new batch only after the pending one has been answered with `200` (recorded or duplicate);
+- treat a `4xx` as not recorded: the panel authenticates and validates a report before writing any of it, so those counts can go back into the next batch under a new ID. Resending a refused batch unchanged cannot succeed.
+
+The panel keeps report IDs for three days. A report without `report_id` is recorded every time it arrives, as before.
+
 ## Endpoints
 
 ### `PUT /heartbeat`
@@ -130,10 +151,10 @@ Current detect (audit) rules. ETag-enabled. `data` is an array of rule objects.
 Batch report of user traffic since the last report, in bytes:
 
 ```json
-{ "traffic": [ { "user_id": 123, "u": 1048576, "d": 8388608 } ] }
+{ "report_id": "9f1c2b7e4d3a5f60718293a4b5c6d7e8", "traffic": [ { "user_id": 123, "u": 1048576, "d": 8388608 } ] }
 ```
 
-Traffic rates (static or dynamic) are applied panel-side. Entries referencing unknown users — e.g. deleted between polls — are skipped, not fatal:
+`report_id` is optional; see [Report IDs and resending](#report-ids-and-resending). Traffic rates (static or dynamic) are applied panel-side. Entries referencing unknown users — e.g. deleted between polls — are skipped, not fatal:
 
 ```json
 { "data": { "accepted": 41, "skipped": 1 } }
@@ -158,10 +179,10 @@ IPv4 addresses are stored as IPv4-mapped IPv6. Invalid IPs are skipped. Response
 Batch report of detect rule hits:
 
 ```json
-{ "logs": [ { "user_id": 123, "rule_id": 4 } ] }
+{ "report_id": "0b8e6a2f9c1d4e7f8a9b0c1d2e3f4a5b", "logs": [ { "user_id": 123, "rule_id": 4 } ] }
 ```
 
-`rule_id` is the id of the matched detect rule (the legacy `list_id`). Response is the same `accepted`/`skipped` envelope.
+`rule_id` is the id of the matched detect rule (the legacy `list_id`). Response is the same `accepted`/`skipped` envelope. `report_id` is optional and works as for traffic: every hit counts toward the automatic ban, so a resent batch must not be recorded twice.
 
 ## Migrating from the legacy WebAPI
 
