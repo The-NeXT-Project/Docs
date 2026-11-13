@@ -17,7 +17,7 @@ The key is generated per node when the node is created and can be regenerated fr
 Two further rules:
 
 - Keys are never passed in the query string.
-- With `checkNodeIp` enabled, the request IP must match the authenticated node's own `ipv4`/`ipv6` address (or loopback), not merely any node's address.
+- With `checkNodeIp` enabled, the request IP must match the authenticated node's own `ipv4`/`ipv6` address, not merely any node's address. Loopback gets no exemption: it matches only a node whose own address resolves to the panel host. Behind a reverse proxy on the same host, configure the web server's real-IP handling (nginx `set_real_ip_from` / `real_ip_header`) or every request arrives from 127.0.0.1 and is refused.
 
 ## Conventions
 
@@ -64,7 +64,7 @@ All `GET` endpoints return a weak `ETag` header. Send it back via `If-None-Match
 
 ### Rate limits
 
-When `enable_rate_limit` is on, requests are limited per IP (`rate_limit_server_api_ip`) and per node (`rate_limit_server_api`), both defaulting to 60 per minute.
+When `enable_rate_limit` is on, a request with a valid key is limited per node (`rate_limit_server_api`, 60 per minute by default), however many nodes share its address. `rate_limit_server_api_ip` (also 60 per minute) counts only failed authentications from an address: a missing or malformed header or an unknown key. Once an address has used that budget, it is refused with 429 before its key is even looked up, so the answer never tells a right key from a wrong one.
 
 ### Report IDs and resending
 

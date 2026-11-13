@@ -94,7 +94,6 @@ Command | Effect
 `Tool clearSubToken` | New subscription token for every user. Every saved subscription URL stops returning anything
 `Tool resetNodePassword` | New communication key for every node. Every backend stops talking to the panel until reconfigured
 `Tool generateApiToken` | New API token for every user
-`Tool generateGa` | New two-factor secret for every user, invalidating their enrolled authenticators
 
 These are incident-response tools: use them when a secret has leaked site-wide, and expect a support wave afterwards. For one account, use the admin panel.
 

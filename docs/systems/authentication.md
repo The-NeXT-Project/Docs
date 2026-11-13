@@ -49,7 +49,7 @@ $_ENV['enable_login_bind_ip'] = true;
 $_ENV['enable_login_bind_device'] = true;
 ```
 
-With IP binding on, a token stops working from a different address. There is one exception: a request relayed by a known node is accepted, because the source address legitimately changes when a user browses the panel through the service they are paying for.
+With IP binding on, a token stops working from a different address, with no exceptions. Requests arriving through one of the panel's own nodes used to be accepted for any session, but every customer can send traffic through those nodes, so a stolen cookie replayed through one passed the check. The cost is that a user who switches their proxy on or off is signed out; turn IP binding off if that matters more to your users.
 
 Device binding compares the user agent. It costs users a sign-in whenever their browser updates its version string, so it is a real trade-off rather than free security.
 
@@ -78,7 +78,11 @@ Sign-in is two steps. The first page takes only the email and password; an accou
 
 **Passkey sign-in** skips both pages: the login page asks the browser for any passkey for this site, and a signed assertion with user verification signs the account in directly, since the device has already checked both possession and the person. It is offered only in browsers that support WebAuthn.
 
-The secret is generated when the account is created, whether or not two-factor is ever turned on, so enabling it is a single step. An administrator can turn two-factor off from the user edit page, which removes the TOTP enrolment, every security key and passkey, and all backup codes at once — the recovery path when someone loses their devices and their codes.
+The authenticator secret is created only when the user starts setting up the app, shown once, and confirmed with a test code; turning the app off deletes it. (Older versions created it at sign-up and kept showing it on the account page, so anyone who once saw that page held a valid seed; upgrading clears every secret that was never enabled.)
+
+While two-factor is on, changing it needs a second factor as well as the password: adding a passkey or security key, removing one, turning the authenticator on or off and generating new backup codes all ask for a current code, a backup code or a security-key assertion bound to that one action. A stolen password and session therefore cannot add the attacker's own passkey, which would otherwise survive a password reset. Each change is announced to the account holder by email (or IM, where they prefer it), with the time and address.
+
+An administrator can turn two-factor off from the user edit page, which removes the TOTP enrolment, every security key and passkey, and all backup codes at once — the recovery path when someone loses their devices and their codes.
 
 ## CAPTCHA
 
@@ -101,11 +105,13 @@ $_ENV['rate_limit_auth_ip'] = 60;       // Auth requests per IP per 10 minutes
 $_ENV['rate_limit_password_ip'] = 60;   // Password requests per IP per 10 minutes
 $_ENV['rate_limit_sub_ip'] = 10;        // Subscription fetches per IP per minute
 $_ENV['rate_limit_sub'] = 10;           // Subscription fetches per user per minute
-$_ENV['rate_limit_server_api_ip'] = 60; // Server API per IP per minute
+$_ENV['rate_limit_server_api_ip'] = 60; // Failed Server API authentications per IP per minute
 $_ENV['rate_limit_server_api'] = 60;    // Server API per node per minute
 ```
 
 Most limits come in pairs, per-IP and per-subject, and both must pass. The pairing is the point: a per-IP limit alone is defeated by a botnet, and a per-user limit alone lets one host attack many accounts.
+
+Wrong passwords are limited the same way, in Redis rather than in this table: ten per account and address (an IPv6 address counts by its /64) in five minutes, under a ceiling of fifty per account from all addresses. Someone who knows an administrator's email can only lock out their own address, not the account, while guesses spread over many addresses still run into the ceiling.
 
 Subscription fetches are limited per user as well as per IP because a leaked subscription URL being polled by a hundred clients is a real load pattern, and it is not the IP that identifies it.
 
