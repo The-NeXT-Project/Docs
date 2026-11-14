@@ -16,7 +16,13 @@ From a checkout of the panel:
 docker compose up -d
 ```
 
-The panel is at `http://localhost:8080`, and you can sign in with the `ADMIN_EMAIL` and `ADMIN_PASSWORD` from `docker-compose.yml`.
+The panel is at `http://localhost:8080`. Sign in as the `ADMIN_EMAIL` from `docker-compose.yml`. Unless you set `ADMIN_PASSWORD`, the first boot generates a password and prints it once in the container log:
+
+```bash
+docker compose logs app | grep 'Generated password'
+```
+
+Change it after signing in. It is not stored anywhere else and is not printed again.
 
 ## What the first boot does
 
@@ -41,7 +47,7 @@ Variable | Default | Notes
 `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD` | the bundled `db` service | Point them elsewhere to use an external database
 `REDIS_HOST`, `REDIS_PORT` | the bundled `redis` service | —
 `APP_URL` | `http://localhost:8080` | Becomes `baseUrl`. Must match how users actually reach the site
-`ADMIN_EMAIL`, `ADMIN_PASSWORD` | — | The initial administrator. Only used when the user table is empty
+`ADMIN_EMAIL`, `ADMIN_PASSWORD` | `admin@example.com`, generated | The initial administrator. Only used when the user table is empty. With `ADMIN_PASSWORD` empty a random password is generated and printed once in the log; set it (for example in `.env`) to choose your own
 `DOWNLOAD_CLIENTS` | `false` | `true` fetches client binaries on boot. Adds several minutes and a lot of bandwidth. It needs `config/client.php`, which the container does not create: copy `client.example.php` to `client.php` in the `config_data` volume first, or the step prints "No clients configured" and boot carries on without it
 `APP_KEY` | generated | The session signing key
 
@@ -70,7 +76,7 @@ Cron runs inside the app container, every five minutes, as `www-data`. Nothing t
 
 The shipped compose file is a demonstration. Before real users touch it:
 
-- **Change every password.** `MYSQL_ROOT_PASSWORD`, `MYSQL_PASSWORD`, `ADMIN_PASSWORD` and the matching `DB_PASSWORD` are all published defaults.
+- **Change every password.** `MYSQL_ROOT_PASSWORD`, `MYSQL_PASSWORD` and the matching `DB_PASSWORD` are all published defaults.
 - **Set `APP_KEY` explicitly.**
 - **Put TLS in front of it.** The container serves plain HTTP on port 80, mapped to 8080. The session cookie is `Secure` and `__Host-`-prefixed, so a browser will refuse to store it over plain HTTP — sign-in cannot work without HTTPS. Terminate TLS at a reverse proxy and set `APP_URL` to the `https://` address.
 - **Do not expose the database or Redis ports.** The compose file does not; keep it that way.

@@ -183,13 +183,15 @@ On an install that predates the entry, also copy the `next_desktop` block into `
 
 The release also has Windows arm64, Intel Mac and Linux arm64 builds, a portable Windows zip and a Linux tarball. To host one of them, add a file entry with its asset name and a fixed `local` name. Only the first file for each platform gets a button, as with every client, so users need the direct link to anything else.
 
-Without object storage, the hosted installers are public: anyone with the `/clients/…` URL can download them. Configure a backend if downloads should be limited to signed-in users.
+Because the repository is private, its installers are only handed to signed-in users, with or without object storage: see [Serving them](#serving-them).
 
 ## Serving them
 
 Downloaded files land in `public/clients/`. What happens next depends on `Admin` → `Settings` → `Object storage`.
 
-**With no backend configured**, the web server serves them straight from disk at `/clients/<local>`. Fine for a small site, but every download competes with the panel for bandwidth, and anyone who has the URL can download the file, signed in or not.
+**With no backend configured**, the web server serves them straight from disk at `/clients/<local>`. Fine for a small site, but every download competes with the panel for bandwidth, and anyone who has the URL can download the file, signed in or not. That is no loss for a client GitHub hands to anyone as well.
+
+Files from a [private repository](#private-repositories) are the exception. They are kept in `cache/clients/`, outside the web root, and the dashboard links to `/user/clients/<local>`, where the panel streams the file to signed-in users only. `ClientDownload` creates that directory itself, so run it as the user that owns the panel files, as always. A private file an earlier version left in `public/clients/` is moved out on the next run; until then it stays reachable at its old public address, so run `ClientDownload` once after updating.
 
 **With a backend configured**, `ClientDownload` uploads each file to the bucket as it fetches it, and nothing stays in `public/clients/`. The dashboard links to `/user/clients/<local>`, which only signed-in users can open. It redirects to a presigned URL valid for **Presigned URL lifetime** minutes (10 by default). The bucket stays private, so nothing is publicly listable, and the transfer never touches the panel.
 

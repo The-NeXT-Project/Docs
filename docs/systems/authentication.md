@@ -40,6 +40,8 @@ Both keys come from `$_ENV['key']` via HKDF, with distinct context strings for s
 Changing `$_ENV['key']` invalidates every session on the site immediately. That is the intended way to force a global sign-out, and the reason the key must be a long random string rather than something guessable.
 :::
 
+`config.example.php` ships the key as `ChangeMe`. The Docker image replaces it on first boot; on a manual install you have to. A panel still on the placeholder keeps working, but `php next-cli Migration latest` (the last step of `update.sh`) ends on a warning and the admin dashboard shows a red notice until it is changed, because anyone can derive the signing keys from a key everyone knows.
+
 ### Binding to IP and device
 
 Two `config.php` switches tighten a session to where it was created:

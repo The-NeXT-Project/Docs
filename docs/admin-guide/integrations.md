@@ -84,8 +84,10 @@ Provider | Credentials
 ---------|-------------
 **Turnstile** | Cloudflare. Site Key, Secret
 **hCaptcha** | Site Key, Secret
-**reCAPTCHA Enterprise** | Google Cloud. Key, Project ID, API Key
+**reCAPTCHA Enterprise** | Google Cloud. Key, Project ID, API Key, Minimum score
 **Alibaba Cloud Captcha 2.0** | Scene ID, Instance Prefix, Region, Access Key ID and Secret
+
+reCAPTCHA scores every request from 0.0 to 1.0, where 1.0 is most likely a person. **Minimum score** refuses a token that scores lower. It is 0 by default, which accepts every valid token whatever its score. A score-based key never shows a challenge, so with one of those nothing is blocked until you set it; watch the scores your own traffic gets in the Google Cloud console before choosing a value.
 
 Turnstile is the least intrusive default. Alibaba Cloud Captcha is worth the extra fields when your users are inside mainland China, where the Google- and Cloudflare-hosted widgets are unreliable; it additionally asks which region its instance lives in, mainland or Singapore.
 
@@ -181,7 +183,7 @@ All backends support function calling, which is what lets the assistant look up 
 
 Backend | Credentials
 ---------|-------------
-**None (serve locally)** | Files are served from `public/clients/` by the panel itself
+**None (serve locally)** | Files are served from `public/clients/` by the web server; those from a private repository from `cache/clients/` by the panel, to signed-in users only
 **Cloudflare R2** | Account ID, Bucket, Access Key ID and Secret
 **Alibaba Cloud OSS** | Region, Endpoint, Bucket, Access Key ID and Secret
 **Tencent Cloud COS** | Region, Bucket, SecretId, SecretKey, optional custom domain
