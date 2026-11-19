@@ -1,8 +1,8 @@
 # Server API V1
 
-Server API V1 is the interface node backends use to talk to the panel. It replaced the legacy WebAPI (`/mod_mu`), which has since been removed; see [Migrating from the legacy WebAPI](#migrating-from-the-legacy-webapi) for backends still written against it.
+Server API V1 is the interface node backends use to talk to the panel.
 
-All routes are prefixed with `/api/server/v1`. Requests and responses are JSON, and the API switch (`webAPI` in `config.php`) must be enabled in the panel.
+All routes are prefixed with `/api/server/v1`. Requests and responses are JSON.
 
 ## Authentication
 
@@ -50,7 +50,6 @@ Backends should branch on `code`, never on `message`.
 
 Code | Status | Meaning
 -----|--------|--------
-`api_disabled` | 403 | `webAPI` is disabled on this panel
 `unauthenticated` | 401 | Missing/malformed header or unknown key
 `rate_limited` | 429 | Too many requests from this IP or node
 `node_disabled` | 403 | The node exists but is disabled in the panel
@@ -162,7 +161,7 @@ Batch report of user traffic since the last report, in bytes:
 
 A skipped entry for an unknown user still counts towards the node's own bandwidth usage and daily traffic, because the node really did carry those bytes. Only an entry that fails validation is ignored entirely.
 
-Do **not** send the legacy aggregate pseudo-entry (the `user_id`-less row): every entry must name a user, and the online-user count now travels via `PUT /heartbeat`.
+Every entry must name a user; there is no `user_id`-less aggregate entry. The online-user count travels via `PUT /heartbeat`.
 
 ### `POST /users/online`
 
@@ -182,26 +181,4 @@ Batch report of detect rule hits:
 { "report_id": "0b8e6a2f9c1d4e7f8a9b0c1d2e3f4a5b", "logs": [ { "user_id": 123, "rule_id": 4 } ] }
 ```
 
-`rule_id` is the id of the matched detect rule (the legacy `list_id`). Response is the same `accepted`/`skipped` envelope. `report_id` is optional and works as for traffic: every hit counts toward the automatic ban, so a resent batch must not be recorded twice.
-
-## Migrating from the legacy WebAPI
-
-The panel no longer serves `/mod_mu`, and the shared `muKey` is gone from `config.php`. A backend still written against it gets `404` on every call until it is ported. The endpoints map as follows:
-
-Legacy (`/mod_mu`, removed) | Server API V1
--------------------|---------------
-`GET /users?node_id=N` (implicit heartbeat) | `PUT /heartbeat`
-`GET /nodes/{id}/info` | `GET /info`
-`GET /users?node_id=N` | `GET /users`
-`GET /func/detect_rules` | `GET /detect_rules`
-`POST /users/traffic?node_id=N` | `POST /users/traffic`
-`POST /users/aliveip?node_id=N` | `POST /users/online`
-`POST /users/detectlog?node_id=N` | `POST /users/detect_logs`
-`GET /func/ping` | `PUT /heartbeat`
-
-Behavioral changes to account for:
-
-- Authenticate with the node's own communication key in the `Authorization` header; drop `muKey` and all `node_id`/`key` parameters.
-- Check HTTP status codes and `error.code` instead of the `ret` field; errors no longer come back as `200`.
-- Fetching `/users` no longer marks the node alive — send heartbeats explicitly.
-- Traffic reports must not include the aggregate pseudo-entry, and partially invalid batches are applied partially (watch `skipped`).
+`rule_id` is the id of the matched detect rule. Response is the same `accepted`/`skipped` envelope. `report_id` is optional and works as for traffic: every hit counts toward the automatic ban, so a resent batch must not be recorded twice.
